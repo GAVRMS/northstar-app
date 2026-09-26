@@ -36,6 +36,7 @@ var state = {
   tab: 'today',
   goalFilter: 'all',
   plannerView: 'upcoming',
+  weekOffset: 0,
   db: null,
   ready: false,
   routine: {},
@@ -748,11 +749,26 @@ function goalTagForBlock(label){
   return '';
 }
 
+function weekOffsetBounds(){
+  var base = currentWeekMonday();
+  var yearEnd = new Date(base.getFullYear(), 11, 31);
+  var maxWeeks = Math.max(0, Math.floor((yearEnd - base) / (7*86400000)));
+  return {min: 0, max: maxWeeks};
+}
 function renderWeekItinerary(){
-  var monday = currentWeekMonday();
+  var bounds = weekOffsetBounds();
+  state.weekOffset = Math.max(bounds.min, Math.min(bounds.max, state.weekOffset||0));
+  var monday = addDays(currentWeekMonday(), state.weekOffset*7);
   var dayDefs = [['mon','Monday'],['tue','Tuesday'],['wed','Wednesday'],['thu','Thursday'],['fri','Friday'],['sat','Saturday'],['sun','Sunday']];
-  var html = '<div style="font-size:12.5px;color:var(--ink-dim);margin-bottom:10px;">Your routine, woven in with this week’s goal actions and calendar — Mon '+
-    monday.toLocaleDateString(undefined,{month:'short',day:'numeric'})+' to Sun '+addDays(monday,6).toLocaleDateString(undefined,{month:'short',day:'numeric'})+'.</div>';
+  var rangeLabel = 'Mon '+monday.toLocaleDateString(undefined,{month:'short',day:'numeric'})+' to Sun '+addDays(monday,6).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+  var html = '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">' +
+    '<button class="icon-btn" data-action="week-nav" data-dir="-1" '+(state.weekOffset<=bounds.min?'disabled style="opacity:.35;"':'')+' title="Previous week">‹</button>' +
+    '<div style="flex:1;text-align:center;font-size:12.5px;color:var(--ink-dim);">'+rangeLabel+(state.weekOffset===0?' <span class="chip" style="margin-left:4px;">This week</span>':'')+'</div>' +
+    '<button class="icon-btn" data-action="week-nav" data-dir="1" '+(state.weekOffset>=bounds.max?'disabled style="opacity:.35;"':'')+' title="Next week">›</button>' +
+  '</div>';
+  if(state.weekOffset!==0){
+    html += '<div style="text-align:center;margin-bottom:6px;"><button class="link-btn" data-action="week-nav" data-dir="0">Jump to this week</button></div>';
+  }
   dayDefs.forEach(function(pair, i){
     var key = pair[0], label = pair[1];
     var date = addDays(monday, i);
@@ -1022,6 +1038,14 @@ document.getElementById('mainContent').addEventListener('click', function(e){
   var pvBtn = e.target.closest('[data-action="planner-view"]');
   if(pvBtn){
     state.plannerView = pvBtn.getAttribute('data-view');
+    if(state.plannerView==='week') state.weekOffset = 0;
+    renderPlanner();
+    return;
+  }
+  var weekNavBtn = e.target.closest('[data-action="week-nav"]');
+  if(weekNavBtn){
+    var dir = weekNavBtn.getAttribute('data-dir');
+    state.weekOffset = dir==='0' ? 0 : (state.weekOffset||0) + parseInt(dir,10);
     renderPlanner();
     return;
   }
