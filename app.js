@@ -5,6 +5,8 @@
 var CATEGORIES = ['Professional','Personal','Health','Social'];
 var PRIORITIES = ['Critical','High','Medium','Low'];
 var STATUSES = ['Planned','In Progress','Done','Cancelled'];
+var PRIORITY_POINTS = {Critical:5, High:4, Medium:3, Low:2};
+function priorityPoints(p){ return PRIORITY_POINTS[p] || 3; }
 var CAT_KEYWORDS = {
   Professional: ['work','meeting','call','bloomberg','job','interview','forum','townhall','client','conference','presentation','fca','aprg'],
   Health: ['gym','doctor','surgery','physio','pilates','dentist','workout','run','yoga','medicine','discharge','checkup'],
@@ -28,8 +30,11 @@ var state = {
   events: [],
   goals: [],
   checkins: [],
+  checkinPoints: {},
+  bestStreak: 0,
   activity: [],
   tab: 'today',
+  goalFilter: 'all',
   db: null,
   ready: false,
   routine: {},
@@ -75,7 +80,7 @@ function loadLocal(){
   return null;
 }
 function saveLocal(){
-  try{ localStorage.setItem(LS_KEY, JSON.stringify({events:state.events, goals:state.goals, checkins:state.checkins, activity:state.activity})); }catch(e){}
+  try{ localStorage.setItem(LS_KEY, JSON.stringify({events:state.events, goals:state.goals, checkins:state.checkins, checkinPoints:state.checkinPoints, bestStreak:state.bestStreak, activity:state.activity})); }catch(e){}
 }
 
 /* ================= firebase init ================= */
@@ -119,7 +124,7 @@ async function seedIfEmpty(db){
     Object.keys(seed.routine||{}).forEach(function(day){
       batch.set(firebase.firestore().doc(base + '/routine/' + day), seed.routine[day]);
     });
-    batch.set(firebase.firestore().doc(base + '/meta/checkins'), {dates: seed.checkins||[]});
+    batch.set(firebase.firestore().doc(base + '/meta/checkins'), {dates: seed.checkins||[], points: seed.checkinPoints||{}, bestStreak: seed.bestStreak||0});
     batch.set(firebase.firestore().doc(base + '/meta/activity'), {items: seed.activity||[]});
     await batch.commit();
     console.log('Northstar: seeded initial data for this account.');
@@ -163,7 +168,10 @@ async function onSignedIn(user, fs){
   }, function(err){ console.warn('goals sub error', err); });
 
   db.doc('meta/checkins').onSnapshot(function(snap){
-    state.checkins = (snap.exists && snap.data().dates) || [];
+    var d = snap.exists ? snap.data() : {};
+    state.checkins = d.dates || [];
+    state.checkinPoints = d.points || {};
+    state.bestStreak = d.bestStreak || 0;
     renderAll();
   }, function(err){ console.warn('checkins sub error', err); });
 
@@ -203,12 +211,16 @@ function initLocalFallback(){
     state.events = local.events||[];
     state.goals = local.goals||[];
     state.checkins = local.checkins||[];
+    state.checkinPoints = local.checkinPoints||{};
+    state.bestStreak = local.bestStreak||0;
     state.activity = local.activity||[];
   } else {
     fetch('seed-data.json').then(function(r){ return r.json(); }).then(function(seed){
       state.events = seed.events||[];
       state.goals = seed.goals||[];
       state.checkins = seed.checkins||[];
+      state.checkinPoints = seed.checkinPoints||{};
+      state.bestStreak = seed.bestStreak||0;
       state.activity = seed.activity||[];
       state.routine = seed.routine||{};
       saveLocal();
@@ -259,29 +271,65 @@ async function logActivity(text, type){
     state.activity = items; saveLocal(); renderAll();
   }
 }
-async function checkinToday(){
-  if(state.checkins.indexOf(todayStr) !== -1) return;
-  var dates = state.checkins.concat([todayStr]).slice(-400);
+function computeStreakFromDates(dates){
+  var set = {}; (dates||[]).forEach(function(d){set[d]=true;});
+  var streak = 0;
+  var cursor = parseYmd(todayStr);
+  if(!set[ymd(cursor)]){ cursor = addDays(cursor, -1); }
+  while(set[ymd(cursor)]){ streak++; cursor = addDays(cursor, -1); }
+  return streak;
+}
+async function checkinToday(pts){
+  pts = pts || 0;
+  var alreadyToday = state.checkins.indexOf(todayStr) !== -1;
+  var dates = alreadyToday ? state.checkins.slice() : state.checkins.concat([todayStr]).slice(-400);
+  var points = Object.assign({}, state.checkinPoints);
+  points[todayStr] = (points[todayStr]||0) + pts;
+  var cutoff = ymd(addDays(parseYmd(todayStr), -120));
+  Object.keys(points).forEach(function(d){ if(d < cutoff) delete points[d]; });
+  var best = Math.max(state.bestStreak||0, computeStreakFromDates(dates));
   if(state.db){
-    await state.db.doc('meta/checkins').set({dates: dates});
+    await state.db.doc('meta/checkins').set({dates: dates, points: points, bestStreak: best});
   }else{
-    state.checkins = dates; saveLocal(); renderAll();
+    state.checkins = dates; state.checkinPoints = points; state.bestStreak = best; saveLocal(); renderAll();
   }
 }
 
 async function markEventDone(id, done){
+  var ev = state.events.find(function(x){return x.id===id;});
   await updateEvent(id, {status: done ? 'Done' : 'Planned'});
-  if(done){ await checkinToday(); var ev = state.events.find(function(x){return x.id===id;}); logActivity('Completed "'+(ev?ev.entry:'task')+'"', 'complete'); }
+  if(done){
+    var pts = priorityPoints(ev ? ev.priority : 'Medium');
+    await checkinToday(pts);
+    logActivity('Completed "'+(ev?ev.entry:'task')+'" (+'+pts+' pts)', 'complete');
+  }
 }
 async function toggleSubAction(goalId, idx, done){
   var g = state.goals.find(function(x){return x.id===goalId;});
   if(!g) return;
-  var subs = (g.subActions||[]).map(function(s,i){ return i===idx ? Object.assign({}, s, {done: done}) : s; });
+  var pts = priorityPoints(g.priority);
+  var subs = (g.subActions||[]).map(function(s,i){
+    if(i!==idx) return s;
+    var ns = Object.assign({}, s, {done: done});
+    if(done) ns.timesLogged = (s.timesLogged||0) + 1;
+    return ns;
+  });
   var allDone = subs.length>0 && subs.every(function(s){return s.done;});
   var anyDone = subs.some(function(s){return s.done;});
   var status = allDone ? 'Done' : (anyDone ? 'In Progress' : 'Not started');
-  await updateGoal(goalId, {subActions: subs, status: status});
-  if(done){ await checkinToday(); logActivity('Made progress on "'+g.title+'": '+subs[idx].text, 'complete'); }
+  var newPoints = (g.points||0) + (done ? pts : 0);
+  await updateGoal(goalId, {subActions: subs, status: status, points: newPoints});
+  if(done){ await checkinToday(pts); logActivity('Completed "'+g.title+'": '+subs[idx].text+' (+'+pts+' pts)', 'complete'); }
+}
+async function logSubActionProgress(goalId, idx){
+  var g = state.goals.find(function(x){return x.id===goalId;});
+  if(!g) return;
+  var pts = priorityPoints(g.priority);
+  var subs = (g.subActions||[]).map(function(s,i){ return i===idx ? Object.assign({}, s, {timesLogged:(s.timesLogged||0)+1}) : s; });
+  var newPoints = (g.points||0) + pts;
+  await updateGoal(goalId, {subActions: subs, points: newPoints});
+  await checkinToday(pts);
+  logActivity('Logged progress on "'+g.title+'": '+subs[idx].text+' (+'+pts+' pts)', 'complete');
 }
 async function addSubAction(goalId, text){
   var g = state.goals.find(function(x){return x.id===goalId;});
@@ -293,12 +341,7 @@ async function addSubAction(goalId, text){
 
 /* ================= derived data ================= */
 function computeStreak(){
-  var set = {}; state.checkins.forEach(function(d){set[d]=true;});
-  var streak = 0;
-  var cursor = parseYmd(todayStr);
-  if(!set[ymd(cursor)]){ cursor = addDays(cursor, -1); }
-  while(set[ymd(cursor)]){ streak++; cursor = addDays(cursor, -1); }
-  return streak;
+  return computeStreakFromDates(state.checkins);
 }
 function eventsInRange(startOffset, endOffset){
   var start = ymd(addDays(parseYmd(todayStr), startOffset));
@@ -457,6 +500,15 @@ function eventRow(ev, opts){
   );
 }
 
+function spawnFloatingPoints(x, y, text){
+  var el = document.createElement('div');
+  el.className = 'floatpoint';
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  el.textContent = text;
+  document.body.appendChild(el);
+  setTimeout(function(){ el.remove(); }, 950);
+}
 function escapeHtml(s){
   return String(s==null?'':s).replace(/[&<>"']/g, function(c){
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
@@ -633,38 +685,124 @@ function renderPlanner(){
   document.getElementById('mainContent').innerHTML = html;
 }
 
+function goalStatusComputed(g){
+  var subs = g.subActions||[];
+  if(!subs.length) return g.status || 'Not started';
+  var done = subs.filter(function(s){return s.done;}).length;
+  if(done===0) return subs.some(function(s){return s.timesLogged;}) ? 'In Progress' : (g.status||'Not started');
+  if(done===subs.length) return 'Complete';
+  return 'In Progress';
+}
+function statusPillClass(s){
+  if(s==='Complete' || s==='Done') return 'complete';
+  if(s==='In Progress') return 'progress';
+  return 'not';
+}
+function renderDashStats(){
+  var streak = computeStreak();
+  var best = state.bestStreak||0;
+  var todayPts = (state.checkinPoints && state.checkinPoints[todayStr]) || 0;
+  var subTotal = 0, doneTotal = 0;
+  state.goals.forEach(function(g){ var subs=g.subActions||[]; subTotal += subs.length; doneTotal += subs.filter(function(s){return s.done;}).length; });
+  var pct = subTotal ? Math.round(100*doneTotal/subTotal) : 0;
+  return '<div class="dash-stats">' +
+    '<div class="dash-stat streak"><div class="dl">🔥 Streak</div><div class="dv mono">'+streak+'<small>days</small></div></div>' +
+    '<div class="dash-stat"><div class="dl">🏆 Best</div><div class="dv mono">'+best+'<small>days</small></div></div>' +
+    '<div class="dash-stat"><div class="dl">⚡ Today</div><div class="dv mono">'+todayPts+'<small>pts</small></div></div>' +
+    '<div class="dash-stat"><div class="dl">✔ Complete</div><div class="dv mono">'+pct+'<small>%</small></div><div style="font-size:10.5px;color:var(--ink-dim);margin-top:1px;">'+doneTotal+'/'+subTotal+'</div></div>' +
+  '</div>';
+}
+function renderFilterPills(){
+  var f = state.goalFilter || 'all';
+  var opts = [['all','All'],['Critical','Critical'],['High','High'],['Medium','Medium'],['Low','Low']];
+  return '<div class="filter-pills">' + opts.map(function(o){
+    return '<button class="fpill '+(f===o[0]?'active':'')+'" data-action="filter-priority" data-priority="'+o[0]+'">'+o[1]+'</button>';
+  }).join('') + '</div>';
+}
+function renderHeatmap(){
+  var days = 84;
+  var today = parseYmd(todayStr);
+  var start = addDays(today, -(days-1));
+  start = addDays(start, -start.getDay());
+  var totalDays = Math.round((today-start)/86400000) + 1;
+  var weeks = Math.ceil(totalDays/7);
+  var html = '<div class="heatmap-wrap"><div class="heatmap">';
+  for(var w=0; w<weeks; w++){
+    html += '<div class="heat-col">';
+    for(var d=0; d<7; d++){
+      var date = addDays(start, w*7+d);
+      if(date > today){
+        html += '<div class="heat-cell" style="visibility:hidden;"></div>';
+        continue;
+      }
+      var ds = ymd(date);
+      var pts = (state.checkinPoints && state.checkinPoints[ds]) || 0;
+      var level = pts===0 ? 0 : pts<=3 ? 1 : pts<=7 ? 2 : pts<=14 ? 3 : 4;
+      html += '<div class="heat-cell" data-level="'+level+'" title="'+ds+(pts?(' — '+pts+' pts'):' — nothing logged')+'"></div>';
+    }
+    html += '</div>';
+  }
+  html += '</div></div>';
+  return html;
+}
 function renderGoals(){
   var html = '<div class="section" style="margin-top:8px;"><div class="section-head"><h2>Your goals</h2><button class="icon-btn" data-action="speak-goals" title="Read progress aloud" aria-label="Read progress aloud">🔊</button></div>';
+  html += renderDashStats();
+  html += renderFilterPills();
   if(state.goals.length===0){
     html += '<div class="empty">No goal areas yet.</div>';
   } else {
-    state.goals.slice().sort(function(a,b){
+    var filter = state.goalFilter || 'all';
+    var list = state.goals.slice().sort(function(a,b){
       var order={Critical:0,High:1,Medium:2,Low:3};
       return (order[a.priority]||2)-(order[b.priority]||2);
-    }).forEach(function(g){
+    });
+    if(filter !== 'all') list = list.filter(function(g){ return g.priority === filter; });
+    if(list.length === 0){
+      html += '<div class="empty">No goals at this priority.</div>';
+    }
+    list.forEach(function(g){
       var subs = g.subActions||[];
       var doneCount = subs.filter(function(s){return s.done;}).length;
       var pct = subs.length ? Math.round(100*doneCount/subs.length) : 0;
-      html += '<div class="card goal-card">';
+      var status = goalStatusComputed(g);
+      var pts = priorityPoints(g.priority);
+      html += '<div class="card goal-card pri-'+escapeHtml(g.priority||'Medium')+'">';
       html += '<div class="goal-head"><div><div class="goal-title">'+escapeHtml(g.title)+'</div>' +
         '<div class="item-meta" style="margin-top:6px;"><span class="chip">'+escapeHtml(g.area||'Personal')+'</span>' +
         '<span class="'+catChipClass(g.priority)+'">'+escapeHtml(g.priority||'Medium')+'</span>' +
-        '<span class="chip">'+escapeHtml(g.status||'Not started')+'</span></div></div></div>';
+        '<span class="status-pill '+statusPillClass(status)+'">'+escapeHtml(status)+'</span></div></div></div>';
       if(goalNeedsFocus(g)) html += '<div class="suggested-tag">⭐ Suggested focus this week</div>';
+      var metaBits = '';
+      if(g.nextAction) metaBits += '<div>Next: '+escapeHtml(g.nextAction)+'</div>';
+      if(g.reviewBy) metaBits += '<div>Review by: '+escapeHtml(g.reviewBy)+'</div>';
+      if(metaBits) html += '<div style="margin-top:8px;font-size:12.5px;color:var(--ink-dim);">'+metaBits+'</div>';
       if(subs.length){
-        html += '<div class="goal-progress-wrap"><div class="goal-bar"><div class="goal-bar-fill" style="width:'+pct+'%"></div></div><div class="goal-pct">'+pct+'%</div></div>';
+        html += '<div class="goal-progress-wrap"><div class="goal-bar"><div class="goal-bar-fill" style="width:'+pct+'%"></div></div><div class="goal-pct">'+doneCount+'/'+subs.length+'</div></div>';
+        html += '<div class="goal-points mono">⚡ '+(g.points||0)+' pts earned</div>';
         html += '<div class="sub-list">' + subs.map(function(s,idx){
-          return '<div class="sub-row"><button class="check '+(s.done?'done':'')+'" data-action="toggle-sub" data-goal="'+g.id+'" data-idx="'+idx+'">'+(s.done?'✓':'')+'</button>' +
-            '<div class="sub-text '+(s.done?'done':'')+'">'+escapeHtml(s.text)+'</div></div>';
+          return '<div class="sub-row">' +
+            '<button class="check '+(s.done?'done':'')+'" data-action="toggle-sub" data-goal="'+g.id+'" data-idx="'+idx+'" title="Mark done">'+(s.done?'✓':'')+'</button>' +
+            '<div class="sub-text '+(s.done?'done':'')+'">'+escapeHtml(s.text)+'</div>' +
+            '<button class="logbtn" data-action="log-sub" data-goal="'+g.id+'" data-idx="'+idx+'" title="Log progress (+'+pts+' pts) without finishing it">⚡'+
+              (s.timesLogged ? '<span class="logcount">'+s.timesLogged+'</span>' : '') +
+            '</button>' +
+          '</div>';
         }).join('') + '</div>';
       } else if(g.nextAction){
-        html += '<div style="margin-top:10px;font-size:13.5px;color:var(--ink-dim);">Next: '+escapeHtml(g.nextAction)+'</div>';
+        html += '<div class="goal-points mono" style="margin-top:10px;">⚡ '+(g.points||0)+' pts earned</div>';
       }
       html += '<div class="add-sub"><input type="text" placeholder="Add an action…" data-goal-input="'+g.id+'"/><button class="mini-btn" data-action="add-sub" data-goal="'+g.id+'">Add</button></div>';
       if(g.title === 'Astrophotography') html += renderSkyPanel();
       html += '</div>';
     });
   }
+  html += '<div class="section-head" style="margin-top:24px;"><h2>Activity map</h2><span style="font-size:12px;color:var(--ink-dim);">Last 12 weeks</span></div>';
+  html += '<div class="card" style="padding:14px;">' + renderHeatmap() +
+    '<div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-dim);margin-top:10px;">Less' +
+    '<span class="heat-cell" data-level="0"></span><span class="heat-cell" data-level="1"></span>' +
+    '<span class="heat-cell" data-level="2"></span><span class="heat-cell" data-level="3"></span>' +
+    '<span class="heat-cell" data-level="4"></span>More</div></div>';
   html += '</div>';
   document.getElementById('mainContent').innerHTML = html;
 }
@@ -734,7 +872,23 @@ document.getElementById('mainContent').addEventListener('click', function(e){
     var idx = parseInt(subBtn.getAttribute('data-idx'),10);
     var g = state.goals.find(function(x){return x.id===gid;});
     var cur = g.subActions[idx].done;
+    if(!cur){ spawnFloatingPoints(e.clientX, e.clientY, '+'+priorityPoints(g.priority)); }
     toggleSubAction(gid, idx, !cur);
+    return;
+  }
+  var logBtn = e.target.closest('[data-action="log-sub"]');
+  if(logBtn){
+    var lgid = logBtn.getAttribute('data-goal');
+    var lidx = parseInt(logBtn.getAttribute('data-idx'),10);
+    var lg = state.goals.find(function(x){return x.id===lgid;});
+    if(lg){ spawnFloatingPoints(e.clientX, e.clientY, '+'+priorityPoints(lg.priority)); }
+    logSubActionProgress(lgid, lidx);
+    return;
+  }
+  var filterBtn = e.target.closest('[data-action="filter-priority"]');
+  if(filterBtn){
+    state.goalFilter = filterBtn.getAttribute('data-priority');
+    renderGoals();
     return;
   }
   var addSubBtn = e.target.closest('[data-action="add-sub"]');
