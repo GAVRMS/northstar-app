@@ -338,6 +338,37 @@ async function addSubAction(goalId, text){
   await updateGoal(goalId, {subActions: subs});
   logActivity('Added goal action: '+text.trim(), 'add');
 }
+async function editSubAction(goalId, idx, newText){
+  var g = state.goals.find(function(x){return x.id===goalId;});
+  if(!g || !g.subActions || !g.subActions[idx]) return;
+  var text = (newText||'').trim();
+  if(!text) return;
+  var oldText = g.subActions[idx].text;
+  var subs = g.subActions.map(function(s,i){ return i===idx ? Object.assign({}, s, {text: text}) : s; });
+  await updateGoal(goalId, {subActions: subs});
+  logActivity('Edited "'+oldText+'" to "'+text+'"', 'edit');
+}
+async function deleteSubAction(goalId, idx){
+  var g = state.goals.find(function(x){return x.id===goalId;});
+  if(!g || !g.subActions || !g.subActions[idx]) return;
+  var removedText = g.subActions[idx].text;
+  var subs = g.subActions.filter(function(s,i){ return i!==idx; });
+  var allDone = subs.length>0 && subs.every(function(s){return s.done;});
+  var anyDone = subs.some(function(s){return s.done;});
+  var status = subs.length ? (allDone ? 'Done' : (anyDone ? 'In Progress' : 'Not started')) : g.status;
+  await updateGoal(goalId, {subActions: subs, status: status});
+  logActivity('Deleted goal action: '+removedText, 'delete');
+}
+async function deleteEvent(id){
+  var ev = state.events.find(function(x){return x.id===id;});
+  if(state.db){
+    await state.db.collection('events').doc(id).delete();
+  }else{
+    state.events = state.events.filter(function(x){return x.id!==id;});
+    saveLocal(); renderAll();
+  }
+  logActivity('Deleted "'+(ev?ev.entry:'item')+'"', 'delete');
+}
 
 /* ================= derived data ================= */
 function computeStreak(){
@@ -494,7 +525,8 @@ function eventRow(ev, opts){
         '<a class="cal-btn" href="'+googleCalUrl(ev)+'" target="_blank" rel="noopener">📅 Add to Calendar</a>' +
       '</div>' +
       '<div class="item-actions">' +
-        '<button class="icon-btn" data-action="edit-event" data-id="'+ev.id+'">✎</button>' +
+        '<button class="icon-btn" data-action="edit-event" data-id="'+ev.id+'" title="Edit">✎</button>' +
+        '<button class="icon-btn" data-action="delete-event" data-id="'+ev.id+'" title="Delete">🗑</button>' +
       '</div>' +
     '</div>'
   );
@@ -787,6 +819,8 @@ function renderGoals(){
             '<button class="logbtn" data-action="log-sub" data-goal="'+g.id+'" data-idx="'+idx+'" title="Log progress (+'+pts+' pts) without finishing it">⚡'+
               (s.timesLogged ? '<span class="logcount">'+s.timesLogged+'</span>' : '') +
             '</button>' +
+            '<button class="icon-btn sub-edit" data-action="edit-sub" data-goal="'+g.id+'" data-idx="'+idx+'" title="Edit">✎</button>' +
+            '<button class="icon-btn sub-del" data-action="delete-sub" data-goal="'+g.id+'" data-idx="'+idx+'" title="Delete">🗑</button>' +
           '</div>';
         }).join('') + '</div>';
       } else if(g.nextAction){
@@ -865,6 +899,33 @@ document.getElementById('mainContent').addEventListener('click', function(e){
   }
   var editBtn = e.target.closest('[data-action="edit-event"]');
   if(editBtn){ openEventModal(editBtn.getAttribute('data-id')); return; }
+  var delEvtBtn = e.target.closest('[data-action="delete-event"]');
+  if(delEvtBtn){
+    var delEvId = delEvtBtn.getAttribute('data-id');
+    var delEv = state.events.find(function(x){return x.id===delEvId;});
+    if(window.confirm('Delete "'+(delEv?delEv.entry:'this item')+'"?')){ deleteEvent(delEvId); }
+    return;
+  }
+
+  var editSubBtn = e.target.closest('[data-action="edit-sub"]');
+  if(editSubBtn){
+    var esGid = editSubBtn.getAttribute('data-goal');
+    var esIdx = parseInt(editSubBtn.getAttribute('data-idx'),10);
+    var esG = state.goals.find(function(x){return x.id===esGid;});
+    var esCur = esG && esG.subActions[esIdx] ? esG.subActions[esIdx].text : '';
+    var esNew = window.prompt('Edit action', esCur);
+    if(esNew !== null && esNew.trim() && esNew.trim() !== esCur){ editSubAction(esGid, esIdx, esNew); }
+    return;
+  }
+  var delSubBtn = e.target.closest('[data-action="delete-sub"]');
+  if(delSubBtn){
+    var dsGid = delSubBtn.getAttribute('data-goal');
+    var dsIdx = parseInt(delSubBtn.getAttribute('data-idx'),10);
+    var dsG = state.goals.find(function(x){return x.id===dsGid;});
+    var dsText = dsG && dsG.subActions[dsIdx] ? dsG.subActions[dsIdx].text : 'this action';
+    if(window.confirm('Delete "'+dsText+'"?')){ deleteSubAction(dsGid, dsIdx); }
+    return;
+  }
 
   var subBtn = e.target.closest('[data-action="toggle-sub"]');
   if(subBtn){
