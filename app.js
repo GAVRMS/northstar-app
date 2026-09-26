@@ -35,6 +35,7 @@ var state = {
   activity: [],
   tab: 'today',
   goalFilter: 'all',
+  plannerView: 'upcoming',
   db: null,
   ready: false,
   routine: {},
@@ -700,21 +701,87 @@ function renderToday(){
 }
 
 function renderPlanner(){
-  var upcoming = eventsInRange(0, 60).filter(function(e){return e.status!=='Cancelled';});
-  var byDate = {};
-  upcoming.forEach(function(e){ var d = effectiveDate(e); (byDate[d] = byDate[d]||[]).push(e); });
-  var dates = Object.keys(byDate).sort();
+  var view = state.plannerView || 'upcoming';
   var html = '<div class="section" style="margin-top:8px;">';
-  if(dates.length===0){
-    html += '<div class="empty">No upcoming items in the next 60 days. Tap + to add one.</div>';
+  html += '<div class="filter-pills">' +
+    '<button class="fpill '+(view==='upcoming'?'active':'')+'" data-action="planner-view" data-view="upcoming">Upcoming</button>' +
+    '<button class="fpill '+(view==='week'?'active':'')+'" data-action="planner-view" data-view="week">Week plan</button>' +
+  '</div>';
+  if(view==='week'){
+    html += renderWeekItinerary();
   } else {
-    dates.forEach(function(d){
-      html += '<div class="section-head" style="margin-top:18px;"><h2 style="font-size:15px;">'+fmtDateShort(d)+' · '+parseYmd(d).toLocaleDateString(undefined,{month:'short',day:'numeric'})+'</h2></div>';
-      html += '<div class="card">' + byDate[d].map(function(e){return eventRow(e,{});}).join('') + '</div>';
-    });
+    var upcoming = eventsInRange(0, 60).filter(function(e){return e.status!=='Cancelled';});
+    var byDate = {};
+    upcoming.forEach(function(e){ var d = effectiveDate(e); (byDate[d] = byDate[d]||[]).push(e); });
+    var dates = Object.keys(byDate).sort();
+    if(dates.length===0){
+      html += '<div class="empty">No upcoming items in the next 60 days. Tap + to add one.</div>';
+    } else {
+      dates.forEach(function(d){
+        html += '<div class="section-head" style="margin-top:18px;"><h2 style="font-size:15px;">'+fmtDateShort(d)+' · '+parseYmd(d).toLocaleDateString(undefined,{month:'short',day:'numeric'})+'</h2></div>';
+        html += '<div class="card">' + byDate[d].map(function(e){return eventRow(e,{});}).join('') + '</div>';
+      });
+    }
   }
   html += '</div>';
   document.getElementById('mainContent').innerHTML = html;
+}
+
+function currentWeekMonday(){
+  var d = parseYmd(todayStr);
+  var dow = d.getDay(); // 0=Sun..6=Sat
+  var offsetToMonday = dow===0 ? -6 : (1-dow);
+  var monday = addDays(d, offsetToMonday);
+  if(dow===0 || dow===6){ monday = addDays(monday, 7); } // weekend: show the week ahead
+  return monday;
+}
+
+function goalTagForBlock(label){
+  var l = (label||'').toLowerCase();
+  if(l.indexOf('recovery')!==-1 || l.indexOf('gym')!==-1 || l.indexOf('tennis')!==-1) return '🏃 Health & Fitness';
+  if(l.indexOf('job search')!==-1 || l.indexOf('job-search')!==-1 || l.indexOf('job checkpoint')!==-1) return '💼 New Job';
+  if(l.indexOf('wife')!==-1) return '🤝 Support Wife';
+  if(l.indexOf('family')!==-1 || l.indexOf('outing')!==-1) return '👨‍👩‍👧 Family Time';
+  if(l.indexOf('finance')!==-1 || l.indexOf('house admin')!==-1) return '💰 Finances';
+  if(l.indexOf('reva')!==-1 || l.indexOf('miraya')!==-1 || l.indexOf('reasoning')!==-1 || l.indexOf('drama')!==-1) return '🎓 Kids';
+  if(l.indexOf('astro')!==-1) return '🔭 Astrophotography';
+  return '';
+}
+
+function renderWeekItinerary(){
+  var monday = currentWeekMonday();
+  var dayDefs = [['mon','Monday'],['tue','Tuesday'],['wed','Wednesday'],['thu','Thursday'],['fri','Friday'],['sat','Saturday'],['sun','Sunday']];
+  var html = '<div style="font-size:12.5px;color:var(--ink-dim);margin-bottom:10px;">Your routine, woven in with this week’s goal actions and calendar — Mon '+
+    monday.toLocaleDateString(undefined,{month:'short',day:'numeric'})+' to Sun '+addDays(monday,6).toLocaleDateString(undefined,{month:'short',day:'numeric'})+'.</div>';
+  dayDefs.forEach(function(pair, i){
+    var key = pair[0], label = pair[1];
+    var date = addDays(monday, i);
+    var dateStr = ymd(date);
+    var r = state.routine[key] || {blocks:[]};
+    var dayEvents = state.events.filter(function(e){ return effectiveDate(e)===dateStr && e.status!=='Cancelled'; });
+    var isToday = dateStr === todayStr;
+    html += '<div class="section-head" style="margin-top:18px;"><h2 style="font-size:15px;">'+label+' · '+date.toLocaleDateString(undefined,{month:'short',day:'numeric'})+(isToday?' <span class="chip" style="margin-left:4px;">Today</span>':'')+'</h2>' +
+      (r.mode ? '<span class="chip">'+escapeHtml(r.mode)+'</span>' : '') + '</div>';
+    html += '<div class="card">';
+    if((r.blocks||[]).length===0 && dayEvents.length===0){
+      html += '<div class="empty">Nothing planned.</div>';
+    } else {
+      html += (r.blocks||[]).map(function(b){
+        var tag = goalTagForBlock(b.label);
+        return '<div class="item-row"><div class="item-body" style="display:flex;gap:12px;align-items:flex-start;">' +
+          '<div class="mono" style="flex:0 0 auto;min-width:56px;color:var(--ink-dim);font-size:12.5px;padding-top:1px;">'+escapeHtml(b.time||'')+'</div>' +
+          '<div style="flex:1;"><div style="font-weight:600;font-size:14.5px;">'+escapeHtml(b.label)+
+            (tag?' <span class="chip">'+escapeHtml(tag)+'</span>':'')+'</div>' +
+          (b.note ? '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:2px;">'+escapeHtml(b.note)+'</div>' : '') +
+          '</div></div></div>';
+      }).join('');
+      if(dayEvents.length){
+        html += dayEvents.map(function(e){ return eventRow(e,{}); }).join('');
+      }
+    }
+    html += '</div>';
+  });
+  return html;
 }
 
 function goalStatusComputed(g){
@@ -950,6 +1017,12 @@ document.getElementById('mainContent').addEventListener('click', function(e){
   if(filterBtn){
     state.goalFilter = filterBtn.getAttribute('data-priority');
     renderGoals();
+    return;
+  }
+  var pvBtn = e.target.closest('[data-action="planner-view"]');
+  if(pvBtn){
+    state.plannerView = pvBtn.getAttribute('data-view');
+    renderPlanner();
     return;
   }
   var addSubBtn = e.target.closest('[data-action="add-sub"]');
