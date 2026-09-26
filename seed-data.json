@@ -1,0 +1,1437 @@
+{
+  "events": [
+    {
+      "category": "Social",
+      "date": "2027-04-14",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "Bhaiya's wedding anniversary",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "anniv-bhaiya"
+    },
+    {
+      "category": "Social",
+      "date": "2027-04-06",
+      "day": "Tue",
+      "endTime": null,
+      "entry": "Amma's birthday",
+      "location": null,
+      "notes": "Mother-in-law",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-amma"
+    },
+    {
+      "category": "Social",
+      "date": "2027-01-10",
+      "day": "Sun",
+      "endTime": null,
+      "entry": "Appa's birthday",
+      "location": null,
+      "notes": "Father-in-law",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-appa"
+    },
+    {
+      "category": "Social",
+      "date": "2027-01-30",
+      "day": "Sat",
+      "endTime": null,
+      "entry": "Arjun's birthday",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-arjun"
+    },
+    {
+      "category": "Social",
+      "date": "2027-03-09",
+      "day": "Tue",
+      "endTime": null,
+      "entry": "Bhaiya's birthday",
+      "location": null,
+      "notes": "Brother",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-bhaiya"
+    },
+    {
+      "category": "Social",
+      "date": "2026-09-19",
+      "day": "Sat",
+      "endTime": null,
+      "entry": "Gaurav's birthday",
+      "location": null,
+      "notes": "Consider a day off next year",
+      "prepNeeded": null,
+      "priority": "High",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Done",
+      "id": "bday-gaurav"
+    },
+    {
+      "category": "Social",
+      "date": "2026-11-17",
+      "day": "Tue",
+      "endTime": null,
+      "entry": "Ishan's birthday",
+      "location": null,
+      "notes": "Nephew",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-ishan"
+    },
+    {
+      "category": "Social",
+      "date": "2027-08-11",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "Miraya's birthday",
+      "location": null,
+      "notes": "Younger daughter",
+      "prepNeeded": null,
+      "priority": "High",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-miraya"
+    },
+    {
+      "category": "Social",
+      "date": "2027-04-05",
+      "day": "Mon",
+      "endTime": null,
+      "entry": "Mom's birthday",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "High",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-mom"
+    },
+    {
+      "category": "Social",
+      "date": "2027-06-12",
+      "day": "Sat",
+      "endTime": null,
+      "entry": "Reva's birthday",
+      "location": null,
+      "notes": "Elder daughter",
+      "prepNeeded": null,
+      "priority": "High",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-reva"
+    },
+    {
+      "category": "Social",
+      "date": "2027-03-14",
+      "day": "Sun",
+      "endTime": null,
+      "entry": "Shruti's birthday",
+      "location": null,
+      "notes": "Sister-in-law",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-shruti"
+    },
+    {
+      "category": "Social",
+      "date": "2027-07-05",
+      "day": "Mon",
+      "endTime": null,
+      "entry": "Sujay's birthday",
+      "location": null,
+      "notes": "Brother-in-law",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-sujay"
+    },
+    {
+      "category": "Social",
+      "date": "2027-02-24",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "Vrinda's birthday",
+      "location": null,
+      "notes": "Cousin sister",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-vrinda"
+    },
+    {
+      "category": "Social",
+      "date": "2027-05-12",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "Wife's birthday",
+      "location": null,
+      "notes": "Consider a day off",
+      "prepNeeded": null,
+      "priority": "High",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "bday-wife"
+    },
+    {
+      "category": "Professional",
+      "date": "2026-09-24",
+      "day": "Thu",
+      "endTime": null,
+      "entry": "Bloomberg Prep Call",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-001"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-09-27",
+      "day": "Sun",
+      "endTime": null,
+      "entry": "FCA submit question to mail address",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-002"
+    },
+    {
+      "category": "Health",
+      "date": "2026-09-29",
+      "day": "Tue",
+      "endTime": null,
+      "entry": "Surgery",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-003"
+    },
+    {
+      "category": "Health",
+      "date": "2026-09-30",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "Discharge",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-004"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-10-01",
+      "day": "Thu",
+      "endTime": null,
+      "entry": "FCA Roles Townhall",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": "3pm",
+      "status": "Planned",
+      "id": "evt-005"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-10-10",
+      "day": "Sat",
+      "endTime": null,
+      "entry": "FCA CV and application prep",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-006"
+    },
+    {
+      "category": "Professional",
+      "date": "2026-10-11",
+      "day": "Sun",
+      "endTime": null,
+      "entry": "Bloomberg finalise prep and clothes",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-007"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-10-12",
+      "day": "Mon",
+      "endTime": null,
+      "entry": "FCA role application deadline",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-008"
+    },
+    {
+      "category": "Professional",
+      "date": "2026-10-14",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "Bloomberg Bank Treasury Forum",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-009"
+    },
+    {
+      "category": "Professional",
+      "date": "2026-10-28",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "APRG AI",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-010"
+    },
+    {
+      "category": "Professional",
+      "date": "2026-11-04",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "FT Event",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-011"
+    },
+    {
+      "category": "Professional",
+      "date": "2026-11-05",
+      "day": "Thu",
+      "endTime": null,
+      "entry": "FT Event",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-012"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-10",
+      "day": "Thu",
+      "endTime": null,
+      "entry": "Annual leave begins",
+      "location": null,
+      "notes": "Off through 31 Dec \u2014 Delhi wedding, Bangalore family time, then second anniversary celebration",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-013"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-11",
+      "day": "Fri",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-014"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-12",
+      "day": "Sat",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-015"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-13",
+      "day": "Sun",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-016"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-14",
+      "day": "Mon",
+      "endTime": null,
+      "entry": "Delhi wedding + 15th wedding anniversary",
+      "location": "Delhi",
+      "notes": "First celebration location",
+      "prepNeeded": null,
+      "priority": "High",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-017"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-15",
+      "day": "Tue",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-018"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-16",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-019"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-17",
+      "day": "Thu",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-020"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-18",
+      "day": "Fri",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-021"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-19",
+      "day": "Sat",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-022"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-20",
+      "day": "Sun",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-023"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-21",
+      "day": "Mon",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-024"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-22",
+      "day": "Tue",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-025"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-23",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-026"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-24",
+      "day": "Thu",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-027"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-25",
+      "day": "Fri",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-028"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-26",
+      "day": "Sat",
+      "endTime": null,
+      "entry": "2nd location \u2014 15th anniversary celebration",
+      "location": null,
+      "notes": "Destination TBD \u2014 decide by mid-November. After Bangalore family time, back to London by year end.",
+      "prepNeeded": null,
+      "priority": "High",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-029"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-27",
+      "day": "Sun",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-030"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-28",
+      "day": "Mon",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-031"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-29",
+      "day": "Tue",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-032"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-30",
+      "day": "Wed",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-033"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-31",
+      "day": "Thu",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-034"
+    },
+    {
+      "category": "Personal",
+      "date": "2027-01-01",
+      "day": "Fri",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-035"
+    },
+    {
+      "category": "Personal",
+      "date": "2027-01-02",
+      "day": "Sat",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-036"
+    },
+    {
+      "category": "Personal",
+      "date": "2027-01-03",
+      "day": "Sun",
+      "endTime": null,
+      "entry": "OOO",
+      "location": null,
+      "notes": null,
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "evt-037"
+    },
+    {
+      "category": "Social",
+      "date": "2027-02-15",
+      "day": "Mon",
+      "endTime": null,
+      "entry": "February half term begins (Reva off school)",
+      "location": null,
+      "notes": "Through Fri 19 Feb \u2014 Channing Junior School",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "hol-half-term-feb"
+    },
+    {
+      "category": "Social",
+      "date": "2026-10-19",
+      "day": "Mon",
+      "endTime": null,
+      "entry": "October half term begins (Reva off school)",
+      "location": null,
+      "notes": "Through Fri 30 Oct \u2014 Channing Junior School",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "hol-half-term-oct"
+    },
+    {
+      "category": "Personal",
+      "date": "2026-12-01",
+      "day": "Tue",
+      "endTime": null,
+      "entry": "Chase tax accountant to file self-assessment return",
+      "location": null,
+      "notes": "Deadline 31 Jan",
+      "prepNeeded": null,
+      "priority": "Medium",
+      "recurringAnnual": true,
+      "reminderDate": null,
+      "startTime": null,
+      "status": "Planned",
+      "id": "rem-tax"
+    }
+  ],
+  "goals": [
+    {
+      "area": "Personal",
+      "nextAction": "Gentle recovery through October; reassess with doctor in November",
+      "priority": "Critical",
+      "reviewBy": null,
+      "status": "In Progress",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Pillates Join"
+        },
+        {
+          "done": false,
+          "text": "Physio Commence"
+        },
+        {
+          "done": false,
+          "text": "Gym work"
+        },
+        {
+          "done": false,
+          "text": "Gym classess"
+        },
+        {
+          "done": false,
+          "text": "Trainer"
+        },
+        {
+          "done": false,
+          "text": "Luke's diet for Stone?"
+        },
+        {
+          "done": false,
+          "text": "Jindal practices? (Nathurppathy, yoga, massage, diet)"
+        },
+        {
+          "done": false,
+          "text": "Track 'No night snack'"
+        },
+        {
+          "done": false,
+          "text": "Recovery: gentle walking + hydration through October (post-op)"
+        },
+        {
+          "done": false,
+          "text": "Doctor follow-up \u2014 mid November, reassess trainer restart"
+        },
+        {
+          "done": false,
+          "text": "Resume trainer sessions once cleared by doctor"
+        }
+      ],
+      "title": "Health & Fitness",
+      "id": "goal-001"
+    },
+    {
+      "area": "Personal",
+      "nextAction": null,
+      "priority": "High",
+      "reviewBy": "2026-11-15",
+      "status": "Not started",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Friday outing"
+        },
+        {
+          "done": false,
+          "text": "Tile time"
+        },
+        {
+          "done": false,
+          "text": "Protect weekday evenings for family (post-commute)"
+        },
+        {
+          "done": false,
+          "text": "Decide second-anniversary destination (2nd wedding location, celebrate 26 Dec)"
+        },
+        {
+          "done": false,
+          "text": "Plan Germany trip to visit extended family \u2014 tentative April 2027, TBD"
+        }
+      ],
+      "title": "Family Time",
+      "id": "goal-002"
+    },
+    {
+      "area": "Personal",
+      "nextAction": null,
+      "priority": "High",
+      "reviewBy": null,
+      "status": "Not started",
+      "subActions": [
+        {
+          "done": false,
+          "text": "AI Book read"
+        },
+        {
+          "done": false,
+          "text": "FT read"
+        },
+        {
+          "done": false,
+          "text": "Podcast here"
+        },
+        {
+          "done": false,
+          "text": "Networking events"
+        },
+        {
+          "done": false,
+          "text": "Job Applications"
+        },
+        {
+          "done": false,
+          "text": "Weekly job-search checkpoint (review progress, not daily grind)"
+        },
+        {
+          "done": false,
+          "text": "Track output from Resume automation project"
+        },
+        {
+          "done": false,
+          "text": "Prep intensively when an interview is scheduled"
+        }
+      ],
+      "title": "New Job",
+      "id": "goal-003"
+    },
+    {
+      "area": "Personal",
+      "nextAction": "Henrietta Barnett Grammar School \u2014 weekly light reasoning practice through Year 4",
+      "priority": "High",
+      "reviewBy": "2027-09-01",
+      "status": "Not started",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Non verbal reading"
+        },
+        {
+          "done": false,
+          "text": "Grammer school prep"
+        },
+        {
+          "done": false,
+          "text": "Reva: weekly verbal/non-verbal reasoning practice (light, playful) \u2014 Henrietta Barnett prep"
+        },
+        {
+          "done": false,
+          "text": "Ramp up prep intensity from Year 5 (Sep 2027)"
+        },
+        {
+          "done": false,
+          "text": "Target: 11+ entrance exam, September 2028"
+        }
+      ],
+      "title": "Kids Academic Progress",
+      "id": "goal-004"
+    },
+    {
+      "area": "Personal",
+      "nextAction": null,
+      "priority": "Medium",
+      "reviewBy": null,
+      "status": "Not started",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Tennis together"
+        },
+        {
+          "done": false,
+          "text": "Golf?"
+        },
+        {
+          "done": false,
+          "text": "Hindi learn?"
+        }
+      ],
+      "title": "Kids Extra Curricular/Sports",
+      "id": "goal-005"
+    },
+    {
+      "area": "Personal",
+      "nextAction": null,
+      "priority": "High",
+      "reviewBy": null,
+      "status": "Not started",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Invest Smartly"
+        },
+        {
+          "done": false,
+          "text": "ISA?"
+        },
+        {
+          "done": false,
+          "text": "Tax filings?"
+        },
+        {
+          "done": false,
+          "text": "Meet wealth manager \u2014 discuss ISA allowance & portfolio (this month)"
+        },
+        {
+          "done": false,
+          "text": "Chase tax accountant to file self-assessment (annual, before 31 Jan)"
+        }
+      ],
+      "title": "Finances",
+      "id": "goal-006"
+    },
+    {
+      "area": "Personal",
+      "nextAction": null,
+      "priority": "Medium",
+      "reviewBy": null,
+      "status": "Not started",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Sell House"
+        },
+        {
+          "done": false,
+          "text": "Fix House"
+        },
+        {
+          "done": false,
+          "text": "Buy/Rent House"
+        },
+        {
+          "done": false,
+          "text": "Which City"
+        },
+        {
+          "done": false,
+          "text": "Fix shower head / water pressure in bathroom"
+        },
+        {
+          "done": false,
+          "text": "Change bed (this year \u2014 watch for a sale)"
+        },
+        {
+          "done": false,
+          "text": "Active house search paused until wife is settled in new job"
+        }
+      ],
+      "title": "House",
+      "id": "goal-007"
+    },
+    {
+      "area": "Personal",
+      "nextAction": "Check clear-sky + moonless forecast weekly",
+      "priority": "Low",
+      "reviewBy": null,
+      "status": "Not started",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Check weather/moon forecast weekly for clear, moonless nights"
+        },
+        {
+          "done": false,
+          "text": "Capture session with Dwarf 3 when conditions align"
+        },
+        {
+          "done": false,
+          "text": "[Future feature] Build automated clear-sky + moon-phase alert"
+        }
+      ],
+      "title": "Astrophotography",
+      "id": "goal-008"
+    },
+    {
+      "area": "Personal",
+      "nextAction": "Weekly check-in",
+      "priority": "High",
+      "reviewBy": null,
+      "status": "In Progress",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Review CV together"
+        },
+        {
+          "done": false,
+          "text": "Cover childcare around interviews"
+        },
+        {
+          "done": false,
+          "text": "Weekly check-in / encouragement"
+        }
+      ],
+      "title": "Support Wife's Job Search",
+      "id": "goal-009"
+    },
+    {
+      "area": "Personal",
+      "nextAction": "Daily outdoor time",
+      "priority": "Medium",
+      "reviewBy": null,
+      "status": "In Progress",
+      "subActions": [
+        {
+          "done": false,
+          "text": "Daily/near-daily outdoor time \u2014 forest opposite house or local play areas (no garden at home)"
+        },
+        {
+          "done": false,
+          "text": "Protected quality playtime"
+        },
+        {
+          "done": false,
+          "text": "Settle happily into nursery"
+        }
+      ],
+      "title": "Miraya's Early Years",
+      "id": "goal-010"
+    }
+  ],
+  "routine": {
+    "fri": {
+      "blocks": [
+        {
+          "label": "Wake up, wake Reva",
+          "time": "6:30am"
+        },
+        {
+          "label": "Leave home",
+          "time": "7:45am"
+        },
+        {
+          "label": "Drop Reva at Channing School",
+          "note": "Cutoff is 8:20",
+          "time": "8:10am"
+        },
+        {
+          "label": "Commute to office",
+          "note": "Walk/bus ~15m to Archway, then ~40-45m tube to Canary Wharf",
+          "time": "8:20am"
+        },
+        {
+          "label": "Office \u2014 optional gym slot",
+          "time": "9:15am"
+        },
+        {
+          "label": "Leave office",
+          "time": "6:30pm"
+        },
+        {
+          "label": "Home",
+          "time": "7:30pm"
+        },
+        {
+          "label": "Family time \u2014 wind down for the weekend",
+          "time": "Evening"
+        }
+      ],
+      "mode": "Office day"
+    },
+    "mon": {
+      "blocks": [
+        {
+          "label": "Wake up, wake Reva",
+          "time": "6:30am"
+        },
+        {
+          "label": "Leave home",
+          "time": "7:45am"
+        },
+        {
+          "label": "Drop Reva at Channing School",
+          "note": "Cutoff is 8:20",
+          "time": "8:10am"
+        },
+        {
+          "label": "Commute to office",
+          "note": "Walk/bus ~15m to Archway, then ~40-45m tube to Canary Wharf (E14 5HP)",
+          "time": "8:20am"
+        },
+        {
+          "label": "Office \u2014 optional gym slot",
+          "note": "Morning or lunchtime, since mornings suit physical stuff",
+          "time": "9:15am"
+        },
+        {
+          "label": "Leave office",
+          "time": "6:30pm"
+        },
+        {
+          "label": "Home",
+          "time": "7:30pm"
+        },
+        {
+          "label": "Family time / job search or supporting wife's search",
+          "note": "Mental tasks suit evenings",
+          "time": "Evening"
+        }
+      ],
+      "mode": "Office day"
+    },
+    "sat": {
+      "blocks": [
+        {
+          "label": "Gym with trainer",
+          "note": "10-min drive \u2014 paused during recovery, resume once cleared by doctor",
+          "time": "7:30am"
+        },
+        {
+          "label": "Leave home for Reva's music lesson",
+          "time": "9:30am"
+        },
+        {
+          "label": "Music lesson 1",
+          "time": "9:50am"
+        },
+        {
+          "label": "Break (~30 min)",
+          "time": "~10:20am"
+        },
+        {
+          "label": "Music lesson 2",
+          "note": "Finishes around 11:20",
+          "time": "~10:50am"
+        },
+        {
+          "label": "Home",
+          "time": "11:20am"
+        },
+        {
+          "label": "Prep to leave",
+          "time": "2:10pm"
+        },
+        {
+          "label": "Drop Reva at drama club",
+          "note": "Runs 2:30\u20135:30",
+          "time": "2:30pm"
+        },
+        {
+          "label": "Pick up Reva",
+          "time": "5:30pm"
+        },
+        {
+          "label": "Home",
+          "time": "5:45pm"
+        },
+        {
+          "label": "Car charging every other week",
+          "note": "Slot in around the pickups/drops",
+          "time": "All day"
+        }
+      ],
+      "mode": "Weekend"
+    },
+    "sun": {
+      "blocks": [
+        {
+          "label": "Reva: reasoning practice (light, ~30-45 min)",
+          "note": "Henrietta Barnett prep \u2014 playful, not test-like, through Year 4",
+          "time": "Morning"
+        },
+        {
+          "label": "Miraya: outdoor time",
+          "note": "Forest opposite the house or local play areas \u2014 no garden at home, so daily/near-daily matters",
+          "time": "Morning"
+        },
+        {
+          "label": "Family time",
+          "time": "Daytime"
+        },
+        {
+          "label": "Birthday party drop-off",
+          "note": "Reva's friends' parties",
+          "time": "Every other Sunday"
+        },
+        {
+          "label": "Astrophotography check",
+          "note": "Dwarf 3 \u2014 only worth it when skies are both clear and moonless",
+          "time": "Night (if clear + moonless)"
+        }
+      ],
+      "mode": "Weekend \u2014 lighter day"
+    },
+    "thu": {
+      "blocks": [
+        {
+          "label": "Wake up, wake Reva",
+          "time": "6:30am"
+        },
+        {
+          "label": "Leave home to drop Reva",
+          "note": "Cutoff is 8:20",
+          "time": "7:45am"
+        },
+        {
+          "label": "Home \u2014 start WFH",
+          "note": "No commute today: use the freed time for a deeper health or focus block",
+          "time": "8:20am"
+        },
+        {
+          "label": "Health-focus block or deep work",
+          "note": "Physical stuff suits mornings",
+          "time": "Morning"
+        },
+        {
+          "label": "Deeper job-search / family time",
+          "note": "Mental tasks suit evenings; good day for the weekly job-search checkpoint",
+          "time": "Evening"
+        }
+      ],
+      "mode": "Work from home"
+    },
+    "tue": {
+      "blocks": [
+        {
+          "label": "Wake up, wake Reva",
+          "time": "6:30am"
+        },
+        {
+          "label": "Leave home",
+          "time": "7:45am"
+        },
+        {
+          "label": "Drop Reva at Channing School",
+          "note": "Cutoff is 8:20",
+          "time": "8:10am"
+        },
+        {
+          "label": "Commute to office",
+          "note": "Walk/bus ~15m to Archway, then ~40-45m tube to Canary Wharf",
+          "time": "8:20am"
+        },
+        {
+          "label": "Office \u2014 optional gym slot",
+          "time": "9:15am"
+        },
+        {
+          "label": "Leave office",
+          "time": "6:30pm"
+        },
+        {
+          "label": "Home",
+          "time": "7:30pm"
+        },
+        {
+          "label": "Family time / job search or supporting wife's search",
+          "time": "Evening"
+        }
+      ],
+      "mode": "Office day"
+    },
+    "wed": {
+      "blocks": [
+        {
+          "label": "Wake up, wake Reva",
+          "time": "6:30am"
+        },
+        {
+          "label": "Leave home",
+          "time": "7:45am"
+        },
+        {
+          "label": "Drop Reva at Channing School",
+          "note": "Cutoff is 8:20",
+          "time": "8:10am"
+        },
+        {
+          "label": "Commute to office",
+          "note": "Walk/bus ~15m to Archway, then ~40-45m tube to Canary Wharf",
+          "time": "8:20am"
+        },
+        {
+          "label": "Office \u2014 optional gym slot",
+          "time": "9:15am"
+        },
+        {
+          "label": "Leave office",
+          "time": "6:30pm"
+        },
+        {
+          "label": "Home",
+          "time": "7:30pm"
+        },
+        {
+          "label": "Family time / job search or supporting wife's search",
+          "time": "Evening"
+        }
+      ],
+      "mode": "Office day"
+    }
+  },
+  "checkins": [],
+  "activity": [
+    {
+      "text": "Loaded weekly routine, 3 new goals, 12 birthdays and the December trip plan from today's voice chat.",
+      "ts": "2026-09-26T11:57:00.000Z",
+      "type": "info"
+    },
+    {
+      "text": "Northstar set up and ready \u2014 imported your planner and goals.",
+      "ts": "2026-09-26T09:00:00.000Z",
+      "type": "info"
+    }
+  ]
+}
