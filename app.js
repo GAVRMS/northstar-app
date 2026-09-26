@@ -499,6 +499,7 @@ function parseTimeLoose(str){
   if(ap==='am' && h===12) h=0;
   return {h:h, m:min};
 }
+function looksLikeTime(str){ return !!parseTimeLoose(str); }
 
 /* ================= rendering ================= */
 function catChipClass(pri){
@@ -1341,6 +1342,67 @@ async function handleVoiceCommand(raw){
     return;
   }
 
+  // "move X to Thursday", "reschedule X to 3pm", "change X to Y", "rename X to Y"
+  var changeMatch = lower.match(/^(move|reschedule|push|change|rename|edit|set)\b\s*(.*?)\s+to\s+(.*)$/);
+  if(changeMatch && changeMatch[2].trim() && changeMatch[3].trim()){
+    var chTarget = changeMatch[2].trim().replace(/\s+time$/,'');
+    var chValue = changeMatch[3].trim();
+    var chMatch = findMatchingOpenItem(chTarget);
+    if(!chMatch){
+      showVoiceSheet('Couldn’t find that', 'No open item matched "'+chTarget+'".', 4500);
+      speak("I couldn't find an open item matching "+chTarget+".");
+      return;
+    }
+    if(looksLikeTime(chValue) && chMatch.type==='event'){
+      await updateEvent(chMatch.item.id, {startTime: chValue});
+      logActivity('Changed time of "'+chMatch.item.entry+'" to '+chValue+' (voice)', 'edit');
+      showVoiceSheet('Time updated', chMatch.item.entry+' → '+chValue, 4000);
+      speak('Updated the time for '+chMatch.item.entry+' to '+chValue+'.');
+      return;
+    }
+    var chDateInfo = parseDatePhrase(chValue);
+    if(chDateInfo && chMatch.type==='event'){
+      await updateEvent(chMatch.item.id, {date: chDateInfo.date, day: parseYmd(chDateInfo.date).toLocaleDateString(undefined,{weekday:'short'})});
+      logActivity('Moved "'+chMatch.item.entry+'" to '+fmtDateShort(chDateInfo.date)+' (voice)', 'edit');
+      showVoiceSheet('Moved', chMatch.item.entry+' → '+fmtDateShort(chDateInfo.date), 4000);
+      speak('Moved '+chMatch.item.entry+' to '+fmtDateShort(chDateInfo.date)+'.');
+      return;
+    }
+    var chNewText = chValue.charAt(0).toUpperCase()+chValue.slice(1);
+    if(chMatch.type==='event'){
+      var chOldEntry = chMatch.item.entry;
+      await updateEvent(chMatch.item.id, {entry: chNewText});
+      logActivity('Renamed "'+chOldEntry+'" to "'+chNewText+'" (voice)', 'edit');
+    } else {
+      await editSubAction(chMatch.goalId, chMatch.idx, chNewText);
+    }
+    showVoiceSheet('Updated', chNewText, 4000);
+    speak('Updated it to '+chNewText+'.');
+    return;
+  }
+
+  // "delete X", "remove X", "cancel X"
+  var deleteMatch = lower.match(/^(delete|remove|cancel)\b\s*(.*)$/);
+  if(deleteMatch && deleteMatch[2].trim()){
+    var delTarget = deleteMatch[2].replace(/^(the|that|it)\b\s*/,'').trim();
+    var delMatchRes = findMatchingOpenItem(delTarget);
+    if(delMatchRes && delMatchRes.type==='event'){
+      var delEntry = delMatchRes.item.entry;
+      await deleteEvent(delMatchRes.item.id);
+      showVoiceSheet('Deleted', delEntry, 3500);
+      speak('Deleted '+delEntry+'.');
+    } else if(delMatchRes && delMatchRes.type==='sub'){
+      var delText = delMatchRes.item.text;
+      await deleteSubAction(delMatchRes.goalId, delMatchRes.idx);
+      showVoiceSheet('Deleted', delText, 3500);
+      speak('Deleted '+delText+'.');
+    } else {
+      showVoiceSheet('Couldn’t find that', 'No open item matched "'+delTarget+'".', 4000);
+      speak("I couldn't find a matching item to delete.");
+    }
+    return;
+  }
+
   var goalAddMatch = lower.match(/^(add|create) (goal|to)\b\s*(.*)$/);
   if(goalAddMatch){
     var g2 = findGoalByArea(goalAddMatch[3]);
@@ -1380,7 +1442,7 @@ async function handleVoiceCommand(raw){
     return;
   }
 
-  showVoiceSheet('Didn’t catch a command', 'Try: "add gym tomorrow", "mark X done", "what\'s today", "what\'s next", "what should I focus on", or "how am I doing".', 5500);
+  showVoiceSheet('Didn’t catch a command', 'Try: "add gym tomorrow", "mark X done", "move X to Thursday", "change X to 3pm", "rename X to Y", "delete X", "what\'s today", "what\'s next", "what should I focus on", or "how am I doing".', 6500);
   speak("Sorry, I didn't catch a command.");
 }
 
