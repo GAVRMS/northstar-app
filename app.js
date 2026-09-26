@@ -179,14 +179,21 @@ async function onSignedIn(user, fs){
     renderAll();
   }, function(err){ console.warn('routine sub error', err); });
 
-  db.doc('meta/sky').onSnapshot(function(snap){
-    state.sky = snap.exists ? snap.data() : null;
-    renderAll();
-  }, function(err){ /* sky doc may not exist yet, that's fine */ });
-
   state.ready = true;
   showApp();
   renderAll();
+  loadSkyData();
+}
+
+/* Sky/weather data is written by a scheduled background check into a static
+   JSON file in this same repo (see sky-data.json) rather than into Firestore
+   directly — the background job runs in a sandboxed environment that can
+   reach GitHub but not arbitrary Google Cloud APIs, so pushing a file via
+   git is the reliable path. The app just re-fetches it on load. */
+function loadSkyData(){
+  fetch('sky-data.json?_=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
+    if(data){ state.sky = data; renderAll(); }
+  }).catch(function(){ /* no sky data yet, that's fine */ });
 }
 
 function initLocalFallback(){
@@ -211,6 +218,7 @@ function initLocalFallback(){
   state.ready = true;
   showApp();
   renderAll();
+  loadSkyData();
 }
 
 /* ================= write helpers (work with db or local) ================= */
