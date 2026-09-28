@@ -849,7 +849,8 @@ function renderToday(){
   var crit = criticalToPrep().slice(0,4);
   var html = '';
   var tip = tipOfDay();
-  if(tip){
+  if(typeof tip === 'string'){ tip = {text: tip, tags: []}; }
+  if(tip && tip.text){
     html += '<div class="section" style="margin-top:8px;"><div class="card" style="padding:14px 16px;background:var(--focus-bg);border-color:var(--focus);">' +
       '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">' +
         '<div style="font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--focus);">💡 Thought for today</div>' +
