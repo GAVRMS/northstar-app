@@ -44,7 +44,7 @@
     "tue": [
       {"id":"tue-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"},"detail":"Both commute legs walked in full."},
       {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Jindal routine, twice weekly (Tue + Fri) — palming, focus shifts, blinking exercises."},
-      {"time":"Evening","title":"Spinal-safe stretch (see Spinal Yoga library)","location":"Home","duration":"10 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Use only the 'safe' asana list — see Exercise library tab."},"detail":"Cat-Cow, gentle Sphinx, supported Bridge, Child's pose. Avoid deep forward folds and full backbends."}
+      {"time":"Evening","title":"Spinal-safe stretch (see Spinal Yoga library)","location":"Home","duration":"10 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Use only the 'safe' asana list — see Exercise library tab."},"detail":"Cat-Cow, gentle Sphinx, supported Bridge, Child's pose. Avoid deep forward folds and full backbends.","resource":{"title":"How to Practice Yoga with Lower Back Pain (Safe Modifications for Lumbar Issues & Spondylolisthesis)","url":"https://www.youtube.com/watch?v=cccQMohhz4s","note":"General online resource, not personalised — good starting reference, still worth a physio sanity-check."}}
     ],
     "wed": [
       {"id":"wed-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"}},
@@ -52,7 +52,7 @@
     ],
     "thu": [
       {"id":"thu-1","time":"Morning (WFH day)","title":"Low-impact cardio — walk or stationary bike","location":"Home / local","duration":"30 min","category":"Cardio","safety":{"status":"confirm","note":"Walking is safe now; stationary bike once cleared."},"detail":"No commute today, so this is a deliberate step-floor session — walking is fine during recovery; swap in the bike once cleared for exercise."},
-      {"id":"thu-2","time":"Morning","title":"Core stability circuit","location":"Home","duration":"20 min","category":"Strength","sets":"3","reps":"10-12","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared."},"detail":"Bird-dog, dead bug, glute bridge, modified plank."},
+      {"id":"thu-2","time":"Morning","title":"Core stability circuit","location":"Home","duration":"20 min","category":"Strength","sets":"3","reps":"10-12 reps, 30 sec hold on planks","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared."},"detail":"Bird-dog, dead bug, glute bridge, modified plank — 3 rounds, ~60 sec rest between rounds.","resource":{"title":"Lumbar Spondylolisthesis Rehab (Education | Exercises | Surgery | Myths)","url":"https://www.youtube.com/watch?v=rRV5Q85hCMs","note":"General online resource — good background, still worth a physio sanity-check."}},
       {"id":"thu-3","time":"Thursday evening","title":"Physio — Highgate Hospital","location":"Highgate Hospital","duration":"~45-60 min (confirm)","category":"Physio","safety":{"status":"safe"},"detail":"New weekly slot. Ask directly about: the Technogym Monday 17:30 yoga class, Zumba/dance and spinning safety for L5-S1, and the walk/run-to-5K return timeline."}
     ],
     "fri": [
@@ -61,12 +61,12 @@
       {"id":"fri-2","time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","category":"Class — TBC","safety":{"status":"confirm"},"detail":"Placeholder — paused during October recovery."}
     ],
     "sat": [
-      {"id":"sat-1","time":"Morning","title":"Spinal Yoga — full session (Jindal-informed)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Follow the 'safe' asana list only."},"detail":"See the Spinal Yoga library for the specific asana list, with the ones Jindal itself flagged half-only or crossed-out."},
+      {"id":"sat-1","time":"Morning","title":"Spinal Yoga — full session (Jindal-informed)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Follow the 'safe' asana list only."},"detail":"See the Spinal Yoga library for the specific asana list, with the ones Jindal itself flagged half-only or crossed-out. Suggested structure: 5 min Cat-Cow + gentle warm-up, 15 min safe-list asanas held 20-30 sec each, 5-10 min Balasana/relaxation.","resource":{"title":"Yoga for Spondylolisthesis | Safe & Gentle Live Practice","url":"https://www.youtube.com/watch?v=sKxYHxDAPAI","note":"General online resource, not personalised — cross-check any new pose against the safe-list before following along."}},
       {"id":"sat-2","time":"Late morning/afternoon","title":"Longer weekend walk","location":"Local / Highgate Wood","duration":"30-40 min","category":"Walking","safety":{"status":"safe"},"detail":"Once cleared, this is also the natural slot to test light jogging intervals ahead of any 5K prep restart — see Walk/Run library. Physio sign-off first."},
       {"time":"Any time","title":"Jal neti","location":"Home","duration":"5 min","category":"Other","safety":{"status":"safe"},"detail":"Twice weekly — Sat + one weekday. Lukewarm saline, never plain tap water."}
     ],
     "sun": [
-      {"id":"sun-1","time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe"}},
+      {"id":"sun-1","time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe"},"detail":"Same structure as Saturday's session — safe-list asanas only, 20-30 sec holds.","resource":{"title":"Tests and Exercises for Spondylolisthesis (playlist)","url":"https://www.youtube.com/playlist?list=PL8l32k1r15l44wBl_S_q0QOKGQlqcujvo","note":"General online resource, not personalised."}},
       {"id":"sun-2","time":"Any time","title":"Light walk","location":"Local","duration":"20-30 min","category":"Walking","safety":{"status":"safe"},"detail":"Rest-oriented day — keep it easy. Top up steps if you're behind for the week."},
       {"time":"Any time","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"}}
     ]
@@ -96,7 +96,13 @@
         {"name":"Paschimottanasana (deep seated forward fold)", "note":"Deep forward flexion — avoid the full pose; a gentle hamstring stretch with a soft spine is fine instead."},
         {"name":"Chakrasana / full Dhanurasana (Wheel / full Bow)", "note":"Full backbends — avoid without physio clearance."}
       ],
-      "note": "Ask the Highgate physio to confirm this list directly — it's built from Jindal's own annotations plus general spondylolisthesis guidance, not a personalised physio assessment."
+      "note": "Ask the Highgate physio to confirm this list directly — it's built from Jindal's own annotations plus general spondylolisthesis guidance, not a personalised physio assessment.",
+      "resources": [
+        {"title":"Yoga for Spondylolisthesis | Safe & Gentle Live Practice","url":"https://www.youtube.com/watch?v=sKxYHxDAPAI"},
+        {"title":"How to Practice Yoga with Lower Back Pain (Safe Modifications for Lumbar Issues & Spondylolisthesis)","url":"https://www.youtube.com/watch?v=cccQMohhz4s"},
+        {"title":"Lumbar Spondylolisthesis Rehab (Education | Exercises | Surgery | Myths)","url":"https://www.youtube.com/watch?v=rRV5Q85hCMs"},
+        {"title":"Tests and Exercises for Spondylolisthesis (playlist)","url":"https://www.youtube.com/playlist?list=PL8l32k1r15l44wBl_S_q0QOKGQlqcujvo"}
+      ]
     },
     "danceAndSpin": {
       "zumba": {
@@ -136,53 +142,57 @@
       {
         "id": "breakfast",
         "title": "Breakfast options",
+        "timing": "~7:30-8:30am",
         "items": [
-          {"name":"Aldi muesli with milk or curd", "tags":["Weekday","Favourite"], "detail":"Your regular — fine as an everyday choice. Curd instead of milk adds a calcium hit that pairs well with the day's oxalate intake (BAUS)."},
-          {"name":"Fruit + curd", "tags":["Weekday","Weekend","BAUS"], "detail":"Quick, hits BAUS's 'well-balanced, not too many calories' principle, and the curd covers the calcium-pairing point."},
-          {"name":"Homemade paratha + curd", "tags":["Weekday","Weekend","Favourite"], "detail":"Homemade (not shop-bought/frozen) keeps salt and processed fat down versus the 'sneaky' pre-made versions you flagged. Curd alongside is the calcium pairing."},
-          {"name":"Dosa/idli + sambar (wife's home-made)", "tags":["Weekend","Jindal","Favourite"], "detail":"Fermented batter is gentle on digestion (Jindal principle); sambar's lentils add protein and fibre, which helps blunt the post-meal glucose rise given the prediabetic HbA1c."},
-          {"name":"Ragi Dosa / Idli", "tags":["Jindal recipe"], "detail":"From the Jindal recipe batch — fits the stone/liver/sugar checks (section C3 of your tracker) and is a reasonable rotation option alongside the usual dosa."},
-          {"name":"Oats Porridge", "tags":["Jindal recipe","Luke's diet"], "detail":"Appears in both the Jindal material and Luke's diet — fibre-forward, helps the fatty-liver and glucose picture."},
-          {"name":"Occasional: M&S dark-chocolate protein cereal", "tags":["Occasional treat"], "detail":"Fine occasionally, not as the daily default — cocoa is a moderate-oxalate item and it's higher in sugar than the everyday options above."}
+          {"name":"Aldi muesli with milk or curd", "tags":["Weekday","Favourite"], "portion":"60g muesli + 150ml milk (or 150g curd)", "instructions":"Pour muesli into a bowl, add milk or curd. No cooking — under 2 minutes.", "detail":"Your regular — fine as an everyday choice. Curd instead of milk adds a calcium hit that pairs well with the day's oxalate intake (BAUS)."},
+          {"name":"Fruit + curd", "tags":["Weekday","Weekend","BAUS"], "portion":"1 medium fruit + 150g curd", "instructions":"Chop the fruit, serve alongside the curd. Under 2 minutes.", "detail":"Quick, hits BAUS's 'well-balanced, not too many calories' principle, and the curd covers the calcium-pairing point."},
+          {"name":"Homemade paratha + curd", "tags":["Weekday","Weekend","Favourite"], "portion":"1 paratha + 100g curd", "instructions":"Roll the dough with your stuffing of choice, cook on a dry tawa with a light brush of ghee each side, ~2-3 min per side until golden-spotted. Serve with curd.", "detail":"Homemade (not shop-bought/frozen) keeps salt and processed fat down versus the 'sneaky' pre-made versions you flagged. Curd alongside is the calcium pairing."},
+          {"name":"Dosa/idli + sambar (wife's home-made)", "tags":["Weekend","Jindal","Favourite"], "portion":"2 idli or 1 dosa + 1 cup sambar", "instructions":"Steam idli 8-10 min, or spread dosa batter thin on a hot tawa and cook ~2 min per side. Serve hot with warmed sambar.", "detail":"Fermented batter is gentle on digestion (Jindal principle); sambar's lentils add protein and fibre, which helps blunt the post-meal glucose rise given the prediabetic HbA1c."},
+          {"name":"Ragi Dosa / Idli", "tags":["Jindal recipe"], "portion":"2 idli or 1 dosa", "instructions":"Ferment ragi-rice batter overnight (or use a ready fermented batter), steam or pan-cook as above.", "detail":"From the Jindal recipe batch — fits the stone/liver/sugar checks (section C3 of your tracker) and is a reasonable rotation option alongside the usual dosa."},
+          {"name":"Oats Porridge", "tags":["Jindal recipe","Luke's diet"], "portion":"50g oats + 200ml milk or water", "instructions":"Simmer oats in milk or water 5-7 min, stirring, until creamy. Top with banana slices.", "detail":"Appears in both the Jindal material and Luke's diet — fibre-forward, helps the fatty-liver and glucose picture."},
+          {"name":"Occasional: M&S dark-chocolate protein cereal", "tags":["Occasional treat"], "portion":"40g + 150ml milk", "instructions":"Pour, add milk, eat. No cooking.", "detail":"Fine occasionally, not as the daily default — cocoa is a moderate-oxalate item and it's higher in sugar than the everyday options above."}
         ]
       },
       {
         "id": "lunch-weekday",
         "title": "Weekday lunch (office-realistic — salad/soup)",
+        "timing": "~12:30-1:30pm",
         "items": [
-          {"name":"Big mixed salad + paneer", "tags":["Weekday","Favourite","BAUS-safe"], "detail":"Lettuce/cucumber/pepper base (not spinach-heavy), paneer for protein + calcium, olive oil-lemon dressing — the lemon also supports BAUS's citrate/less-acidic-urine advice."},
-          {"name":"Big mixed salad + kala chana or tofu", "tags":["Weekday","Favourite"], "detail":"Same base, swap protein for variety across the week."},
-          {"name":"Vegetable soup + sourdough slice", "tags":["Weekday","Favourite"], "detail":"Good option on a cold or lower-appetite day — sourdough is on your favourites list and easier to digest than some other breads."},
-          {"name":"Quinoa salad bowl", "tags":["Weekday","Weekend"], "detail":"Higher protein/fibre than a plain salad, still realistic to buy or bring in."}
+          {"name":"Big mixed salad + paneer", "tags":["Weekday","Favourite","BAUS-safe"], "portion":"2 cups salad + 75g paneer + 1 tbsp olive oil + lemon", "instructions":"Chop lettuce/cucumber/pepper. Pan-sear paneer cubes 2-3 min until lightly golden (or use raw). Toss everything with olive oil and lemon juice.", "detail":"Lettuce/cucumber/pepper base (not spinach-heavy), paneer for protein + calcium, olive oil-lemon dressing — the lemon also supports BAUS's citrate/less-acidic-urine advice."},
+          {"name":"Big mixed salad + kala chana or tofu", "tags":["Weekday","Favourite"], "portion":"2 cups salad + 100g cooked kala chana or 75g tofu", "instructions":"Use pre-cooked/tinned kala chana (drained, rinsed) or pan-seared tofu cubes. Toss into the salad base with dressing.", "detail":"Same base, swap protein for variety across the week."},
+          {"name":"Vegetable soup + sourdough slice", "tags":["Weekday","Favourite"], "portion":"1 bowl (~300ml) + 1 slice sourdough", "instructions":"Simmer chopped mixed vegetables in stock 15-20 min; blend if you prefer it smooth. Toast the sourdough slice.", "detail":"Good option on a cold or lower-appetite day — sourdough is on your favourites list and easier to digest than some other breads."},
+          {"name":"Quinoa salad bowl", "tags":["Weekday","Weekend"], "portion":"3/4 cup cooked quinoa + mixed veg + dressing", "instructions":"Cook quinoa 12-15 min (2:1 water ratio), cool, toss with chopped veg, olive oil and lemon.", "detail":"Higher protein/fibre than a plain salad, still realistic to buy or bring in."}
         ]
       },
       {
         "id": "dinner",
         "title": "Dinner options",
+        "timing": "~7:00-7:30pm (keep 2hr gap before sleep)",
         "items": [
-          {"name":"Rajma + rice/roti + curd", "tags":["Favourite","BAUS-safe"], "detail":"Kidney beans are a moderate-oxalate item, fine in a normal portion, especially paired with the curd's calcium."},
-          {"name":"Kala chana + roti + curd", "tags":["Favourite"], "detail":"Same logic as rajma — favourite, moderate oxalate, calcium-paired."},
-          {"name":"Dal makhani + rice, moderate portion + curd", "tags":["Favourite"], "detail":"You like this a lot — keep portion moderate given the butter/cream content, for the fatty-liver and weight goals rather than the stone risk."},
-          {"name":"Kali dal + roti + curd", "tags":["Favourite"], "detail":"Same as dal makhani — moderate portion for the liver/weight goals."},
-          {"name":"Bhindi (okra) sabzi + roti", "tags":["Favourite"], "detail":"Okra is a moderate-oxalate item per BAUS — fine in sensible portions, no need to exclude."},
-          {"name":"Karela sabzi + roti", "tags":["Favourite"], "detail":"You like it, and it's not flagged on any oxalate list — freely fine."},
-          {"name":"Saag paneer, moderate spinach portion", "tags":["Favourite","Moderate — watch portion"], "detail":"Spinach is on BAUS's avoid list, but pairing it with paneer's calcium in the same dish binds much of the oxalate before it reaches the kidneys — the trade-off is keeping this occasional and the spinach portion moderate, not the everyday spinach-heavy version."},
-          {"name":"Khichdi", "tags":["Weekend","Easy"], "detail":"Gentle, easy-digestion option from both Jindal and Luke's diet — good for a lighter evening."},
-          {"name":"Channa Dal Cabbage Curry", "tags":["Jindal recipe"], "detail":"Fits the stone/liver/sugar fit-check in your tracker (section C3)."},
-          {"name":"Beans and Corn Subzi / Makai Capsicum White Sauce / Mushroom with Dhania", "tags":["Jindal recipe"], "detail":"All checked fine against BAUS — good rotation options for variety."}
+          {"name":"Rajma + rice/roti + curd", "tags":["Favourite","BAUS-safe"], "portion":"3/4 cup rajma + 2 roti (or 3/4 cup rice) + 100g curd", "instructions":"Soak rajma overnight. Pressure-cook 15-20 min with an onion-tomato-spice base until soft. Serve with roti/rice and curd.", "detail":"Kidney beans are a moderate-oxalate item, fine in a normal portion, especially paired with the curd's calcium."},
+          {"name":"Kala chana + roti + curd", "tags":["Favourite"], "portion":"3/4 cup + 2 roti + 100g curd", "instructions":"Soak overnight, pressure-cook with a cumin-onion-tomato masala 15-20 min. Serve with roti and curd.", "detail":"Same logic as rajma — favourite, moderate oxalate, calcium-paired."},
+          {"name":"Dal makhani + rice, moderate portion + curd", "tags":["Favourite"], "portion":"3/4 cup (keep to this — richer dish) + 3/4 cup rice + 100g curd", "instructions":"Simmer black urad dal + kidney beans slowly with tomato and a light amount of butter/cream, 30-40 min (or pressure-cook to speed up). Go easy on the butter/cream for the fatty-liver goal.", "detail":"You like this a lot — keep portion moderate given the butter/cream content, for the fatty-liver and weight goals rather than the stone risk."},
+          {"name":"Kali dal + roti + curd", "tags":["Favourite"], "portion":"3/4 cup + 2 roti + curd", "instructions":"Pressure-cook whole black urad dal with an onion-tomato-spice tempering (tadka), ~20 min.", "detail":"Same as dal makhani — moderate portion for the liver/weight goals."},
+          {"name":"Bhindi (okra) sabzi + roti", "tags":["Favourite"], "portion":"1 cup + 2 roti", "instructions":"Pan-fry sliced okra dry (no added water) with a little oil, onion and spices, 10-12 min until tender — keeps it from turning slimy.", "detail":"Okra is a moderate-oxalate item per BAUS — fine in sensible portions, no need to exclude."},
+          {"name":"Karela sabzi + roti", "tags":["Favourite"], "portion":"1 cup + 1 roti", "instructions":"Slice, salt and rest karela 15 min to cut the bitterness, rinse, then stir-fry with onion and spices ~10 min.", "detail":"You like it, and it's not flagged on any oxalate list — freely fine."},
+          {"name":"Saag paneer, moderate spinach portion", "tags":["Favourite","Moderate — watch portion"], "portion":"3/4 cup (moderate spinach) + 75g paneer + 2 roti", "instructions":"Blanch and blend spinach, simmer with an onion-tomato-ginger-garlic base ~10 min, fold in lightly pan-seared paneer cubes.", "detail":"Spinach is on BAUS's avoid list, but pairing it with paneer's calcium in the same dish binds much of the oxalate before it reaches the kidneys — the trade-off is keeping this occasional and the spinach portion moderate, not the everyday spinach-heavy version."},
+          {"name":"Khichdi", "tags":["Weekend","Easy"], "portion":"1 bowl, ~200g", "instructions":"Pressure-cook rice + moong dal (1:1) with turmeric and a little ghee, ~15 min until soft. Simple one-pot.", "detail":"Gentle, easy-digestion option from both Jindal and Luke's diet — good for a lighter evening."},
+          {"name":"Channa Dal Cabbage Curry", "tags":["Jindal recipe"], "portion":"3/4 cup", "instructions":"Follow the Jindal recipe card — simmer soaked channa dal with shredded cabbage and a light tempering, ~20-25 min.", "detail":"Fits the stone/liver/sugar fit-check in your tracker (section C3)."},
+          {"name":"Beans and Corn Subzi / Makai Capsicum White Sauce / Mushroom with Dhania", "tags":["Jindal recipe"], "portion":"1 cup", "instructions":"Follow the respective Jindal recipe cards — quick stir-fries/sautés, 10-15 min each.", "detail":"All checked fine against BAUS — good rotation options for variety."}
         ]
       },
       {
         "id": "snacks-drinks",
         "title": "Snacks & drinks",
+        "timing": "Mid-morning ~11am and mid-afternoon ~4-5pm; drinks spread through the day, not with meals",
         "items": [
-          {"name":"Fruit (apple, banana, berries, oranges)", "tags":["Favourite","BAUS-safe","Everyday"], "detail":"Whole fruit is the preferred vitamin-C source over supplements (BAUS caution on high-dose vitamin C supplements)."},
-          {"name":"Curd / buttermilk", "tags":["Everyday"], "detail":"Calcium top-up throughout the day, not just at meals."},
-          {"name":"Roasted chana", "tags":["Everyday swap"], "detail":"A savoury-crunch swap for the chip habit that still fits the diet."},
-          {"name":"Coconut water, lemon water, barley water", "tags":["BAUS-safe","Jindal"], "detail":"All on the 'fine to use now' drinks list — support hydration target and citrate."},
-          {"name":"Occasional: Lay's kettle chips (salted)", "tags":["Occasional treat"], "detail":"Fine as an occasional treat, not the nightly default — salt content works against both the stone-prevention salt target and the cholesterol/HDL ratio."},
-          {"name":"Occasional: dark chocolate square", "tags":["Occasional treat"], "detail":"Cocoa is moderate-oxalate and adds sugar — a square now and then is fine, daily isn't the target."},
-          {"name":"Occasional: avocado toast (Farmer J)", "tags":["Occasional treat"], "detail":"Nutritionally fine in itself — keep it occasional mainly for the overall calorie/weight-loss budget."}
+          {"name":"Fruit (apple, banana, berries, oranges)", "tags":["Favourite","BAUS-safe","Everyday"], "portion":"1 medium piece", "instructions":"Wash and eat whole, or chop.", "detail":"Whole fruit is the preferred vitamin-C source over supplements (BAUS caution on high-dose vitamin C supplements)."},
+          {"name":"Curd / buttermilk", "tags":["Everyday"], "portion":"150g curd or 1 glass buttermilk", "instructions":"Serve chilled; a pinch of roasted cumin in buttermilk if you like it savoury.", "detail":"Calcium top-up throughout the day, not just at meals."},
+          {"name":"Roasted chana", "tags":["Everyday swap"], "portion":"small handful, ~30g", "instructions":"Dry-roast chickpeas in a pan 5 min with a pinch of salt, or use ready-roasted.", "detail":"A savoury-crunch swap for the chip habit that still fits the diet."},
+          {"name":"Coconut water, lemon water, barley water", "tags":["BAUS-safe","Jindal"], "portion":"1 glass", "instructions":"Drink chilled or room temp between meals to spread hydration through the day.", "detail":"All on the 'fine to use now' drinks list — support hydration target and citrate."},
+          {"name":"Occasional: Lay's kettle chips (salted)", "tags":["Occasional treat"], "portion":"small bag, ~25g", "instructions":"Occasional treat only — no prep.", "detail":"Fine as an occasional treat, not the nightly default — salt content works against both the stone-prevention salt target and the cholesterol/HDL ratio."},
+          {"name":"Occasional: dark chocolate square", "tags":["Occasional treat"], "portion":"10g, 1-2 squares", "instructions":"Have it after a meal rather than alone.", "detail":"Cocoa is moderate-oxalate and adds sugar — a square now and then is fine, daily isn't the target."},
+          {"name":"Occasional: avocado toast (Farmer J)", "tags":["Occasional treat"], "portion":"1 slice sourdough + 1/2 avocado", "instructions":"Toast the sourdough, mash avocado with lemon, salt and pepper, spread.", "detail":"Nutritionally fine in itself — keep it occasional mainly for the overall calorie/weight-loss budget."}
         ]
       },
       {

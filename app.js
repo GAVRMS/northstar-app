@@ -1097,8 +1097,9 @@ function renderHealthLibrary(){
 function dietItemRow(item, sectionId, idx){
   return '<div class="item-row" data-action="diet-detail" data-section="'+sectionId+'" data-idx="'+idx+'" style="cursor:pointer;"><div class="item-body">' +
     '<div class="item-title" style="font-size:14px;">'+escapeHtml(item.name)+'</div>' +
+    (item.portion ? '<div style="font-size:12px;color:var(--ink-dim);margin-top:2px;">'+escapeHtml(item.portion)+'</div>' : '') +
     pillList(item.tags) +
-    '<div style="margin-top:5px;font-size:12px;color:var(--focus);font-weight:600;">Tap for details →</div>' +
+    '<div style="margin-top:5px;font-size:12px;color:var(--focus);font-weight:600;">Tap for portion + recipe →</div>' +
   '</div></div>';
 }
 
@@ -1115,7 +1116,7 @@ function renderHealthDiet(){
   var html = '';
   if(d.intro) html += '<div class="card" style="padding:14px 16px;margin-bottom:14px;"><div style="font-size:13.5px;line-height:1.5;">'+escapeHtml(d.intro)+'</div></div>';
   (d.sections||[]).forEach(function(sec){
-    html += '<div class="section-head" style="margin-top:16px;"><h2 style="font-size:15px;">'+escapeHtml(sec.title)+'</h2></div>';
+    html += '<div class="section-head" style="margin-top:16px;"><h2 style="font-size:15px;">'+escapeHtml(sec.title)+'</h2>'+(sec.timing?'<span class="chip time">🕐 '+escapeHtml(sec.timing)+'</span>':'')+'</div>';
     html += '<div class="card">' + (sec.items||[]).map(function(it,i){ return dietItemRow(it, sec.id, i); }).join('') + '</div>';
   });
   return html;
@@ -1276,8 +1277,14 @@ document.getElementById('mainContent').addEventListener('click', function(e){
     var exIdx = parseInt(exDetailBtn.getAttribute('data-idx'),10);
     var exBlock = state.health && state.health.weeklyExercise && state.health.weeklyExercise[exDay] && state.health.weeklyExercise[exDay][exIdx];
     if(exBlock){
-      var exBody = (exBlock.detail ? '<p style="margin:0 0 10px;">'+escapeHtml(exBlock.detail)+'</p>' : '') +
-        (exBlock.safety && exBlock.safety.note ? '<div class="warn-banner">⚠️ '+escapeHtml(exBlock.safety.note)+'</div>' : '');
+      var exBody = (exBlock.sets ? '<div class="item-meta" style="margin:0 0 10px;"><span class="chip">'+escapeHtml(exBlock.sets)+(exBlock.reps?' × '+escapeHtml(exBlock.reps):'')+'</span>'+(exBlock.duration?'<span class="chip">⏱ '+escapeHtml(exBlock.duration)+'</span>':'')+'</div>' : '') +
+        (exBlock.detail ? '<p style="margin:0 0 10px;">'+escapeHtml(exBlock.detail)+'</p>' : '') +
+        (exBlock.safety && exBlock.safety.note ? '<div class="warn-banner">⚠️ '+escapeHtml(exBlock.safety.note)+'</div>' : '') +
+        (exBlock.resource ? '<div style="margin-top:10px;padding:10px 12px;background:var(--info-bg);border-radius:10px;">' +
+          '<div style="font-size:11px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Follow-along video</div>' +
+          '<a href="'+escapeHtml(exBlock.resource.url)+'" target="_blank" rel="noopener" style="display:block;margin-top:4px;font-size:13.5px;font-weight:600;color:var(--primary);">▶ '+escapeHtml(exBlock.resource.title)+'</a>' +
+          (exBlock.resource.note ? '<div style="font-size:11.5px;color:var(--ink-dim);margin-top:4px;">'+escapeHtml(exBlock.resource.note)+'</div>' : '') +
+        '</div>' : '');
       openDetailModal(exBlock.title, exBody || '<p style="margin:0;color:var(--ink-dim);">No further detail yet.</p>');
     }
     return;
@@ -1289,7 +1296,10 @@ document.getElementById('mainContent').addEventListener('click', function(e){
     var dsSection = state.health && state.health.dietBooklet && (state.health.dietBooklet.sections||[]).find(function(s){return s.id===dsId;});
     var dsItem = dsSection && dsSection.items[dsIdx];
     if(dsItem){
-      openDetailModal(dsItem.name, '<p style="margin:0;">'+escapeHtml(dsItem.detail||'No further detail yet.')+'</p>');
+      var dsBody = (dsItem.portion ? '<div class="item-meta" style="margin:0 0 10px;"><span class="chip">🍽 '+escapeHtml(dsItem.portion)+'</span>'+(dsSection.timing?'<span class="chip time">🕐 '+escapeHtml(dsSection.timing)+'</span>':'')+'</div>' : '') +
+        (dsItem.instructions ? '<div style="margin-bottom:10px;"><div style="font-size:11px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px;">How to prepare</div><p style="margin:0;">'+escapeHtml(dsItem.instructions)+'</p></div>' : '') +
+        (dsItem.detail ? '<div><div style="font-size:11px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px;">Why it fits</div><p style="margin:0;">'+escapeHtml(dsItem.detail)+'</p></div>' : '');
+      openDetailModal(dsItem.name, dsBody || '<p style="margin:0;color:var(--ink-dim);">No further detail yet.</p>');
     }
     return;
   }
