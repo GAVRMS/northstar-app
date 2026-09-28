@@ -37,14 +37,51 @@
   "weeklyExercise": {
     "mon": [
       {"id":"mon-1","time":"AM commute","title":"Walk — Home → Archway station","location":"Home ↔ Archway","duration":"15 min","category":"Walking","safety":{"status":"safe","note":"Safe throughout recovery."},"detail":"Counts toward the 15k step target. Brisk pace once cleared for exercise; easy pace during October recovery."},
-      {"id":"mon-2","time":"Lunchtime","title":"Gym floor — core stability + light dumbbell wrist work","location":"Technogym Canary Wharf (gym floor)","duration":"25-30 min","category":"Strength","sets":"3","reps":"10-12","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared by Dr Anupama (target: mid-Nov)."},"detail":"Bird-dog, dead bug, glute bridge, wrist curls with light dumbbells. Spondylolisthesis-safe: no loaded forward flexion, no heavy twisting, no crunches/sit-ups."},
+      {"id":"mon-2","time":"Lunchtime","title":"Gym floor — core stability + light dumbbell wrist work","location":"Technogym Canary Wharf (gym floor)","duration":"25-30 min","category":"Strength","sets":"3","reps":"10-12","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared by Dr Anupama (target: mid-Nov)."},"detail":"Bird-dog, dead bug, glute bridge, wrist curls with light dumbbells. Spondylolisthesis-safe: no loaded forward flexion, no heavy twisting, no crunches/sit-ups.","guide":[
+        {"label":"Round 1 — Bird-dog","seconds":40,"cue":"Opposite arm/leg extended, hold, slow and controlled."},
+        {"label":"Rest","seconds":20,"cue":"Shake it out, breathe."},
+        {"label":"Round 1 — Dead bug","seconds":40,"cue":"Lower opposite arm/leg slowly, keep low back flat."},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 1 — Glute bridge","seconds":40,"cue":"Squeeze glutes at the top, no arching in the low back."},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 1 — Wrist curls (light dumbbells)","seconds":30,"cue":"Slow and controlled, full range of motion."},
+        {"label":"Rest","seconds":30,"cue":"Longer rest before round 2."},
+        {"label":"Round 2 — Bird-dog","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 2 — Dead bug","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 2 — Glute bridge","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 2 — Wrist curls (light dumbbells)","seconds":30,"cue":""},
+        {"label":"Rest","seconds":30,"cue":"Longer rest before round 3."},
+        {"label":"Round 3 — Bird-dog","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 3 — Dead bug","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 3 — Glute bridge","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 3 — Wrist curls (light dumbbells)","seconds":30,"cue":"Last set — finish strong."}
+      ]},
       {"id":"mon-3","time":"PM commute","title":"Walk — Highgate station → home","location":"Highgate ↔ Home","duration":"15-20 min","category":"Walking","safety":{"status":"safe","note":"Safe throughout recovery."},"detail":"Your main lever for closing the daily step gap — if you're short for the day, extend this into a 10-15 min loop before heading in."},
-      {"time":"Evening","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"},"detail":"Jindal routine; good wind-down before sleep."}
+      {"time":"Evening","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"},"detail":"Jindal routine; good wind-down before sleep.","guide":[
+        {"label":"Anulom Vilom (alternate nostril breathing)","seconds":180,"cue":"Sit tall, breathe slowly through alternating nostrils."},
+        {"label":"Bhramari (humming bee breath)","seconds":180,"cue":"Close your eyes, inhale, hum gently on the exhale."},
+        {"label":"Ujjayi (ocean breath)","seconds":240,"cue":"Breathe through the nose with a slight throat constriction, slow and even."}
+      ]}
     ],
     "tue": [
       {"id":"tue-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"},"detail":"Both commute legs walked in full."},
-      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Jindal routine, twice weekly (Tue + Fri) — palming, focus shifts, blinking exercises."},
-      {"time":"Evening","title":"Spinal-safe stretch (see Spinal Yoga library)","location":"Home","duration":"10 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Use only the 'safe' asana list — see Exercise library tab."},"detail":"Cat-Cow, gentle Sphinx, supported Bridge, Child's pose. Avoid deep forward folds and full backbends.","resource":{"title":"How to Practice Yoga with Lower Back Pain (Safe Modifications for Lumbar Issues & Spondylolisthesis)","url":"https://www.youtube.com/watch?v=cccQMohhz4s","note":"General online resource, not personalised — good starting reference, still worth a physio sanity-check."}}
+      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Jindal routine, twice weekly (Tue + Fri) — palming, focus shifts, blinking exercises.","guide":[
+        {"label":"Palming","seconds":180,"cue":"Rub palms warm, cup gently over closed eyes, breathe."},
+        {"label":"Focus shifts","seconds":240,"cue":"Alternate focus between a near object and a far object."},
+        {"label":"Blinking exercises","seconds":180,"cue":"Blink rapidly for 10 seconds, then rest eyes closed for 10 seconds — repeat."}
+      ]},
+      {"time":"Evening","title":"Spinal-safe stretch (see Spinal Yoga library)","location":"Home","duration":"10 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Use only the 'safe' asana list — see Exercise library tab."},"detail":"Cat-Cow, gentle Sphinx, supported Bridge, Child's pose. Avoid deep forward folds and full backbends.","resource":{"title":"How to Practice Yoga with Lower Back Pain (Safe Modifications for Lumbar Issues & Spondylolisthesis)","url":"https://www.youtube.com/watch?v=cccQMohhz4s","note":"General online resource, not personalised — good starting reference, still worth a physio sanity-check."},"guide":[
+        {"label":"Cat-Cow","seconds":120,"cue":"Slow, controlled — inhale arch, exhale round."},
+        {"label":"Sphinx (mini cobra)","seconds":120,"cue":"Gentle extension on forearms — hold, breathe."},
+        {"label":"Supported Bridge","seconds":120,"cue":"Lift hips gently, squeeze glutes, no strain in the low back."},
+        {"label":"Child's pose","seconds":240,"cue":"Sink hips to heels, arms extended, relax and breathe."}
+      ]}
     ],
     "wed": [
       {"id":"wed-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"}},
@@ -52,23 +89,75 @@
     ],
     "thu": [
       {"id":"thu-1","time":"Morning (WFH day)","title":"Low-impact cardio — walk or stationary bike","location":"Home / local","duration":"30 min","category":"Cardio","safety":{"status":"confirm","note":"Walking is safe now; stationary bike once cleared."},"detail":"No commute today, so this is a deliberate step-floor session — walking is fine during recovery; swap in the bike once cleared for exercise."},
-      {"id":"thu-2","time":"Morning","title":"Core stability circuit","location":"Home","duration":"20 min","category":"Strength","sets":"3","reps":"10-12 reps, 30 sec hold on planks","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared."},"detail":"Bird-dog, dead bug, glute bridge, modified plank — 3 rounds, ~60 sec rest between rounds.","resource":{"title":"Lumbar Spondylolisthesis Rehab (Education | Exercises | Surgery | Myths)","url":"https://www.youtube.com/watch?v=rRV5Q85hCMs","note":"General online resource — good background, still worth a physio sanity-check."}},
+      {"id":"thu-2","time":"Morning","title":"Core stability circuit","location":"Home","duration":"20 min","category":"Strength","sets":"3","reps":"10-12 reps, 30 sec hold on planks","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared."},"detail":"Bird-dog, dead bug, glute bridge, modified plank — 3 rounds, ~60 sec rest between rounds.","resource":{"title":"Lumbar Spondylolisthesis Rehab (Education | Exercises | Surgery | Myths)","url":"https://www.youtube.com/watch?v=rRV5Q85hCMs","note":"General online resource — good background, still worth a physio sanity-check."},"guide":[
+        {"label":"Round 1 — Bird-dog","seconds":40,"cue":"Opposite arm/leg extended, hold, slow and controlled."},
+        {"label":"Rest","seconds":20,"cue":"Shake it out, breathe."},
+        {"label":"Round 1 — Dead bug","seconds":40,"cue":"Lower opposite arm/leg slowly, keep low back flat."},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 1 — Glute bridge","seconds":40,"cue":"Squeeze glutes at the top, no arching in the low back."},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 1 — Modified plank","seconds":30,"cue":"Knees down if needed, straight line shoulders to knees."},
+        {"label":"Rest","seconds":30,"cue":"Longer rest before round 2."},
+        {"label":"Round 2 — Bird-dog","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 2 — Dead bug","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 2 — Glute bridge","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 2 — Modified plank","seconds":30,"cue":""},
+        {"label":"Rest","seconds":30,"cue":"Longer rest before round 3."},
+        {"label":"Round 3 — Bird-dog","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 3 — Dead bug","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 3 — Glute bridge","seconds":40,"cue":""},
+        {"label":"Rest","seconds":20,"cue":""},
+        {"label":"Round 3 — Modified plank","seconds":30,"cue":"Last set — finish strong."}
+      ]},
       {"id":"thu-3","time":"Thursday evening","title":"Physio — Highgate Hospital","location":"Highgate Hospital","duration":"~45-60 min (confirm)","category":"Physio","safety":{"status":"safe"},"detail":"New weekly slot. Ask directly about: the Technogym Monday 17:30 yoga class, Zumba/dance and spinning safety for L5-S1, and the walk/run-to-5K return timeline."}
     ],
     "fri": [
       {"id":"fri-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"}},
-      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Second weekly session (Tue + Fri)."},
+      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Second weekly session (Tue + Fri).","guide":[
+        {"label":"Palming","seconds":180,"cue":"Rub palms warm, cup gently over closed eyes, breathe."},
+        {"label":"Focus shifts","seconds":240,"cue":"Alternate focus between a near object and a far object."},
+        {"label":"Blinking exercises","seconds":180,"cue":"Blink rapidly for 10 seconds, then rest eyes closed for 10 seconds — repeat."}
+      ]},
       {"id":"fri-2","time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","category":"Class — TBC","safety":{"status":"confirm"},"detail":"Placeholder — paused during October recovery."}
     ],
     "sat": [
-      {"id":"sat-1","time":"Morning","title":"Spinal Yoga — full session (Jindal-informed)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Follow the 'safe' asana list only."},"detail":"See the Spinal Yoga library for the specific asana list, with the ones Jindal itself flagged half-only or crossed-out. Suggested structure: 5 min Cat-Cow + gentle warm-up, 15 min safe-list asanas held 20-30 sec each, 5-10 min Balasana/relaxation.","resource":{"title":"Yoga for Spondylolisthesis | Safe & Gentle Live Practice","url":"https://www.youtube.com/watch?v=sKxYHxDAPAI","note":"General online resource, not personalised — cross-check any new pose against the safe-list before following along."}},
+      {"id":"sat-1","time":"Morning","title":"Spinal Yoga — full session (Jindal-informed)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Follow the 'safe' asana list only."},"detail":"See the Spinal Yoga library for the specific asana list, with the ones Jindal itself flagged half-only or crossed-out. Suggested structure: 5 min Cat-Cow + gentle warm-up, 15 min safe-list asanas held 20-30 sec each, 5-10 min Balasana/relaxation.","resource":{"title":"Yoga for Spondylolisthesis | Safe & Gentle Live Practice","url":"https://www.youtube.com/watch?v=sKxYHxDAPAI","note":"General online resource, not personalised — cross-check any new pose against the safe-list before following along."},"guide":[
+        {"label":"Warm-up — Cat-Cow","seconds":300,"cue":"Slow, breath-linked movement to wake up the spine."},
+        {"label":"Tadasana (Mountain)","seconds":30,"cue":"Stand tall, feel the reset in your posture."},
+        {"label":"Setu Bandhasana (gentle Bridge)","seconds":40,"cue":"Lift hips gently, hold, breathe."},
+        {"label":"Sphinx (mini cobra)","seconds":40,"cue":"Gentle extension on forearms."},
+        {"label":"Pawanmuktasana — right leg","seconds":30,"cue":"Hug right knee gently to chest."},
+        {"label":"Pawanmuktasana — left leg","seconds":30,"cue":"Hug left knee gently to chest."},
+        {"label":"Vrikshasana (Tree) — right","seconds":30,"cue":"Balance, soft gaze, spine neutral."},
+        {"label":"Vrikshasana (Tree) — left","seconds":30,"cue":"Balance, soft gaze, spine neutral."},
+        {"label":"Balasana (Child's pose) — relax","seconds":300,"cue":"Sink back, breathe deeply, let the back release. Hold longer if it feels good."}
+      ]},
       {"id":"sat-2","time":"Late morning/afternoon","title":"Longer weekend walk","location":"Local / Highgate Wood","duration":"30-40 min","category":"Walking","safety":{"status":"safe"},"detail":"Once cleared, this is also the natural slot to test light jogging intervals ahead of any 5K prep restart — see Walk/Run library. Physio sign-off first."},
       {"time":"Any time","title":"Jal neti","location":"Home","duration":"5 min","category":"Other","safety":{"status":"safe"},"detail":"Twice weekly — Sat + one weekday. Lukewarm saline, never plain tap water."}
     ],
     "sun": [
-      {"id":"sun-1","time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe"},"detail":"Same structure as Saturday's session — safe-list asanas only, 20-30 sec holds.","resource":{"title":"Tests and Exercises for Spondylolisthesis (playlist)","url":"https://www.youtube.com/playlist?list=PL8l32k1r15l44wBl_S_q0QOKGQlqcujvo","note":"General online resource, not personalised."}},
+      {"id":"sun-1","time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe"},"detail":"Same structure as Saturday's session — safe-list asanas only, 20-30 sec holds.","resource":{"title":"Tests and Exercises for Spondylolisthesis (playlist)","url":"https://www.youtube.com/playlist?list=PL8l32k1r15l44wBl_S_q0QOKGQlqcujvo","note":"General online resource, not personalised."},"guide":[
+        {"label":"Warm-up — Cat-Cow","seconds":300,"cue":"Slow, breath-linked movement to wake up the spine."},
+        {"label":"Tadasana (Mountain)","seconds":30,"cue":"Stand tall, feel the reset in your posture."},
+        {"label":"Setu Bandhasana (gentle Bridge)","seconds":40,"cue":"Lift hips gently, hold, breathe."},
+        {"label":"Sphinx (mini cobra)","seconds":40,"cue":"Gentle extension on forearms."},
+        {"label":"Pawanmuktasana — right leg","seconds":30,"cue":"Hug right knee gently to chest."},
+        {"label":"Pawanmuktasana — left leg","seconds":30,"cue":"Hug left knee gently to chest."},
+        {"label":"Vrikshasana (Tree) — right","seconds":30,"cue":"Balance, soft gaze, spine neutral."},
+        {"label":"Vrikshasana (Tree) — left","seconds":30,"cue":"Balance, soft gaze, spine neutral."},
+        {"label":"Balasana (Child's pose) — relax","seconds":300,"cue":"Sink back, breathe deeply, let the back release. Hold longer if it feels good."}
+      ]},
       {"id":"sun-2","time":"Any time","title":"Light walk","location":"Local","duration":"20-30 min","category":"Walking","safety":{"status":"safe"},"detail":"Rest-oriented day — keep it easy. Top up steps if you're behind for the week."},
-      {"time":"Any time","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"}}
+      {"time":"Any time","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"},"guide":[
+        {"label":"Anulom Vilom (alternate nostril breathing)","seconds":180,"cue":"Sit tall, breathe slowly through alternating nostrils."},
+        {"label":"Bhramari (humming bee breath)","seconds":180,"cue":"Close your eyes, inhale, hum gently on the exhale."},
+        {"label":"Ujjayi (ocean breath)","seconds":240,"cue":"Breathe through the nose with a slight throat constriction, slow and even."}
+      ]}
     ]
   },
   "exerciseLibrary": {
@@ -76,17 +165,17 @@
       "title": "Spinal Yoga — Jindal-informed asana list",
       "intro": "Cross-checked against Grade 1 L5-S1 spondylolisthesis: avoid deep forward spinal flexion, heavy loaded twisting and full backbends; favour core stabilisation and gentle, supported movement. Jindal's own spinal-disorder sheet already marked some poses as crossed-out or half-only — those calls are kept here rather than overridden.",
       "safeAsanas": [
-        {"name":"Tadasana (Mountain pose)", "note":"Posture-reset, fully safe."},
-        {"name":"Marjariasana-Bitilasana (Cat-Cow)", "note":"Gentle spinal mobility, well tolerated with spondylolisthesis."},
-        {"name":"Setu Bandhasana, supported/gentle (Bridge)", "note":"Strengthens glutes/posterior chain without loaded flexion — keep it a gentle lift, not a deep backbend."},
-        {"name":"Balasana (Child's pose)", "note":"Passive, supported — comfortable rest pose."},
-        {"name":"Bhujangasana, mini/Sphinx variant only", "note":"Small, gentle extension only — not the full deep cobra."},
-        {"name":"Pawanmuktasana, gentle single-leg", "note":"One knee to chest at a time, gently — avoid pulling both knees in hard."},
-        {"name":"Vrikshasana (Tree pose)", "note":"Balance and core, spine-neutral."}
+        {"name":"Tadasana (Mountain pose)", "note":"Posture-reset, fully safe.", "video":{"title":"Mountain Pose (Tadasana) Tutorial — Perfect Your Posture & Build Strength","url":"https://www.youtube.com/watch?v=RG-diLLripw"}},
+        {"name":"Marjariasana-Bitilasana (Cat-Cow)", "note":"Gentle spinal mobility, well tolerated with spondylolisthesis.", "video":{"title":"Cat and Cow Pose — Yoga for Spine Flexibility & Back Pain Relief","url":"https://www.youtube.com/watch?v=0F14YUUGUxY"}},
+        {"name":"Setu Bandhasana, supported/gentle (Bridge)", "note":"Strengthens glutes/posterior chain without loaded flexion — keep it a gentle lift, not a deep backbend.", "video":{"title":"Bridge Pose (Setu Bandhasana) for Beginners — Proper Alignment + Easy Modifications","url":"https://www.youtube.com/watch?v=2mQCNrc-gc8"}},
+        {"name":"Balasana (Child's pose)", "note":"Passive, supported — comfortable rest pose.", "video":{"title":"Child's Pose (Balasana) Yoga Tutorial — Gentle Resting Pose","url":"https://www.youtube.com/watch?v=omYNDBYbbu0"}},
+        {"name":"Bhujangasana, mini/Sphinx variant only", "note":"Small, gentle extension only — not the full deep cobra.", "video":{"title":"How to Perform Sphinx Pose — Yoga for Lower Back Pain & Spine Health","url":"https://www.youtube.com/watch?v=wR8_lSvqAHA"}},
+        {"name":"Pawanmuktasana, gentle single-leg", "note":"One knee to chest at a time, gently — avoid pulling both knees in hard.", "video":{"title":"Wind Relieving Pose (Pavanamuktasana) — How To Do It + Benefits","url":"https://www.youtube.com/watch?v=5wNNOWT8zi4"}},
+        {"name":"Vrikshasana (Tree pose)", "note":"Balance and core, spine-neutral.", "video":{"title":"How to Do Tree Pose — 5-Minute Yoga Balance Tutorial for Beginners","url":"https://www.youtube.com/watch?v=UkUIBDHolKk"}}
       ],
       "halfOrModifiedOnly": [
-        {"name":"Ustrasana (Camel pose)", "note":"Jindal's own sheet marks this half-only — shallow backbend, hands on hips or lower back, not full reach to heels."},
-        {"name":"Shalabhasana (Locust pose)", "note":"Jindal's own sheet marks this half-only — lift one leg at a time gently, not both legs with full chest lift."}
+        {"name":"Ustrasana (Camel pose)", "note":"Jindal's own sheet marks this half-only — shallow backbend, hands on hips or lower back, not full reach to heels.", "video":{"title":"How to Do Camel Pose (Ustrasana) — Yoga Backbends (use the shallow/hands-on-hips version only)","url":"https://www.youtube.com/watch?v=9c-bwTWpOes"}},
+        {"name":"Shalabhasana (Locust pose)", "note":"Jindal's own sheet marks this half-only — lift one leg at a time gently, not both legs with full chest lift.", "video":{"title":"Locust Pose Yoga Tutorial — Build Back Power & Reduce Slouching (do one leg at a time only)","url":"https://www.youtube.com/watch?v=kx2_K9wPcd8"}}
       ],
       "avoidAsanas": [
         {"name":"Surya Namaskar (full sequence)", "note":"Crossed out on Jindal's own sheet — the forward-fold/lunge/backbend sequence loads the lumbar spine repeatedly."},

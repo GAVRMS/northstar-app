@@ -1112,11 +1112,18 @@ function exerciseBlockRow(b, dayKey, idx){
   '</div></div>';
 }
 
-function openDetailModal(title, bodyHtml){
+function openDetailModal(title, bodyHtml, extraActions){
+  var hasPrimary = (extraActions||[]).some(function(a){ return a.primary; });
+  var extraHtml = (extraActions||[]).map(function(a,i){
+    return '<button class="'+(a.primary?'btn-primary':'btn-ghost')+'" id="detailExtra'+i+'">'+escapeHtml(a.label)+'</button>';
+  }).join('');
   modalBody.innerHTML = '<h3>'+escapeHtml(title)+'</h3><div style="font-size:14px;line-height:1.55;">'+bodyHtml+'</div>' +
-    '<div class="modal-actions"><button class="btn-primary" id="detailClose">Close</button></div>';
+    '<div class="modal-actions">'+extraHtml+'<button class="'+(hasPrimary?'btn-ghost':'btn-primary')+'" id="detailClose">Close</button></div>';
   modalBackdrop.hidden = false;
   document.getElementById('detailClose').onclick = closeModal;
+  (extraActions||[]).forEach(function(a,i){
+    document.getElementById('detailExtra'+i).onclick = a.onClick;
+  });
 }
 
 function renderHealthWeek(){
@@ -1157,11 +1164,17 @@ function renderStepsCard(){
   return html;
 }
 
-function asanaList(title, items, cls){
+function asanaList(title, items, groupKey, cls){
   if(!items || !items.length) return '';
   return '<div style="margin-top:10px;"><div style="font-size:12.5px;font-weight:700;" class="'+(cls||'')+'">'+escapeHtml(title)+'</div>' +
     '<ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;line-height:1.5;">' +
-      items.map(function(a){ return '<li style="margin-bottom:5px;"><b>'+escapeHtml(a.name)+'</b>'+(a.note?' — <span style="color:var(--ink-dim);">'+escapeHtml(a.note)+'</span>':'')+'</li>'; }).join('') +
+      items.map(function(a,i){
+        var clickable = groupKey && a.video;
+        var nameHtml = clickable
+          ? '<button data-action="asana-detail" data-group="'+groupKey+'" data-idx="'+i+'" style="background:none;border:none;padding:0;font:inherit;font-weight:700;color:var(--focus);text-decoration:underline;cursor:pointer;">'+escapeHtml(a.name)+'</button>'
+          : '<b>'+escapeHtml(a.name)+'</b>';
+        return '<li style="margin-bottom:5px;">'+nameHtml+(a.note?' — <span style="color:var(--ink-dim);">'+escapeHtml(a.note)+'</span>':'')+'</li>';
+      }).join('') +
     '</ul></div>';
 }
 
@@ -1174,9 +1187,9 @@ function renderHealthLibrary(){
     html += '<div class="section-head" style="margin-top:8px;"><h2 style="font-size:15px;">🧘 '+escapeHtml(sy.title)+'</h2></div>';
     html += '<div class="card" style="padding:14px 16px;">';
     html += '<div style="font-size:13px;color:var(--ink-dim);line-height:1.5;">'+escapeHtml(sy.intro)+'</div>';
-    html += asanaList('Safe', sy.safeAsanas, '');
-    html += asanaList('Half / modified only (Jindal-flagged)', sy.halfOrModifiedOnly);
-    html += asanaList('Avoid', sy.avoidAsanas);
+    html += asanaList('Safe — tap a name for a video', sy.safeAsanas, 'safeAsanas');
+    html += asanaList('Half / modified only (Jindal-flagged) — tap a name for a video', sy.halfOrModifiedOnly, 'halfOrModifiedOnly');
+    html += asanaList('Avoid', sy.avoidAsanas, null);
     if(sy.note) html += '<div class="warn-banner" style="margin-top:10px;">ℹ️ '+escapeHtml(sy.note)+'</div>';
     html += '</div>';
   }
@@ -1415,8 +1428,26 @@ document.getElementById('mainContent').addEventListener('click', function(e){
           '<div style="font-size:11px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Follow-along video</div>' +
           '<a href="'+escapeHtml(exBlock.resource.url)+'" target="_blank" rel="noopener" style="display:block;margin-top:4px;font-size:13.5px;font-weight:600;color:var(--primary);">▶ '+escapeHtml(exBlock.resource.title)+'</a>' +
           (exBlock.resource.note ? '<div style="font-size:11.5px;color:var(--ink-dim);margin-top:4px;">'+escapeHtml(exBlock.resource.note)+'</div>' : '') +
-        '</div>' : '');
-      openDetailModal(exBlock.title, exBody || '<p style="margin:0;color:var(--ink-dim);">No further detail yet.</p>');
+        '</div>' : '') +
+        (exBlock.guide ? '<div style="margin-top:10px;font-size:12px;color:var(--ink-dim);">'+exBlock.guide.length+'-step guided timer available — follows the sets/reps/rests above.</div>' : '');
+      var exExtraActions = exBlock.guide ? [{label:'▶ Start guided session', primary:true, onClick:function(){ openGuideTimer(exBlock.title, exBlock.guide); }}] : null;
+      openDetailModal(exBlock.title, exBody || '<p style="margin:0;color:var(--ink-dim);">No further detail yet.</p>', exExtraActions);
+    }
+    return;
+  }
+  var asanaBtn = e.target.closest('[data-action="asana-detail"]');
+  if(asanaBtn){
+    var agGroup = asanaBtn.getAttribute('data-group');
+    var agIdx = parseInt(asanaBtn.getAttribute('data-idx'),10);
+    var sy = state.health && state.health.exerciseLibrary && state.health.exerciseLibrary.spinalYoga;
+    var asana = sy && sy[agGroup] && sy[agGroup][agIdx];
+    if(asana){
+      var asBody = (asana.note ? '<p style="margin:0 0 10px;">'+escapeHtml(asana.note)+'</p>' : '') +
+        (asana.video ? '<div style="margin-top:6px;padding:10px 12px;background:var(--info-bg);border-radius:10px;">' +
+          '<div style="font-size:11px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Video</div>' +
+          '<a href="'+escapeHtml(asana.video.url)+'" target="_blank" rel="noopener" style="display:block;margin-top:4px;font-size:13.5px;font-weight:600;color:var(--primary);">▶ '+escapeHtml(asana.video.title)+'</a>' +
+        '</div>' : '<p style="margin-top:6px;color:var(--ink-dim);font-size:12.5px;">No video reference for this one yet.</p>');
+      openDetailModal(asana.name, asBody);
     }
     return;
   }
@@ -1478,6 +1509,83 @@ document.getElementById('mainContent').addEventListener('keydown', function(e){
 var modalBackdrop = document.getElementById('modalBackdrop');
 var modalBody = document.getElementById('modalBody');
 
+/* ================= guided exercise timer ================= */
+var hbGuideState = null;
+function hbFmtClock(sec){
+  sec = Math.max(0, sec);
+  var m = Math.floor(sec/60), s = sec%60;
+  return m + ':' + (s<10?'0':'') + s;
+}
+function hbStopGuide(){
+  if(hbGuideState && hbGuideState.timerId) clearInterval(hbGuideState.timerId);
+  hbGuideState = null;
+}
+function hbGuideRender(){
+  var gs = hbGuideState;
+  if(!gs) return;
+  var step = gs.steps[gs.idx];
+  var pct = Math.max(0, Math.min(100, (gs.remaining/step.seconds)*100));
+  modalBody.innerHTML =
+    '<h3>'+escapeHtml(gs.title)+'</h3>' +
+    '<div style="text-align:center;padding:4px 0 2px;">' +
+      '<div style="font-size:11px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Step '+(gs.idx+1)+' of '+gs.steps.length+'</div>' +
+      '<div style="font-size:21px;font-weight:700;margin-top:6px;">'+escapeHtml(step.label)+'</div>' +
+      '<div style="font-size:13px;color:var(--ink-dim);margin-top:6px;min-height:18px;max-width:38ch;margin-left:auto;margin-right:auto;">'+(step.cue?escapeHtml(step.cue):'')+'</div>' +
+      '<div id="guideClock" class="mono" style="font-size:52px;font-weight:700;margin:16px 0 10px;">'+hbFmtClock(gs.remaining)+'</div>' +
+      '<div style="height:6px;background:var(--line);border-radius:3px;overflow:hidden;">' +
+        '<div id="guideProgress" style="height:100%;background:var(--focus);width:'+pct+'%;"></div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="modal-actions" style="gap:8px;">' +
+      '<button class="btn-ghost" id="guidePrev" style="flex:1;padding:11px 6px;font-size:13.5px;" '+(gs.idx===0?'disabled':'')+'>⏮ Back</button>' +
+      '<button class="btn-ghost" id="guidePause" style="flex:1;padding:11px 6px;font-size:13.5px;">'+(gs.paused?'▶ Resume':'⏸ Pause')+'</button>' +
+      '<button class="btn-primary" id="guideNext" style="flex:1;padding:11px 6px;font-size:13.5px;">Skip →</button>' +
+    '</div>' +
+    '<button class="link-btn" id="guideClose" style="display:block;margin:8px auto 0;">End session</button>';
+  document.getElementById('guidePrev').onclick = function(){ hbGuideGoto(gs.idx-1); };
+  document.getElementById('guideNext').onclick = function(){ hbGuideGoto(gs.idx+1); };
+  document.getElementById('guidePause').onclick = function(){ gs.paused = !gs.paused; hbGuideRender(); };
+  document.getElementById('guideClose').onclick = closeModal;
+}
+function hbGuideGoto(newIdx){
+  var gs = hbGuideState;
+  if(!gs) return;
+  if(newIdx >= gs.steps.length){ hbGuideComplete(); return; }
+  if(newIdx < 0) newIdx = 0;
+  gs.idx = newIdx;
+  gs.remaining = gs.steps[newIdx].seconds;
+  gs.paused = false;
+  hbGuideRender();
+}
+function hbGuideComplete(){
+  hbStopGuide();
+  modalBody.innerHTML =
+    '<h3>Nice work 👏</h3>' +
+    '<div style="text-align:center;padding:16px 0;font-size:14.5px;color:var(--ink-dim);">Session complete.</div>' +
+    '<div class="modal-actions"><button class="btn-primary" id="guideDone">Close</button></div>';
+  document.getElementById('guideDone').onclick = closeModal;
+}
+function hbGuideTick(){
+  var gs = hbGuideState;
+  if(!gs || gs.paused) return;
+  gs.remaining--;
+  if(gs.remaining <= 0){
+    hbGuideGoto(gs.idx+1);
+  } else {
+    var clockEl = document.getElementById('guideClock');
+    var progEl = document.getElementById('guideProgress');
+    if(clockEl) clockEl.textContent = hbFmtClock(gs.remaining);
+    if(progEl) progEl.style.width = Math.max(0,Math.min(100,(gs.remaining/gs.steps[gs.idx].seconds)*100))+'%';
+  }
+}
+function openGuideTimer(title, steps){
+  hbStopGuide();
+  hbGuideState = { title: title, steps: steps, idx: 0, remaining: steps[0].seconds, paused: false };
+  modalBackdrop.hidden = false;
+  hbGuideRender();
+  hbGuideState.timerId = setInterval(hbGuideTick, 1000);
+}
+
 function openEventModal(editId){
   var editing = editId ? state.events.find(function(x){return x.id===editId;}) : null;
   var d = editing ? editing.date : todayStr;
@@ -1525,7 +1633,7 @@ function openEventModal(editId){
     closeModal();
   };
 }
-function closeModal(){ modalBackdrop.hidden = true; modalBody.innerHTML=''; }
+function closeModal(){ hbStopGuide(); modalBackdrop.hidden = true; modalBody.innerHTML=''; }
 modalBackdrop.addEventListener('click', function(e){ if(e.target===modalBackdrop) closeModal(); });
 document.getElementById('fabAdd').addEventListener('click', function(){ openEventModal(null); });
 
