@@ -16,11 +16,31 @@
   "stepsPlan": {
     "target": 15000,
     "howItAddsUp": [
-      {"segment":"Home → Archway station (AM)", "approxSteps":"~1,800-2,200", "note":"Walk or short bus — walking it fully counts toward the target."},
-      {"segment":"Tube transfers + platform walking (both legs)", "approxSteps":"~1,000-1,500", "note":"Canary Wharf and Archway/Highgate are deep stations with long passageways — this adds up without extra effort."},
-      {"segment":"Highgate station → home (PM)", "approxSteps":"~1,500-2,500", "note":"Confirm your usual route distance — if it's short, this is the easiest place to add a deliberate 10-15 min loop before heading indoors."},
-      {"segment":"Office movement (Canary Wharf)", "approxSteps":"~1,500-2,500", "note":"Walking to meetings, lunch, coffee — take the stairs where the station/office allows instead of the lift/escalator."},
-      {"segment":"Deliberate walk blocks (planner)", "approxSteps":"~3,000-5,000", "note":"The 15-20 min AM/PM walk blocks and the weekend longer walk in the weekly exercise plan below."}
+      {
+        "segment": "Home → Archway station (AM)",
+        "approxSteps": "~1,800-2,200",
+        "note": "Walk or short bus — walking it fully counts toward the target."
+      },
+      {
+        "segment": "Tube transfers + platform walking (both legs)",
+        "approxSteps": "~1,000-1,500",
+        "note": "Canary Wharf and Archway/Highgate are deep stations with long passageways — this adds up without extra effort."
+      },
+      {
+        "segment": "Highgate station → home (PM)",
+        "approxSteps": "~1,500-2,500",
+        "note": "Confirm your usual route distance — if it's short, this is the easiest place to add a deliberate 10-15 min loop before heading indoors."
+      },
+      {
+        "segment": "Office movement (Canary Wharf)",
+        "approxSteps": "~1,500-2,500",
+        "note": "Walking to meetings, lunch, coffee — take the stairs where the station/office allows instead of the lift/escalator."
+      },
+      {
+        "segment": "Deliberate walk blocks (planner)",
+        "approxSteps": "~3,000-5,000",
+        "note": "The 15-20 min AM/PM walk blocks and the weekend longer walk in the weekly exercise plan below."
+      }
     ],
     "tips": [
       "Commute days (Mon/Tue/Wed/Fri) naturally give you a big chunk of the 15k just from Archway↔Canary Wharf↔Highgate — the gap to close is usually the PM Highgate-to-home leg and lunchtime movement.",
@@ -36,128 +56,712 @@
   ],
   "weeklyExercise": {
     "mon": [
-      {"id":"mon-1","time":"AM commute","title":"Walk — Home → Archway station","location":"Home ↔ Archway","duration":"15 min","category":"Walking","safety":{"status":"safe","note":"Safe throughout recovery."},"detail":"Counts toward the 15k step target. Brisk pace once cleared for exercise; easy pace during October recovery."},
-      {"id":"mon-2","time":"Lunchtime","title":"Gym floor — core stability + light dumbbell wrist work","location":"Technogym Canary Wharf (gym floor)","duration":"25-30 min","category":"Strength","sets":"3","reps":"10-12","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared by Dr Anupama (target: mid-Nov)."},"detail":"Bird-dog, dead bug, glute bridge, wrist curls with light dumbbells. Spondylolisthesis-safe: no loaded forward flexion, no heavy twisting, no crunches/sit-ups.","guide":[
-        {"label":"Round 1 — Bird-dog","seconds":40,"cue":"Opposite arm/leg extended, hold, slow and controlled."},
-        {"label":"Rest","seconds":20,"cue":"Shake it out, breathe."},
-        {"label":"Round 1 — Dead bug","seconds":40,"cue":"Lower opposite arm/leg slowly, keep low back flat."},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 1 — Glute bridge","seconds":40,"cue":"Squeeze glutes at the top, no arching in the low back."},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 1 — Wrist curls (light dumbbells)","seconds":30,"cue":"Slow and controlled, full range of motion."},
-        {"label":"Rest","seconds":30,"cue":"Longer rest before round 2."},
-        {"label":"Round 2 — Bird-dog","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 2 — Dead bug","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 2 — Glute bridge","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 2 — Wrist curls (light dumbbells)","seconds":30,"cue":""},
-        {"label":"Rest","seconds":30,"cue":"Longer rest before round 3."},
-        {"label":"Round 3 — Bird-dog","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 3 — Dead bug","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 3 — Glute bridge","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 3 — Wrist curls (light dumbbells)","seconds":30,"cue":"Last set — finish strong."}
-      ]},
-      {"id":"mon-3","time":"PM commute","title":"Walk — Highgate station → home","location":"Highgate ↔ Home","duration":"15-20 min","category":"Walking","safety":{"status":"safe","note":"Safe throughout recovery."},"detail":"Your main lever for closing the daily step gap — if you're short for the day, extend this into a 10-15 min loop before heading in."},
-      {"time":"Evening","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"},"detail":"Jindal routine; good wind-down before sleep.","guide":[
-        {"label":"Anulom Vilom (alternate nostril breathing)","seconds":180,"cue":"Sit tall, breathe slowly through alternating nostrils."},
-        {"label":"Bhramari (humming bee breath)","seconds":180,"cue":"Close your eyes, inhale, hum gently on the exhale."},
-        {"label":"Ujjayi (ocean breath)","seconds":240,"cue":"Breathe through the nose with a slight throat constriction, slow and even."}
-      ]}
+      {
+        "id": "mon-1",
+        "time": "AM commute",
+        "title": "Walk — Home → Archway station",
+        "location": "Home ↔ Archway",
+        "duration": "15 min",
+        "category": "Walking",
+        "safety": {
+          "status": "safe",
+          "note": "Safe throughout recovery."
+        },
+        "detail": "Counts toward the 15k step target. Brisk pace once cleared for exercise; easy pace during October recovery."
+      },
+      {
+        "id": "mon-2",
+        "time": "Lunchtime",
+        "title": "Gym floor — core stability + light dumbbell wrist work",
+        "location": "Technogym Canary Wharf (gym floor)",
+        "duration": "25-30 min",
+        "category": "Strength",
+        "sets": "3",
+        "reps": "10-12",
+        "safety": {
+          "status": "confirm",
+          "note": "Paused during October recovery — resume once cleared by Dr Anupama (target: mid-Nov)."
+        },
+        "detail": "Bird-dog, dead bug, glute bridge, wrist curls with light dumbbells. Spondylolisthesis-safe: no loaded forward flexion, no heavy twisting, no crunches/sit-ups.",
+        "guide": [
+          {
+            "label": "Round 1 — Bird-dog",
+            "seconds": 40,
+            "cue": "Opposite arm/leg extended, hold, slow and controlled."
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": "Shake it out, breathe."
+          },
+          {
+            "label": "Round 1 — Dead bug",
+            "seconds": 40,
+            "cue": "Lower opposite arm/leg slowly, keep low back flat."
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 1 — Glute bridge",
+            "seconds": 40,
+            "cue": "Squeeze glutes at the top, no arching in the low back."
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 1 — Wrist curls (light dumbbells)",
+            "seconds": 30,
+            "cue": "Slow and controlled, full range of motion."
+          },
+          {
+            "label": "Rest",
+            "seconds": 30,
+            "cue": "Longer rest before round 2."
+          },
+          {
+            "label": "Round 2 — Bird-dog",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 2 — Dead bug",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 2 — Glute bridge",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 2 — Wrist curls (light dumbbells)",
+            "seconds": 30,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 30,
+            "cue": "Longer rest before round 3."
+          },
+          {
+            "label": "Round 3 — Bird-dog",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 3 — Dead bug",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 3 — Glute bridge",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 3 — Wrist curls (light dumbbells)",
+            "seconds": 30,
+            "cue": "Last set — finish strong."
+          }
+        ]
+      },
+      {
+        "id": "mon-3",
+        "time": "PM commute",
+        "title": "Walk — Highgate station → home",
+        "location": "Highgate ↔ Home",
+        "duration": "15-20 min",
+        "category": "Walking",
+        "safety": {
+          "status": "safe",
+          "note": "Safe throughout recovery."
+        },
+        "detail": "Your main lever for closing the daily step gap — if you're short for the day, extend this into a 10-15 min loop before heading in."
+      },
+      {
+        "time": "Evening",
+        "title": "Breathing practice — Anulom Vilom + Bhramari + Ujjayi",
+        "location": "Home",
+        "duration": "10 min",
+        "category": "Breathing",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "Jindal routine; good wind-down before sleep.",
+        "guide": [
+          {
+            "label": "Anulom Vilom (alternate nostril breathing)",
+            "seconds": 180,
+            "cue": "Sit tall, breathe slowly through alternating nostrils."
+          },
+          {
+            "label": "Bhramari (humming bee breath)",
+            "seconds": 180,
+            "cue": "Close your eyes, inhale, hum gently on the exhale."
+          },
+          {
+            "label": "Ujjayi (ocean breath)",
+            "seconds": 240,
+            "cue": "Breathe through the nose with a slight throat constriction, slow and even."
+          }
+        ]
+      }
     ],
     "tue": [
-      {"id":"tue-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"},"detail":"Both commute legs walked in full."},
-      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Jindal routine, twice weekly (Tue + Fri) — palming, focus shifts, blinking exercises.","guide":[
-        {"label":"Palming","seconds":180,"cue":"Rub palms warm, cup gently over closed eyes, breathe."},
-        {"label":"Focus shifts","seconds":240,"cue":"Alternate focus between a near object and a far object."},
-        {"label":"Blinking exercises","seconds":180,"cue":"Blink rapidly for 10 seconds, then rest eyes closed for 10 seconds — repeat."}
-      ]},
-      {"time":"Evening","title":"Spinal-safe stretch (see Spinal Yoga library)","location":"Home","duration":"10 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Use only the 'safe' asana list — see Exercise library tab."},"detail":"Cat-Cow, gentle Sphinx, supported Bridge, Child's pose. Avoid deep forward folds and full backbends.","resource":{"title":"How to Practice Yoga with Lower Back Pain (Safe Modifications for Lumbar Issues & Spondylolisthesis)","url":"https://www.youtube.com/watch?v=cccQMohhz4s","note":"General online resource, not personalised — good starting reference, still worth a physio sanity-check."},"guide":[
-        {"label":"Cat-Cow","seconds":120,"cue":"Slow, controlled — inhale arch, exhale round."},
-        {"label":"Sphinx (mini cobra)","seconds":120,"cue":"Gentle extension on forearms — hold, breathe."},
-        {"label":"Supported Bridge","seconds":120,"cue":"Lift hips gently, squeeze glutes, no strain in the low back."},
-        {"label":"Child's pose","seconds":240,"cue":"Sink hips to heels, arms extended, relax and breathe."}
-      ]}
+      {
+        "id": "tue-1",
+        "time": "AM/PM commute",
+        "title": "Walk — Archway ↔ Canary Wharf legs",
+        "location": "Archway ↔ Canary Wharf ↔ Highgate",
+        "duration": "~30 min total",
+        "category": "Walking",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "Both commute legs walked in full."
+      },
+      {
+        "time": "Lunchtime or evening",
+        "title": "Eye yoga",
+        "location": "Home or office",
+        "duration": "10 min",
+        "category": "Eye care",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "Jindal routine, twice weekly (Tue + Fri) — palming, focus shifts, blinking exercises.",
+        "guide": [
+          {
+            "label": "Palming",
+            "seconds": 180,
+            "cue": "Rub palms warm, cup gently over closed eyes, breathe."
+          },
+          {
+            "label": "Focus shifts",
+            "seconds": 240,
+            "cue": "Alternate focus between a near object and a far object."
+          },
+          {
+            "label": "Blinking exercises",
+            "seconds": 180,
+            "cue": "Blink rapidly for 10 seconds, then rest eyes closed for 10 seconds — repeat."
+          }
+        ]
+      },
+      {
+        "time": "Evening",
+        "title": "Spinal-safe stretch (see Spinal Yoga library)",
+        "location": "Home",
+        "duration": "10 min",
+        "category": "Spinal Yoga",
+        "safety": {
+          "status": "safe",
+          "note": "Use only the 'safe' asana list — see Exercise library tab."
+        },
+        "detail": "Cat-Cow, gentle Sphinx, supported Bridge, Child's pose. Avoid deep forward folds and full backbends.",
+        "resource": {
+          "title": "How to Practice Yoga with Lower Back Pain (Safe Modifications for Lumbar Issues & Spondylolisthesis)",
+          "url": "https://www.youtube.com/watch?v=cccQMohhz4s",
+          "note": "General online resource, not personalised — good starting reference, still worth a physio sanity-check."
+        },
+        "guide": [
+          {
+            "label": "Cat-Cow",
+            "seconds": 120,
+            "cue": "Slow, controlled — inhale arch, exhale round."
+          },
+          {
+            "label": "Sphinx (mini cobra)",
+            "seconds": 120,
+            "cue": "Gentle extension on forearms — hold, breathe."
+          },
+          {
+            "label": "Supported Bridge",
+            "seconds": 120,
+            "cue": "Lift hips gently, squeeze glutes, no strain in the low back."
+          },
+          {
+            "label": "Child's pose",
+            "seconds": 240,
+            "cue": "Sink hips to heels, arms extended, relax and breathe."
+          }
+        ]
+      }
     ],
     "wed": [
-      {"id":"wed-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"}},
-      {"id":"wed-2","time":"13:10","title":"Vinyasa Yoga (Technogym Canary Wharf)","location":"Technogym Canary Wharf","duration":"45 min","category":"Yoga","safety":{"status":"confirm","note":"Likely fine for L5-S1 (vinyasa flow, not the flagged 'Aim at the Stars' class) — still paused during October recovery, and confirm with the instructor no deep backbends/forward folds."},"detail":"From the real Wednesday Technogym timetable — fits the lunch window on an office day. Alternative same slot: Cardio Tone 12:15 (confirm form) or Technogym Boot Camp 12:00/13:00 (higher-impact, ask physio first). Full timetable in the Gym Class Timetable booklet, Resources section."}
+      {
+        "id": "wed-1",
+        "time": "AM/PM commute",
+        "title": "Walk — Archway ↔ Canary Wharf legs",
+        "location": "Archway ↔ Canary Wharf ↔ Highgate",
+        "duration": "~30 min total",
+        "category": "Walking",
+        "safety": {
+          "status": "safe"
+        }
+      },
+      {
+        "id": "wed-2",
+        "time": "13:10",
+        "title": "Vinyasa Yoga (Technogym Canary Wharf)",
+        "location": "Technogym Canary Wharf",
+        "duration": "45 min",
+        "category": "Yoga",
+        "safety": {
+          "status": "confirm",
+          "note": "Likely fine for L5-S1 (vinyasa flow, not the flagged 'Aim at the Stars' class) — still paused during October recovery, and confirm with the instructor no deep backbends/forward folds."
+        },
+        "detail": "From the real Wednesday Technogym timetable — fits the lunch window on an office day. Alternative same slot: Cardio Tone 12:15 (confirm form) or Technogym Boot Camp 12:00/13:00 (higher-impact, ask physio first). Full timetable in the Gym Class Timetable booklet, Resources section."
+      }
     ],
     "thu": [
-      {"id":"thu-1","time":"Morning (WFH day)","title":"Low-impact cardio — walk or stationary bike","location":"Home / local","duration":"30 min","category":"Cardio","safety":{"status":"confirm","note":"Walking is safe now; stationary bike once cleared."},"detail":"No commute today, so this is a deliberate step-floor session — walking is fine during recovery; swap in the bike once cleared for exercise."},
-      {"id":"thu-2","time":"Morning","title":"Core stability circuit","location":"Home","duration":"20 min","category":"Strength","sets":"3","reps":"10-12 reps, 30 sec hold on planks","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared."},"detail":"Bird-dog, dead bug, glute bridge, modified plank — 3 rounds, ~60 sec rest between rounds.","resource":{"title":"Lumbar Spondylolisthesis Rehab (Education | Exercises | Surgery | Myths)","url":"https://www.youtube.com/watch?v=rRV5Q85hCMs","note":"General online resource — good background, still worth a physio sanity-check."},"guide":[
-        {"label":"Round 1 — Bird-dog","seconds":40,"cue":"Opposite arm/leg extended, hold, slow and controlled."},
-        {"label":"Rest","seconds":20,"cue":"Shake it out, breathe."},
-        {"label":"Round 1 — Dead bug","seconds":40,"cue":"Lower opposite arm/leg slowly, keep low back flat."},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 1 — Glute bridge","seconds":40,"cue":"Squeeze glutes at the top, no arching in the low back."},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 1 — Modified plank","seconds":30,"cue":"Knees down if needed, straight line shoulders to knees."},
-        {"label":"Rest","seconds":30,"cue":"Longer rest before round 2."},
-        {"label":"Round 2 — Bird-dog","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 2 — Dead bug","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 2 — Glute bridge","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 2 — Modified plank","seconds":30,"cue":""},
-        {"label":"Rest","seconds":30,"cue":"Longer rest before round 3."},
-        {"label":"Round 3 — Bird-dog","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 3 — Dead bug","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 3 — Glute bridge","seconds":40,"cue":""},
-        {"label":"Rest","seconds":20,"cue":""},
-        {"label":"Round 3 — Modified plank","seconds":30,"cue":"Last set — finish strong."}
-      ]},
-      {"id":"thu-3","time":"Thursday evening","title":"Physio — Highgate Hospital","location":"Highgate Hospital","duration":"~45-60 min (confirm)","category":"Physio","safety":{"status":"safe"},"detail":"New weekly slot. Ask directly about: the Technogym Monday 17:30 yoga class, Zumba/dance and spinning safety for L5-S1, and the walk/run-to-5K return timeline."}
+      {
+        "id": "thu-1",
+        "time": "Morning (WFH day)",
+        "title": "Low-impact cardio — walk or stationary bike",
+        "location": "Home / local",
+        "duration": "30 min",
+        "category": "Cardio",
+        "safety": {
+          "status": "confirm",
+          "note": "Walking is safe now; stationary bike once cleared."
+        },
+        "detail": "No commute today, so this is a deliberate step-floor session — walking is fine during recovery; swap in the bike once cleared for exercise."
+      },
+      {
+        "id": "thu-2",
+        "time": "Morning",
+        "title": "Core stability circuit",
+        "location": "Home",
+        "duration": "20 min",
+        "category": "Strength",
+        "sets": "3",
+        "reps": "10-12 reps, 30 sec hold on planks",
+        "safety": {
+          "status": "confirm",
+          "note": "Paused during October recovery — resume once cleared."
+        },
+        "detail": "Bird-dog, dead bug, glute bridge, modified plank — 3 rounds, ~60 sec rest between rounds.",
+        "resource": {
+          "title": "Lumbar Spondylolisthesis Rehab (Education | Exercises | Surgery | Myths)",
+          "url": "https://www.youtube.com/watch?v=rRV5Q85hCMs",
+          "note": "General online resource — good background, still worth a physio sanity-check."
+        },
+        "guide": [
+          {
+            "label": "Round 1 — Bird-dog",
+            "seconds": 40,
+            "cue": "Opposite arm/leg extended, hold, slow and controlled."
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": "Shake it out, breathe."
+          },
+          {
+            "label": "Round 1 — Dead bug",
+            "seconds": 40,
+            "cue": "Lower opposite arm/leg slowly, keep low back flat."
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 1 — Glute bridge",
+            "seconds": 40,
+            "cue": "Squeeze glutes at the top, no arching in the low back."
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 1 — Modified plank",
+            "seconds": 30,
+            "cue": "Knees down if needed, straight line shoulders to knees."
+          },
+          {
+            "label": "Rest",
+            "seconds": 30,
+            "cue": "Longer rest before round 2."
+          },
+          {
+            "label": "Round 2 — Bird-dog",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 2 — Dead bug",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 2 — Glute bridge",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 2 — Modified plank",
+            "seconds": 30,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 30,
+            "cue": "Longer rest before round 3."
+          },
+          {
+            "label": "Round 3 — Bird-dog",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 3 — Dead bug",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 3 — Glute bridge",
+            "seconds": 40,
+            "cue": ""
+          },
+          {
+            "label": "Rest",
+            "seconds": 20,
+            "cue": ""
+          },
+          {
+            "label": "Round 3 — Modified plank",
+            "seconds": 30,
+            "cue": "Last set — finish strong."
+          }
+        ]
+      },
+      {
+        "id": "thu-3",
+        "time": "Thursday evening",
+        "title": "Physio — Highgate Hospital",
+        "location": "Highgate Hospital",
+        "duration": "~45-60 min (confirm)",
+        "category": "Physio",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "New weekly slot. Ask directly about: the Technogym Monday 17:30 yoga class, Zumba/dance and spinning safety for L5-S1, and the walk/run-to-5K return timeline."
+      }
     ],
     "fri": [
-      {"id":"fri-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"}},
-      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Second weekly session (Tue + Fri).","guide":[
-        {"label":"Palming","seconds":180,"cue":"Rub palms warm, cup gently over closed eyes, breathe."},
-        {"label":"Focus shifts","seconds":240,"cue":"Alternate focus between a near object and a far object."},
-        {"label":"Blinking exercises","seconds":180,"cue":"Blink rapidly for 10 seconds, then rest eyes closed for 10 seconds — repeat."}
-      ]},
-      {"id":"fri-2","time":"13:30","title":"Flow to Reserve — Restore Yoga (Technogym Canary Wharf)","location":"Technogym Canary Wharf","duration":"45 min","category":"Yoga","safety":{"status":"confirm","note":"Restorative yoga, likely fine for L5-S1 — still paused during October recovery, confirm with the instructor no deep backbends/forward folds."},"detail":"From the real Friday Technogym timetable — fits the lunch window on an office day. Alternative same slot: Group Cycle 12:00 (likely fine, seated cardio). Full timetable in the Gym Class Timetable booklet, Resources section."}
+      {
+        "id": "fri-1",
+        "time": "AM/PM commute",
+        "title": "Walk — Archway ↔ Canary Wharf legs",
+        "location": "Archway ↔ Canary Wharf ↔ Highgate",
+        "duration": "~30 min total",
+        "category": "Walking",
+        "safety": {
+          "status": "safe"
+        }
+      },
+      {
+        "time": "Lunchtime or evening",
+        "title": "Eye yoga",
+        "location": "Home or office",
+        "duration": "10 min",
+        "category": "Eye care",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "Second weekly session (Tue + Fri).",
+        "guide": [
+          {
+            "label": "Palming",
+            "seconds": 180,
+            "cue": "Rub palms warm, cup gently over closed eyes, breathe."
+          },
+          {
+            "label": "Focus shifts",
+            "seconds": 240,
+            "cue": "Alternate focus between a near object and a far object."
+          },
+          {
+            "label": "Blinking exercises",
+            "seconds": 180,
+            "cue": "Blink rapidly for 10 seconds, then rest eyes closed for 10 seconds — repeat."
+          }
+        ]
+      },
+      {
+        "id": "fri-2",
+        "time": "13:30",
+        "title": "Flow to Reserve — Restore Yoga (Technogym Canary Wharf)",
+        "location": "Technogym Canary Wharf",
+        "duration": "45 min",
+        "category": "Yoga",
+        "safety": {
+          "status": "confirm",
+          "note": "Restorative yoga, likely fine for L5-S1 — still paused during October recovery, confirm with the instructor no deep backbends/forward folds."
+        },
+        "detail": "From the real Friday Technogym timetable — fits the lunch window on an office day. Alternative same slot: Group Cycle 12:00 (likely fine, seated cardio). Full timetable in the Gym Class Timetable booklet, Resources section."
+      }
     ],
     "sat": [
-      {"id":"sat-1","time":"Morning","title":"Spinal Yoga — full session (Jindal-informed)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Follow the 'safe' asana list only."},"detail":"See the Spinal Yoga library for the specific asana list, with the ones Jindal itself flagged half-only or crossed-out. Suggested structure: 5 min Cat-Cow + gentle warm-up, 15 min safe-list asanas held 20-30 sec each, 5-10 min Balasana/relaxation.","resource":{"title":"Yoga for Spondylolisthesis | Safe & Gentle Live Practice","url":"https://www.youtube.com/watch?v=sKxYHxDAPAI","note":"General online resource, not personalised — cross-check any new pose against the safe-list before following along."},"guide":[
-        {"label":"Warm-up — Cat-Cow","seconds":300,"cue":"Slow, breath-linked movement to wake up the spine."},
-        {"label":"Tadasana (Mountain)","seconds":30,"cue":"Stand tall, feel the reset in your posture."},
-        {"label":"Setu Bandhasana (gentle Bridge)","seconds":40,"cue":"Lift hips gently, hold, breathe."},
-        {"label":"Sphinx (mini cobra)","seconds":40,"cue":"Gentle extension on forearms."},
-        {"label":"Pawanmuktasana — right leg","seconds":30,"cue":"Hug right knee gently to chest."},
-        {"label":"Pawanmuktasana — left leg","seconds":30,"cue":"Hug left knee gently to chest."},
-        {"label":"Vrikshasana (Tree) — right","seconds":30,"cue":"Balance, soft gaze, spine neutral."},
-        {"label":"Vrikshasana (Tree) — left","seconds":30,"cue":"Balance, soft gaze, spine neutral."},
-        {"label":"Balasana (Child's pose) — relax","seconds":300,"cue":"Sink back, breathe deeply, let the back release. Hold longer if it feels good."}
-      ]},
-      {"id":"sat-2","time":"Late morning/afternoon","title":"Longer weekend walk","location":"Local / Highgate Wood","duration":"30-40 min","category":"Walking","safety":{"status":"safe"},"detail":"Once cleared, this is also the natural slot to test light jogging intervals ahead of any 5K prep restart — see Walk/Run library. Physio sign-off first."},
-      {"time":"Any time","title":"Jal neti","location":"Home","duration":"5 min","category":"Other","safety":{"status":"safe"},"detail":"Twice weekly — Sat + one weekday. Lukewarm saline, never plain tap water."}
+      {
+        "id": "sat-1",
+        "time": "Morning",
+        "title": "Spinal Yoga — full session (Jindal-informed)",
+        "location": "Home",
+        "duration": "25-30 min",
+        "category": "Spinal Yoga",
+        "safety": {
+          "status": "safe",
+          "note": "Follow the 'safe' asana list only."
+        },
+        "detail": "See the Spinal Yoga library for the specific asana list, with the ones Jindal itself flagged half-only or crossed-out. Suggested structure: 5 min Cat-Cow + gentle warm-up, 15 min safe-list asanas held 20-30 sec each, 5-10 min Balasana/relaxation.",
+        "resource": {
+          "title": "Yoga for Spondylolisthesis | Safe & Gentle Live Practice",
+          "url": "https://www.youtube.com/watch?v=sKxYHxDAPAI",
+          "note": "General online resource, not personalised — cross-check any new pose against the safe-list before following along."
+        },
+        "guide": [
+          {
+            "label": "Warm-up — Cat-Cow",
+            "seconds": 300,
+            "cue": "Slow, breath-linked movement to wake up the spine."
+          },
+          {
+            "label": "Tadasana (Mountain)",
+            "seconds": 30,
+            "cue": "Stand tall, feel the reset in your posture."
+          },
+          {
+            "label": "Setu Bandhasana (gentle Bridge)",
+            "seconds": 40,
+            "cue": "Lift hips gently, hold, breathe."
+          },
+          {
+            "label": "Sphinx (mini cobra)",
+            "seconds": 40,
+            "cue": "Gentle extension on forearms."
+          },
+          {
+            "label": "Pawanmuktasana — right leg",
+            "seconds": 30,
+            "cue": "Hug right knee gently to chest."
+          },
+          {
+            "label": "Pawanmuktasana — left leg",
+            "seconds": 30,
+            "cue": "Hug left knee gently to chest."
+          },
+          {
+            "label": "Vrikshasana (Tree) — right",
+            "seconds": 30,
+            "cue": "Balance, soft gaze, spine neutral."
+          },
+          {
+            "label": "Vrikshasana (Tree) — left",
+            "seconds": 30,
+            "cue": "Balance, soft gaze, spine neutral."
+          },
+          {
+            "label": "Balasana (Child's pose) — relax",
+            "seconds": 300,
+            "cue": "Sink back, breathe deeply, let the back release. Hold longer if it feels good."
+          }
+        ]
+      },
+      {
+        "id": "sat-2",
+        "time": "Late morning/afternoon",
+        "title": "Longer weekend walk",
+        "location": "Local / Highgate Wood",
+        "duration": "30-40 min",
+        "category": "Walking",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "Once cleared, this is also the natural slot to test light jogging intervals ahead of any 5K prep restart — see Walk/Run library. Physio sign-off first."
+      },
+      {
+        "time": "Any time",
+        "title": "Jal neti",
+        "location": "Home",
+        "duration": "5 min",
+        "category": "Other",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "Twice weekly — Sat + one weekday. Lukewarm saline, never plain tap water."
+      }
     ],
     "sun": [
-      {"id":"sun-1","time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe"},"detail":"Same structure as Saturday's session — safe-list asanas only, 20-30 sec holds.","resource":{"title":"Tests and Exercises for Spondylolisthesis (playlist)","url":"https://www.youtube.com/playlist?list=PL8l32k1r15l44wBl_S_q0QOKGQlqcujvo","note":"General online resource, not personalised."},"guide":[
-        {"label":"Warm-up — Cat-Cow","seconds":300,"cue":"Slow, breath-linked movement to wake up the spine."},
-        {"label":"Tadasana (Mountain)","seconds":30,"cue":"Stand tall, feel the reset in your posture."},
-        {"label":"Setu Bandhasana (gentle Bridge)","seconds":40,"cue":"Lift hips gently, hold, breathe."},
-        {"label":"Sphinx (mini cobra)","seconds":40,"cue":"Gentle extension on forearms."},
-        {"label":"Pawanmuktasana — right leg","seconds":30,"cue":"Hug right knee gently to chest."},
-        {"label":"Pawanmuktasana — left leg","seconds":30,"cue":"Hug left knee gently to chest."},
-        {"label":"Vrikshasana (Tree) — right","seconds":30,"cue":"Balance, soft gaze, spine neutral."},
-        {"label":"Vrikshasana (Tree) — left","seconds":30,"cue":"Balance, soft gaze, spine neutral."},
-        {"label":"Balasana (Child's pose) — relax","seconds":300,"cue":"Sink back, breathe deeply, let the back release. Hold longer if it feels good."}
-      ]},
-      {"id":"sun-2","time":"Any time","title":"Light walk","location":"Local","duration":"20-30 min","category":"Walking","safety":{"status":"safe"},"detail":"Rest-oriented day — keep it easy. Top up steps if you're behind for the week."},
-      {"time":"Any time","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"},"guide":[
-        {"label":"Anulom Vilom (alternate nostril breathing)","seconds":180,"cue":"Sit tall, breathe slowly through alternating nostrils."},
-        {"label":"Bhramari (humming bee breath)","seconds":180,"cue":"Close your eyes, inhale, hum gently on the exhale."},
-        {"label":"Ujjayi (ocean breath)","seconds":240,"cue":"Breathe through the nose with a slight throat constriction, slow and even."}
-      ]}
+      {
+        "id": "sun-1",
+        "time": "Morning",
+        "title": "General yoga + spinal full class (Jindal)",
+        "location": "Home",
+        "duration": "25-30 min",
+        "category": "Spinal Yoga",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "Same structure as Saturday's session — safe-list asanas only, 20-30 sec holds.",
+        "resource": {
+          "title": "Tests and Exercises for Spondylolisthesis (playlist)",
+          "url": "https://www.youtube.com/playlist?list=PL8l32k1r15l44wBl_S_q0QOKGQlqcujvo",
+          "note": "General online resource, not personalised."
+        },
+        "guide": [
+          {
+            "label": "Warm-up — Cat-Cow",
+            "seconds": 300,
+            "cue": "Slow, breath-linked movement to wake up the spine."
+          },
+          {
+            "label": "Tadasana (Mountain)",
+            "seconds": 30,
+            "cue": "Stand tall, feel the reset in your posture."
+          },
+          {
+            "label": "Setu Bandhasana (gentle Bridge)",
+            "seconds": 40,
+            "cue": "Lift hips gently, hold, breathe."
+          },
+          {
+            "label": "Sphinx (mini cobra)",
+            "seconds": 40,
+            "cue": "Gentle extension on forearms."
+          },
+          {
+            "label": "Pawanmuktasana — right leg",
+            "seconds": 30,
+            "cue": "Hug right knee gently to chest."
+          },
+          {
+            "label": "Pawanmuktasana — left leg",
+            "seconds": 30,
+            "cue": "Hug left knee gently to chest."
+          },
+          {
+            "label": "Vrikshasana (Tree) — right",
+            "seconds": 30,
+            "cue": "Balance, soft gaze, spine neutral."
+          },
+          {
+            "label": "Vrikshasana (Tree) — left",
+            "seconds": 30,
+            "cue": "Balance, soft gaze, spine neutral."
+          },
+          {
+            "label": "Balasana (Child's pose) — relax",
+            "seconds": 300,
+            "cue": "Sink back, breathe deeply, let the back release. Hold longer if it feels good."
+          }
+        ]
+      },
+      {
+        "id": "sun-2",
+        "time": "Any time",
+        "title": "Light walk",
+        "location": "Local",
+        "duration": "20-30 min",
+        "category": "Walking",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "Rest-oriented day — keep it easy. Top up steps if you're behind for the week."
+      },
+      {
+        "time": "Any time",
+        "title": "Breathing practice — Anulom Vilom + Bhramari + Ujjayi",
+        "location": "Home",
+        "duration": "10 min",
+        "category": "Breathing",
+        "safety": {
+          "status": "safe"
+        },
+        "guide": [
+          {
+            "label": "Anulom Vilom (alternate nostril breathing)",
+            "seconds": 180,
+            "cue": "Sit tall, breathe slowly through alternating nostrils."
+          },
+          {
+            "label": "Bhramari (humming bee breath)",
+            "seconds": 180,
+            "cue": "Close your eyes, inhale, hum gently on the exhale."
+          },
+          {
+            "label": "Ujjayi (ocean breath)",
+            "seconds": 240,
+            "cue": "Breathe through the nose with a slight throat constriction, slow and even."
+          }
+        ]
+      }
     ]
   },
   "exerciseLibrary": {
@@ -165,32 +769,125 @@
       "title": "Spinal Yoga — Jindal-informed asana list",
       "intro": "Cross-checked against Grade 1 L5-S1 spondylolisthesis: avoid deep forward spinal flexion, heavy loaded twisting and full backbends; favour core stabilisation and gentle, supported movement. Jindal's own spinal-disorder sheet already marked some poses as crossed-out or half-only — those calls are kept here rather than overridden.",
       "safeAsanas": [
-        {"name":"Tadasana (Mountain pose)", "note":"Posture-reset, fully safe.", "video":{"title":"Mountain Pose (Tadasana) Tutorial — Perfect Your Posture & Build Strength","url":"https://www.youtube.com/watch?v=RG-diLLripw"}},
-        {"name":"Marjariasana-Bitilasana (Cat-Cow)", "note":"Gentle spinal mobility, well tolerated with spondylolisthesis.", "video":{"title":"Cat and Cow Pose — Yoga for Spine Flexibility & Back Pain Relief","url":"https://www.youtube.com/watch?v=0F14YUUGUxY"}},
-        {"name":"Setu Bandhasana, supported/gentle (Bridge)", "note":"Strengthens glutes/posterior chain without loaded flexion — keep it a gentle lift, not a deep backbend.", "video":{"title":"Bridge Pose (Setu Bandhasana) for Beginners — Proper Alignment + Easy Modifications","url":"https://www.youtube.com/watch?v=2mQCNrc-gc8"}},
-        {"name":"Balasana (Child's pose)", "note":"Passive, supported — comfortable rest pose.", "video":{"title":"Child's Pose (Balasana) Yoga Tutorial — Gentle Resting Pose","url":"https://www.youtube.com/watch?v=omYNDBYbbu0"}},
-        {"name":"Bhujangasana, mini/Sphinx variant only", "note":"Small, gentle extension only — not the full deep cobra.", "video":{"title":"How to Perform Sphinx Pose — Yoga for Lower Back Pain & Spine Health","url":"https://www.youtube.com/watch?v=wR8_lSvqAHA"}},
-        {"name":"Pawanmuktasana, gentle single-leg", "note":"One knee to chest at a time, gently — avoid pulling both knees in hard.", "video":{"title":"Wind Relieving Pose (Pavanamuktasana) — How To Do It + Benefits","url":"https://www.youtube.com/watch?v=5wNNOWT8zi4"}},
-        {"name":"Vrikshasana (Tree pose)", "note":"Balance and core, spine-neutral.", "video":{"title":"How to Do Tree Pose — 5-Minute Yoga Balance Tutorial for Beginners","url":"https://www.youtube.com/watch?v=UkUIBDHolKk"}}
+        {
+          "name": "Tadasana (Mountain pose)",
+          "note": "Posture-reset, fully safe.",
+          "video": {
+            "title": "Mountain Pose (Tadasana) Tutorial — Perfect Your Posture & Build Strength",
+            "url": "https://www.youtube.com/watch?v=RG-diLLripw"
+          }
+        },
+        {
+          "name": "Marjariasana-Bitilasana (Cat-Cow)",
+          "note": "Gentle spinal mobility, well tolerated with spondylolisthesis.",
+          "video": {
+            "title": "Cat and Cow Pose — Yoga for Spine Flexibility & Back Pain Relief",
+            "url": "https://www.youtube.com/watch?v=0F14YUUGUxY"
+          }
+        },
+        {
+          "name": "Setu Bandhasana, supported/gentle (Bridge)",
+          "note": "Strengthens glutes/posterior chain without loaded flexion — keep it a gentle lift, not a deep backbend.",
+          "video": {
+            "title": "Bridge Pose (Setu Bandhasana) for Beginners — Proper Alignment + Easy Modifications",
+            "url": "https://www.youtube.com/watch?v=2mQCNrc-gc8"
+          }
+        },
+        {
+          "name": "Balasana (Child's pose)",
+          "note": "Passive, supported — comfortable rest pose.",
+          "video": {
+            "title": "Child's Pose (Balasana) Yoga Tutorial — Gentle Resting Pose",
+            "url": "https://www.youtube.com/watch?v=omYNDBYbbu0"
+          }
+        },
+        {
+          "name": "Bhujangasana, mini/Sphinx variant only",
+          "note": "Small, gentle extension only — not the full deep cobra.",
+          "video": {
+            "title": "How to Perform Sphinx Pose — Yoga for Lower Back Pain & Spine Health",
+            "url": "https://www.youtube.com/watch?v=wR8_lSvqAHA"
+          }
+        },
+        {
+          "name": "Pawanmuktasana, gentle single-leg",
+          "note": "One knee to chest at a time, gently — avoid pulling both knees in hard.",
+          "video": {
+            "title": "Wind Relieving Pose (Pavanamuktasana) — How To Do It + Benefits",
+            "url": "https://www.youtube.com/watch?v=5wNNOWT8zi4"
+          }
+        },
+        {
+          "name": "Vrikshasana (Tree pose)",
+          "note": "Balance and core, spine-neutral.",
+          "video": {
+            "title": "How to Do Tree Pose — 5-Minute Yoga Balance Tutorial for Beginners",
+            "url": "https://www.youtube.com/watch?v=UkUIBDHolKk"
+          }
+        }
       ],
       "halfOrModifiedOnly": [
-        {"name":"Ustrasana (Camel pose)", "note":"Jindal's own sheet marks this half-only — shallow backbend, hands on hips or lower back, not full reach to heels.", "video":{"title":"How to Do Camel Pose (Ustrasana) — Yoga Backbends (use the shallow/hands-on-hips version only)","url":"https://www.youtube.com/watch?v=9c-bwTWpOes"}},
-        {"name":"Shalabhasana (Locust pose)", "note":"Jindal's own sheet marks this half-only — lift one leg at a time gently, not both legs with full chest lift.", "video":{"title":"Locust Pose Yoga Tutorial — Build Back Power & Reduce Slouching (do one leg at a time only)","url":"https://www.youtube.com/watch?v=kx2_K9wPcd8"}}
+        {
+          "name": "Ustrasana (Camel pose)",
+          "note": "Jindal's own sheet marks this half-only — shallow backbend, hands on hips or lower back, not full reach to heels.",
+          "video": {
+            "title": "How to Do Camel Pose (Ustrasana) — Yoga Backbends (use the shallow/hands-on-hips version only)",
+            "url": "https://www.youtube.com/watch?v=9c-bwTWpOes"
+          }
+        },
+        {
+          "name": "Shalabhasana (Locust pose)",
+          "note": "Jindal's own sheet marks this half-only — lift one leg at a time gently, not both legs with full chest lift.",
+          "video": {
+            "title": "Locust Pose Yoga Tutorial — Build Back Power & Reduce Slouching (do one leg at a time only)",
+            "url": "https://www.youtube.com/watch?v=kx2_K9wPcd8"
+          }
+        }
       ],
       "avoidAsanas": [
-        {"name":"Surya Namaskar (full sequence)", "note":"Crossed out on Jindal's own sheet — the forward-fold/lunge/backbend sequence loads the lumbar spine repeatedly."},
-        {"name":"Naukasana (Boat pose)", "note":"Crossed out on Jindal's own sheet — strong abdominal/hip-flexor loading compresses the lower spine."},
-        {"name":"Halasana (Plough pose)", "note":"Deep spinal flexion under load — avoid."},
-        {"name":"Sarvangasana (Shoulder stand)", "note":"Inverted spinal load — avoid without specific clearance."},
-        {"name":"Paschimottanasana (deep seated forward fold)", "note":"Deep forward flexion — avoid the full pose; a gentle hamstring stretch with a soft spine is fine instead."},
-        {"name":"Chakrasana / full Dhanurasana (Wheel / full Bow)", "note":"Full backbends — avoid without physio clearance."}
+        {
+          "name": "Surya Namaskar (full sequence)",
+          "note": "Crossed out on Jindal's own sheet — the forward-fold/lunge/backbend sequence loads the lumbar spine repeatedly."
+        },
+        {
+          "name": "Naukasana (Boat pose)",
+          "note": "Crossed out on Jindal's own sheet — strong abdominal/hip-flexor loading compresses the lower spine."
+        },
+        {
+          "name": "Halasana (Plough pose)",
+          "note": "Deep spinal flexion under load — avoid."
+        },
+        {
+          "name": "Sarvangasana (Shoulder stand)",
+          "note": "Inverted spinal load — avoid without specific clearance."
+        },
+        {
+          "name": "Paschimottanasana (deep seated forward fold)",
+          "note": "Deep forward flexion — avoid the full pose; a gentle hamstring stretch with a soft spine is fine instead."
+        },
+        {
+          "name": "Chakrasana / full Dhanurasana (Wheel / full Bow)",
+          "note": "Full backbends — avoid without physio clearance."
+        }
       ],
       "note": "Ask the Highgate physio to confirm this list directly — it's built from Jindal's own annotations plus general spondylolisthesis guidance, not a personalised physio assessment.",
       "resources": [
-        {"title":"Yoga for Spondylolisthesis | Safe & Gentle Live Practice","url":"https://www.youtube.com/watch?v=sKxYHxDAPAI"},
-        {"title":"How to Practice Yoga with Lower Back Pain (Safe Modifications for Lumbar Issues & Spondylolisthesis)","url":"https://www.youtube.com/watch?v=cccQMohhz4s"},
-        {"title":"Lumbar Spondylolisthesis Rehab (Education | Exercises | Surgery | Myths)","url":"https://www.youtube.com/watch?v=rRV5Q85hCMs"},
-        {"title":"Tests and Exercises for Spondylolisthesis (playlist)","url":"https://www.youtube.com/playlist?list=PL8l32k1r15l44wBl_S_q0QOKGQlqcujvo"}
+        {
+          "title": "Yoga for Spondylolisthesis | Safe & Gentle Live Practice",
+          "url": "https://www.youtube.com/watch?v=sKxYHxDAPAI"
+        },
+        {
+          "title": "How to Practice Yoga with Lower Back Pain (Safe Modifications for Lumbar Issues & Spondylolisthesis)",
+          "url": "https://www.youtube.com/watch?v=cccQMohhz4s"
+        },
+        {
+          "title": "Lumbar Spondylolisthesis Rehab (Education | Exercises | Surgery | Myths)",
+          "url": "https://www.youtube.com/watch?v=rRV5Q85hCMs"
+        },
+        {
+          "title": "Tests and Exercises for Spondylolisthesis (playlist)",
+          "url": "https://www.youtube.com/playlist?list=PL8l32k1r15l44wBl_S_q0QOKGQlqcujvo"
+        }
       ]
     },
     "danceAndSpin": {
@@ -206,22 +903,52 @@
     "walkRun": {
       "title": "Walking → running progression",
       "phases": [
-        {"name":"Phase 1 — Recovery (now, through October)", "detail":"Gentle daily walking only, built into the commute + deliberate walk blocks above. No running. Focus: hydration + consistency, not pace or distance."},
-        {"name":"Phase 2 — Post-clearance build-up (from doctor + physio sign-off, ~mid-Nov)", "detail":"Brisk walking, building duration before intensity — e.g. extend the weekend walk toward 45-60 min before introducing any jogging."},
-        {"name":"Phase 3 — Walk-run intervals (physio-gated)", "detail":"Short jogging intervals inside a walk (e.g. 1 min jog / 2 min walk, building gradually) only once the physio has specifically assessed the back for impact tolerance — ask this at the Highgate session."},
-        {"name":"Phase 4 — 5K prep restart (physio-gated)", "detail":"Resume the earlier-2026 5K training programme only after Phase 3 is tolerated without back symptoms. Bring the old programme to the physio session to sanity-check the jump in weekly mileage."}
+        {
+          "name": "Phase 1 — Recovery (now, through October)",
+          "detail": "Gentle daily walking only, built into the commute + deliberate walk blocks above. No running. Focus: hydration + consistency, not pace or distance."
+        },
+        {
+          "name": "Phase 2 — Post-clearance build-up (from doctor + physio sign-off, ~mid-Nov)",
+          "detail": "Brisk walking, building duration before intensity — e.g. extend the weekend walk toward 45-60 min before introducing any jogging."
+        },
+        {
+          "name": "Phase 3 — Walk-run intervals (physio-gated)",
+          "detail": "Short jogging intervals inside a walk (e.g. 1 min jog / 2 min walk, building gradually) only once the physio has specifically assessed the back for impact tolerance — ask this at the Highgate session."
+        },
+        {
+          "name": "Phase 4 — 5K prep restart (physio-gated)",
+          "detail": "Resume the earlier-2026 5K training programme only after Phase 3 is tolerated without back symptoms. Bring the old programme to the physio session to sanity-check the jump in weekly mileage."
+        }
       ],
       "note": "Every phase transition is physio/doctor-gated, not date-gated — move to the next phase when cleared, not on a calendar."
     },
     "trainerFocus": {
       "title": "What to focus on once trainer sessions resume",
       "areas": [
-        {"title":"Core stability, not core flexion", "detail":"Bird-dog, dead bug, Pallof press, planks (modified as needed) — brace-and-hold work rather than crunches/sit-ups, which load the spine in the direction spondylolisthesis is most vulnerable to."},
-        {"title":"Posterior chain / glute strengthening", "detail":"Glute bridges, hip thrusts, clamshells — weak glutes are commonly implicated in spondylolisthesis-related back strain, so this is a high-value focus area."},
-        {"title":"Avoid axial spinal loading", "detail":"Skip loaded back squats/deadlifts with spinal flexion initially — prefer goblet squats, leg press, supported rows, chest press. Reintroduce heavier axial loading only with physio sign-off."},
-        {"title":"Wrist/grip strength", "detail":"Continues the thera clay + light dumbbell work already underway — progressive, little and often."},
-        {"title":"General conditioning for weight loss", "detail":"Moderate-intensity circuits/intervals (bike, rower, walking incline) rather than high-impact plyometrics — supports the 500-750 kcal/day deficit without adding injury risk."},
-        {"title":"Posture", "detail":"Given the L5-S1 pars defect and long desk/commute hours, posture cueing (neutral pelvis, avoiding prolonged flexion) is worth a standing agenda item in every session."}
+        {
+          "title": "Core stability, not core flexion",
+          "detail": "Bird-dog, dead bug, Pallof press, planks (modified as needed) — brace-and-hold work rather than crunches/sit-ups, which load the spine in the direction spondylolisthesis is most vulnerable to."
+        },
+        {
+          "title": "Posterior chain / glute strengthening",
+          "detail": "Glute bridges, hip thrusts, clamshells — weak glutes are commonly implicated in spondylolisthesis-related back strain, so this is a high-value focus area."
+        },
+        {
+          "title": "Avoid axial spinal loading",
+          "detail": "Skip loaded back squats/deadlifts with spinal flexion initially — prefer goblet squats, leg press, supported rows, chest press. Reintroduce heavier axial loading only with physio sign-off."
+        },
+        {
+          "title": "Wrist/grip strength",
+          "detail": "Continues the thera clay + light dumbbell work already underway — progressive, little and often."
+        },
+        {
+          "title": "General conditioning for weight loss",
+          "detail": "Moderate-intensity circuits/intervals (bike, rower, walking incline) rather than high-impact plyometrics — supports the 500-750 kcal/day deficit without adding injury risk."
+        },
+        {
+          "title": "Posture",
+          "detail": "Given the L5-S1 pars defect and long desk/commute hours, posture cueing (neutral pelvis, avoiding prolonged flexion) is worth a standing agenda item in every session."
+        }
       ]
     }
   },
@@ -233,13 +960,77 @@
         "title": "Breakfast options",
         "timing": "~7:30-8:30am",
         "items": [
-          {"name":"Aldi muesli with milk or curd", "tags":["Weekday","Favourite"], "portion":"60g muesli + 150ml milk (or 150g curd)", "instructions":"Pour muesli into a bowl, add milk or curd. No cooking — under 2 minutes.", "detail":"Your regular — fine as an everyday choice. Curd instead of milk adds a calcium hit that pairs well with the day's oxalate intake (BAUS)."},
-          {"name":"Fruit + curd", "tags":["Weekday","Weekend","BAUS"], "portion":"1 medium fruit + 150g curd", "instructions":"Chop the fruit, serve alongside the curd. Under 2 minutes.", "detail":"Quick, hits BAUS's 'well-balanced, not too many calories' principle, and the curd covers the calcium-pairing point."},
-          {"name":"Homemade paratha + curd", "tags":["Weekday","Weekend","Favourite"], "portion":"1 paratha + 100g curd", "instructions":"Roll the dough with your stuffing of choice, cook on a dry tawa with a light brush of ghee each side, ~2-3 min per side until golden-spotted. Serve with curd.", "detail":"Homemade (not shop-bought/frozen) keeps salt and processed fat down versus the 'sneaky' pre-made versions you flagged. Curd alongside is the calcium pairing."},
-          {"name":"Dosa/idli + sambar (wife's home-made)", "tags":["Weekend","Jindal","Favourite"], "portion":"2 idli or 1 dosa + 1 cup sambar", "instructions":"Steam idli 8-10 min, or spread dosa batter thin on a hot tawa and cook ~2 min per side. Serve hot with warmed sambar.", "detail":"Fermented batter is gentle on digestion (Jindal principle); sambar's lentils add protein and fibre, which helps blunt the post-meal glucose rise given the prediabetic HbA1c."},
-          {"name":"Ragi Dosa / Idli", "tags":["Jindal recipe"], "portion":"2 idli or 1 dosa", "instructions":"Ferment ragi-rice batter overnight (or use a ready fermented batter), steam or pan-cook as above.", "detail":"From the Jindal recipe batch — fits the stone/liver/sugar checks (section C3 of your tracker) and is a reasonable rotation option alongside the usual dosa."},
-          {"name":"Oats Porridge", "tags":["Jindal recipe","Luke's diet"], "portion":"50g oats + 200ml milk or water", "instructions":"Simmer oats in milk or water 5-7 min, stirring, until creamy. Top with banana slices.", "detail":"Appears in both the Jindal material and Luke's diet — fibre-forward, helps the fatty-liver and glucose picture."},
-          {"name":"Occasional: M&S dark-chocolate protein cereal", "tags":["Occasional treat"], "portion":"40g + 150ml milk", "instructions":"Pour, add milk, eat. No cooking.", "detail":"Fine occasionally, not as the daily default — cocoa is a moderate-oxalate item and it's higher in sugar than the everyday options above."}
+          {
+            "name": "Aldi muesli with milk or curd",
+            "tags": [
+              "Weekday",
+              "Favourite"
+            ],
+            "portion": "60g muesli + 150ml milk (or 150g curd)",
+            "instructions": "Pour muesli into a bowl, add milk or curd. No cooking — under 2 minutes.",
+            "detail": "Your regular — fine as an everyday choice. Curd instead of milk adds a calcium hit that pairs well with the day's oxalate intake (BAUS)."
+          },
+          {
+            "name": "Fruit + curd",
+            "tags": [
+              "Weekday",
+              "Weekend",
+              "BAUS"
+            ],
+            "portion": "1 medium fruit + 150g curd",
+            "instructions": "Chop the fruit, serve alongside the curd. Under 2 minutes.",
+            "detail": "Quick, hits BAUS's 'well-balanced, not too many calories' principle, and the curd covers the calcium-pairing point."
+          },
+          {
+            "name": "Homemade paratha + curd",
+            "tags": [
+              "Weekday",
+              "Weekend",
+              "Favourite"
+            ],
+            "portion": "1 paratha + 100g curd",
+            "instructions": "Roll the dough with your stuffing of choice, cook on a dry tawa with a light brush of ghee each side, ~2-3 min per side until golden-spotted. Serve with curd.",
+            "detail": "Homemade (not shop-bought/frozen) keeps salt and processed fat down versus the 'sneaky' pre-made versions you flagged. Curd alongside is the calcium pairing."
+          },
+          {
+            "name": "Dosa/idli + sambar (wife's home-made)",
+            "tags": [
+              "Weekend",
+              "Jindal",
+              "Favourite"
+            ],
+            "portion": "2 idli or 1 dosa + 1 cup sambar",
+            "instructions": "Steam idli 8-10 min, or spread dosa batter thin on a hot tawa and cook ~2 min per side. Serve hot with warmed sambar.",
+            "detail": "Fermented batter is gentle on digestion (Jindal principle); sambar's lentils add protein and fibre, which helps blunt the post-meal glucose rise given the prediabetic HbA1c."
+          },
+          {
+            "name": "Ragi Dosa / Idli",
+            "tags": [
+              "Jindal recipe"
+            ],
+            "portion": "2 idli or 1 dosa",
+            "instructions": "Ferment ragi-rice batter overnight (or use a ready fermented batter), steam or pan-cook as above.",
+            "detail": "From the Jindal recipe batch — fits the stone/liver/sugar checks (section C3 of your tracker) and is a reasonable rotation option alongside the usual dosa."
+          },
+          {
+            "name": "Oats Porridge",
+            "tags": [
+              "Jindal recipe",
+              "Luke's diet"
+            ],
+            "portion": "50g oats + 200ml milk or water",
+            "instructions": "Simmer oats in milk or water 5-7 min, stirring, until creamy. Top with banana slices.",
+            "detail": "Appears in both the Jindal material and Luke's diet — fibre-forward, helps the fatty-liver and glucose picture."
+          },
+          {
+            "name": "Occasional: M&S dark-chocolate protein cereal",
+            "tags": [
+              "Occasional treat"
+            ],
+            "portion": "40g + 150ml milk",
+            "instructions": "Pour, add milk, eat. No cooking.",
+            "detail": "Fine occasionally, not as the daily default — cocoa is a moderate-oxalate item and it's higher in sugar than the everyday options above."
+          }
         ]
       },
       {
@@ -247,10 +1038,47 @@
         "title": "Weekday lunch (office-realistic — salad/soup)",
         "timing": "~12:30-1:30pm",
         "items": [
-          {"name":"Big mixed salad + paneer", "tags":["Weekday","Favourite","BAUS-safe"], "portion":"2 cups salad + 75g paneer + 1 tbsp olive oil + lemon", "instructions":"Chop lettuce/cucumber/pepper. Pan-sear paneer cubes 2-3 min until lightly golden (or use raw). Toss everything with olive oil and lemon juice.", "detail":"Lettuce/cucumber/pepper base (not spinach-heavy), paneer for protein + calcium, olive oil-lemon dressing — the lemon also supports BAUS's citrate/less-acidic-urine advice."},
-          {"name":"Big mixed salad + kala chana or tofu", "tags":["Weekday","Favourite"], "portion":"2 cups salad + 100g cooked kala chana or 75g tofu", "instructions":"Use pre-cooked/tinned kala chana (drained, rinsed) or pan-seared tofu cubes. Toss into the salad base with dressing.", "detail":"Same base, swap protein for variety across the week."},
-          {"name":"Vegetable soup + sourdough slice", "tags":["Weekday","Favourite"], "portion":"1 bowl (~300ml) + 1 slice sourdough", "instructions":"Simmer chopped mixed vegetables in stock 15-20 min; blend if you prefer it smooth. Toast the sourdough slice.", "detail":"Good option on a cold or lower-appetite day — sourdough is on your favourites list and easier to digest than some other breads."},
-          {"name":"Quinoa salad bowl", "tags":["Weekday","Weekend"], "portion":"3/4 cup cooked quinoa + mixed veg + dressing", "instructions":"Cook quinoa 12-15 min (2:1 water ratio), cool, toss with chopped veg, olive oil and lemon.", "detail":"Higher protein/fibre than a plain salad, still realistic to buy or bring in."}
+          {
+            "name": "Big mixed salad + paneer",
+            "tags": [
+              "Weekday",
+              "Favourite",
+              "BAUS-safe"
+            ],
+            "portion": "2 cups salad + 75g paneer + 1 tbsp olive oil + lemon",
+            "instructions": "Chop lettuce/cucumber/pepper. Pan-sear paneer cubes 2-3 min until lightly golden (or use raw). Toss everything with olive oil and lemon juice.",
+            "detail": "Lettuce/cucumber/pepper base (not spinach-heavy), paneer for protein + calcium, olive oil-lemon dressing — the lemon also supports BAUS's citrate/less-acidic-urine advice."
+          },
+          {
+            "name": "Big mixed salad + kala chana or tofu",
+            "tags": [
+              "Weekday",
+              "Favourite"
+            ],
+            "portion": "2 cups salad + 100g cooked kala chana or 75g tofu",
+            "instructions": "Use pre-cooked/tinned kala chana (drained, rinsed) or pan-seared tofu cubes. Toss into the salad base with dressing.",
+            "detail": "Same base, swap protein for variety across the week."
+          },
+          {
+            "name": "Vegetable soup + sourdough slice",
+            "tags": [
+              "Weekday",
+              "Favourite"
+            ],
+            "portion": "1 bowl (~300ml) + 1 slice sourdough",
+            "instructions": "Simmer chopped mixed vegetables in stock 15-20 min; blend if you prefer it smooth. Toast the sourdough slice.",
+            "detail": "Good option on a cold or lower-appetite day — sourdough is on your favourites list and easier to digest than some other breads."
+          },
+          {
+            "name": "Quinoa salad bowl",
+            "tags": [
+              "Weekday",
+              "Weekend"
+            ],
+            "portion": "3/4 cup cooked quinoa + mixed veg + dressing",
+            "instructions": "Cook quinoa 12-15 min (2:1 water ratio), cool, toss with chopped veg, olive oil and lemon.",
+            "detail": "Higher protein/fibre than a plain salad, still realistic to buy or bring in."
+          }
         ]
       },
       {
@@ -258,16 +1086,99 @@
         "title": "Dinner options",
         "timing": "~7:00-7:30pm (keep 2hr gap before sleep)",
         "items": [
-          {"name":"Rajma + rice/roti + curd", "tags":["Favourite","BAUS-safe"], "portion":"3/4 cup rajma + 2 roti (or 3/4 cup rice) + 100g curd", "instructions":"Soak rajma overnight. Pressure-cook 15-20 min with an onion-tomato-spice base until soft. Serve with roti/rice and curd.", "detail":"Kidney beans are a moderate-oxalate item, fine in a normal portion, especially paired with the curd's calcium."},
-          {"name":"Kala chana + roti + curd", "tags":["Favourite"], "portion":"3/4 cup + 2 roti + 100g curd", "instructions":"Soak overnight, pressure-cook with a cumin-onion-tomato masala 15-20 min. Serve with roti and curd.", "detail":"Same logic as rajma — favourite, moderate oxalate, calcium-paired."},
-          {"name":"Dal makhani + rice, moderate portion + curd", "tags":["Favourite"], "portion":"3/4 cup (keep to this — richer dish) + 3/4 cup rice + 100g curd", "instructions":"Simmer black urad dal + kidney beans slowly with tomato and a light amount of butter/cream, 30-40 min (or pressure-cook to speed up). Go easy on the butter/cream for the fatty-liver goal.", "detail":"You like this a lot — keep portion moderate given the butter/cream content, for the fatty-liver and weight goals rather than the stone risk."},
-          {"name":"Kali dal + roti + curd", "tags":["Favourite"], "portion":"3/4 cup + 2 roti + curd", "instructions":"Pressure-cook whole black urad dal with an onion-tomato-spice tempering (tadka), ~20 min.", "detail":"Same as dal makhani — moderate portion for the liver/weight goals."},
-          {"name":"Bhindi (okra) sabzi + roti", "tags":["Favourite"], "portion":"1 cup + 2 roti", "instructions":"Pan-fry sliced okra dry (no added water) with a little oil, onion and spices, 10-12 min until tender — keeps it from turning slimy.", "detail":"Okra is a moderate-oxalate item per BAUS — fine in sensible portions, no need to exclude."},
-          {"name":"Karela sabzi + roti", "tags":["Favourite"], "portion":"1 cup + 1 roti", "instructions":"Slice, salt and rest karela 15 min to cut the bitterness, rinse, then stir-fry with onion and spices ~10 min.", "detail":"You like it, and it's not flagged on any oxalate list — freely fine."},
-          {"name":"Saag paneer, moderate spinach portion", "tags":["Favourite","Moderate — watch portion"], "portion":"3/4 cup (moderate spinach) + 75g paneer + 2 roti", "instructions":"Blanch and blend spinach, simmer with an onion-tomato-ginger-garlic base ~10 min, fold in lightly pan-seared paneer cubes.", "detail":"Spinach is on BAUS's avoid list, but pairing it with paneer's calcium in the same dish binds much of the oxalate before it reaches the kidneys — the trade-off is keeping this occasional and the spinach portion moderate, not the everyday spinach-heavy version."},
-          {"name":"Khichdi", "tags":["Weekend","Easy"], "portion":"1 bowl, ~200g", "instructions":"Pressure-cook rice + moong dal (1:1) with turmeric and a little ghee, ~15 min until soft. Simple one-pot.", "detail":"Gentle, easy-digestion option from both Jindal and Luke's diet — good for a lighter evening."},
-          {"name":"Channa Dal Cabbage Curry", "tags":["Jindal recipe"], "portion":"3/4 cup", "instructions":"Follow the Jindal recipe card — simmer soaked channa dal with shredded cabbage and a light tempering, ~20-25 min.", "detail":"Fits the stone/liver/sugar fit-check in your tracker (section C3)."},
-          {"name":"Beans and Corn Subzi / Makai Capsicum White Sauce / Mushroom with Dhania", "tags":["Jindal recipe"], "portion":"1 cup", "instructions":"Follow the respective Jindal recipe cards — quick stir-fries/sautés, 10-15 min each.", "detail":"All checked fine against BAUS — good rotation options for variety."}
+          {
+            "name": "Rajma + rice/roti + curd",
+            "tags": [
+              "Favourite",
+              "BAUS-safe"
+            ],
+            "portion": "3/4 cup rajma + 2 roti (or 3/4 cup rice) + 100g curd",
+            "instructions": "Soak rajma overnight. Pressure-cook 15-20 min with an onion-tomato-spice base until soft. Serve with roti/rice and curd.",
+            "detail": "Kidney beans are a moderate-oxalate item, fine in a normal portion, especially paired with the curd's calcium."
+          },
+          {
+            "name": "Kala chana + roti + curd",
+            "tags": [
+              "Favourite"
+            ],
+            "portion": "3/4 cup + 2 roti + 100g curd",
+            "instructions": "Soak overnight, pressure-cook with a cumin-onion-tomato masala 15-20 min. Serve with roti and curd.",
+            "detail": "Same logic as rajma — favourite, moderate oxalate, calcium-paired."
+          },
+          {
+            "name": "Dal makhani + rice, moderate portion + curd",
+            "tags": [
+              "Favourite"
+            ],
+            "portion": "3/4 cup (keep to this — richer dish) + 3/4 cup rice + 100g curd",
+            "instructions": "Simmer black urad dal + kidney beans slowly with tomato and a light amount of butter/cream, 30-40 min (or pressure-cook to speed up). Go easy on the butter/cream for the fatty-liver goal.",
+            "detail": "You like this a lot — keep portion moderate given the butter/cream content, for the fatty-liver and weight goals rather than the stone risk."
+          },
+          {
+            "name": "Kali dal + roti + curd",
+            "tags": [
+              "Favourite"
+            ],
+            "portion": "3/4 cup + 2 roti + curd",
+            "instructions": "Pressure-cook whole black urad dal with an onion-tomato-spice tempering (tadka), ~20 min.",
+            "detail": "Same as dal makhani — moderate portion for the liver/weight goals."
+          },
+          {
+            "name": "Bhindi (okra) sabzi + roti",
+            "tags": [
+              "Favourite"
+            ],
+            "portion": "1 cup + 2 roti",
+            "instructions": "Pan-fry sliced okra dry (no added water) with a little oil, onion and spices, 10-12 min until tender — keeps it from turning slimy.",
+            "detail": "Okra is a moderate-oxalate item per BAUS — fine in sensible portions, no need to exclude."
+          },
+          {
+            "name": "Karela sabzi + roti",
+            "tags": [
+              "Favourite"
+            ],
+            "portion": "1 cup + 1 roti",
+            "instructions": "Slice, salt and rest karela 15 min to cut the bitterness, rinse, then stir-fry with onion and spices ~10 min.",
+            "detail": "You like it, and it's not flagged on any oxalate list — freely fine."
+          },
+          {
+            "name": "Saag paneer, moderate spinach portion",
+            "tags": [
+              "Favourite",
+              "Moderate — watch portion"
+            ],
+            "portion": "3/4 cup (moderate spinach) + 75g paneer + 2 roti",
+            "instructions": "Blanch and blend spinach, simmer with an onion-tomato-ginger-garlic base ~10 min, fold in lightly pan-seared paneer cubes.",
+            "detail": "Spinach is on BAUS's avoid list, but pairing it with paneer's calcium in the same dish binds much of the oxalate before it reaches the kidneys — the trade-off is keeping this occasional and the spinach portion moderate, not the everyday spinach-heavy version."
+          },
+          {
+            "name": "Khichdi",
+            "tags": [
+              "Weekend",
+              "Easy"
+            ],
+            "portion": "1 bowl, ~200g",
+            "instructions": "Pressure-cook rice + moong dal (1:1) with turmeric and a little ghee, ~15 min until soft. Simple one-pot.",
+            "detail": "Gentle, easy-digestion option from both Jindal and Luke's diet — good for a lighter evening."
+          },
+          {
+            "name": "Channa Dal Cabbage Curry",
+            "tags": [
+              "Jindal recipe"
+            ],
+            "portion": "3/4 cup",
+            "instructions": "Follow the Jindal recipe card — simmer soaked channa dal with shredded cabbage and a light tempering, ~20-25 min.",
+            "detail": "Fits the stone/liver/sugar fit-check in your tracker (section C3)."
+          },
+          {
+            "name": "Beans and Corn Subzi / Makai Capsicum White Sauce / Mushroom with Dhania",
+            "tags": [
+              "Jindal recipe"
+            ],
+            "portion": "1 cup",
+            "instructions": "Follow the respective Jindal recipe cards — quick stir-fries/sautés, 10-15 min each.",
+            "detail": "All checked fine against BAUS — good rotation options for variety."
+          }
         ]
       },
       {
@@ -275,24 +1186,113 @@
         "title": "Snacks & drinks",
         "timing": "Mid-morning ~11am and mid-afternoon ~4-5pm; drinks spread through the day, not with meals",
         "items": [
-          {"name":"Fruit (apple, banana, berries, oranges)", "tags":["Favourite","BAUS-safe","Everyday"], "portion":"1 medium piece", "instructions":"Wash and eat whole, or chop.", "detail":"Whole fruit is the preferred vitamin-C source over supplements (BAUS caution on high-dose vitamin C supplements)."},
-          {"name":"Curd / buttermilk", "tags":["Everyday"], "portion":"150g curd or 1 glass buttermilk", "instructions":"Serve chilled; a pinch of roasted cumin in buttermilk if you like it savoury.", "detail":"Calcium top-up throughout the day, not just at meals."},
-          {"name":"Roasted chana", "tags":["Everyday swap"], "portion":"small handful, ~30g", "instructions":"Dry-roast chickpeas in a pan 5 min with a pinch of salt, or use ready-roasted.", "detail":"A savoury-crunch swap for the chip habit that still fits the diet."},
-          {"name":"Coconut water, lemon water, barley water", "tags":["BAUS-safe","Jindal"], "portion":"1 glass", "instructions":"Drink chilled or room temp between meals to spread hydration through the day.", "detail":"All on the 'fine to use now' drinks list — support hydration target and citrate."},
-          {"name":"Occasional: Lay's kettle chips (salted)", "tags":["Occasional treat"], "portion":"small bag, ~25g", "instructions":"Occasional treat only — no prep.", "detail":"Fine as an occasional treat, not the nightly default — salt content works against both the stone-prevention salt target and the cholesterol/HDL ratio."},
-          {"name":"Occasional: dark chocolate square", "tags":["Occasional treat"], "portion":"10g, 1-2 squares", "instructions":"Have it after a meal rather than alone.", "detail":"Cocoa is moderate-oxalate and adds sugar — a square now and then is fine, daily isn't the target."},
-          {"name":"Occasional: avocado toast (Farmer J)", "tags":["Occasional treat"], "portion":"1 slice sourdough + 1/2 avocado", "instructions":"Toast the sourdough, mash avocado with lemon, salt and pepper, spread.", "detail":"Nutritionally fine in itself — keep it occasional mainly for the overall calorie/weight-loss budget."}
+          {
+            "name": "Fruit (apple, banana, berries, oranges)",
+            "tags": [
+              "Favourite",
+              "BAUS-safe",
+              "Everyday"
+            ],
+            "portion": "1 medium piece",
+            "instructions": "Wash and eat whole, or chop.",
+            "detail": "Whole fruit is the preferred vitamin-C source over supplements (BAUS caution on high-dose vitamin C supplements)."
+          },
+          {
+            "name": "Curd / buttermilk",
+            "tags": [
+              "Everyday"
+            ],
+            "portion": "150g curd or 1 glass buttermilk",
+            "instructions": "Serve chilled; a pinch of roasted cumin in buttermilk if you like it savoury.",
+            "detail": "Calcium top-up throughout the day, not just at meals."
+          },
+          {
+            "name": "Roasted chana",
+            "tags": [
+              "Everyday swap"
+            ],
+            "portion": "small handful, ~30g",
+            "instructions": "Dry-roast chickpeas in a pan 5 min with a pinch of salt, or use ready-roasted.",
+            "detail": "A savoury-crunch swap for the chip habit that still fits the diet."
+          },
+          {
+            "name": "Coconut water, lemon water, barley water",
+            "tags": [
+              "BAUS-safe",
+              "Jindal"
+            ],
+            "portion": "1 glass",
+            "instructions": "Drink chilled or room temp between meals to spread hydration through the day.",
+            "detail": "All on the 'fine to use now' drinks list — support hydration target and citrate."
+          },
+          {
+            "name": "Occasional: Lay's kettle chips (salted)",
+            "tags": [
+              "Occasional treat"
+            ],
+            "portion": "small bag, ~25g",
+            "instructions": "Occasional treat only — no prep.",
+            "detail": "Fine as an occasional treat, not the nightly default — salt content works against both the stone-prevention salt target and the cholesterol/HDL ratio."
+          },
+          {
+            "name": "Occasional: dark chocolate square",
+            "tags": [
+              "Occasional treat"
+            ],
+            "portion": "10g, 1-2 squares",
+            "instructions": "Have it after a meal rather than alone.",
+            "detail": "Cocoa is moderate-oxalate and adds sugar — a square now and then is fine, daily isn't the target."
+          },
+          {
+            "name": "Occasional: avocado toast (Farmer J)",
+            "tags": [
+              "Occasional treat"
+            ],
+            "portion": "1 slice sourdough + 1/2 avocado",
+            "instructions": "Toast the sourdough, mash avocado with lemon, salt and pepper, spread.",
+            "detail": "Nutritionally fine in itself — keep it occasional mainly for the overall calorie/weight-loss budget."
+          }
         ]
       },
       {
         "id": "avoid",
         "title": "Keep off the regular rotation",
         "items": [
-          {"name":"Ghiya / bottle gourd", "tags":["Disliked anyway"], "detail":"You dislike it regardless — no loss. Also note the tracker's safety flag: if any ghiya juice tastes bitter, don't drink it — can cause serious illness."},
-          {"name":"Almond milk / almonds / cashews", "tags":["Avoid — oxalate"], "detail":"High-oxalate nuts — you're not a fan of almond milk anyway, so this is an easy one to actually stick to."},
-          {"name":"Beetroot, rhubarb, celery", "tags":["Avoid — oxalate"], "detail":"BAUS avoid list — you're also not a big beetroot fan, so little is lost."},
-          {"name":"Wheat bran", "tags":["Avoid — oxalate"], "detail":"High-oxalate despite being high-fibre — BAUS specifically calls this out."},
-          {"name":"Shop-bought/frozen parathas & chips as a nightly habit", "tags":["Reduce frequency"], "detail":"The 'sneaky' night snacks you flagged yourself — swap for homemade versions or fruit/curd most nights, keep as an occasional exception."}
+          {
+            "name": "Ghiya / bottle gourd",
+            "tags": [
+              "Disliked anyway"
+            ],
+            "detail": "You dislike it regardless — no loss. Also note the tracker's safety flag: if any ghiya juice tastes bitter, don't drink it — can cause serious illness."
+          },
+          {
+            "name": "Almond milk / almonds / cashews",
+            "tags": [
+              "Avoid — oxalate"
+            ],
+            "detail": "High-oxalate nuts — you're not a fan of almond milk anyway, so this is an easy one to actually stick to."
+          },
+          {
+            "name": "Beetroot, rhubarb, celery",
+            "tags": [
+              "Avoid — oxalate"
+            ],
+            "detail": "BAUS avoid list — you're also not a big beetroot fan, so little is lost."
+          },
+          {
+            "name": "Wheat bran",
+            "tags": [
+              "Avoid — oxalate"
+            ],
+            "detail": "High-oxalate despite being high-fibre — BAUS specifically calls this out."
+          },
+          {
+            "name": "Shop-bought/frozen parathas & chips as a nightly habit",
+            "tags": [
+              "Reduce frequency"
+            ],
+            "detail": "The 'sneaky' night snacks you flagged yourself — swap for homemade versions or fruit/curd most nights, keep as an occasional exception."
+          }
         ]
       }
     ]
@@ -314,6 +1314,24 @@
     "Jal neti (twice weekly): use lukewarm saline, never plain tap water, and finish with gentle nose-blowing to clear residual solution.",
     "15k steps: your Archway-Canary Wharf-Highgate commute already covers a big chunk — the PM Highgate-to-home leg and lunchtime movement are usually where the gap closes or doesn't.",
     "Spinning is generally a good low-impact cardio option for L5-S1 once cleared — just watch saddle position and skip heavy-resistance standing climbs.",
-    "Zumba: go for a low-impact/'Gold'-style class rather than full-intensity — the jumping and twisting in standard Zumba is the exact combination to be cautious about with a pars defect."
+    "Zumba: go for a low-impact/'Gold'-style class rather than full-intensity — the jumping and twisting in standard Zumba is the exact combination to be cautious about with a pars defect.",
+    "Seborrhoeic dermatitis is inflammation, not dryness — over-moisturising won't help, and the arthritic liniment/coconut oil should stay off any patch that's actively flaring.",
+    "Cataract is mild and early, but UV-protection sunglasses outdoors matter now, not just later — it's a cheap way to slow things down.",
+    "Black acne on your back is still an open item — worth raising with Dr Anupama alongside the seborrhoeic dermatitis, since some topical treatments overlap.",
+    "Hair loss routine (coconut oil, lemon massage) is a reasonable comfort measure — mention it alongside the vitamin D deficiency check, since low vitamin D is a possible contributor.",
+    "Vitamin D deficiency (right calves): worth asking Dr Anupama for a supplement dose and a retest date, rather than leaving it open-ended.",
+    "Stop the weekly ear-pick — it risks pushing wax deeper. Swap for olive oil drops, or a pharmacy/GP check if wax builds up.",
+    "Sleeping on your side is reasonable for L5-S1 comfort — a pillow between the knees helps keep the spine neutral overnight.",
+    "Salt discipline (~5-6g/day, no added table salt, no processed/tinned snacks) helps two goals at once: stone prevention and your 4.3 cholesterol/HDL ratio, which BAUS-aligned guidance targets under 3.9.",
+    "Face/eyebrow steam or sauna is fine to keep in rotation — just keep the water not too hot and take care around the eyes given the cataract.",
+    "Gargle with salt water at the first sign of a throat symptom — simple, and no need to wait for it to worsen.",
+    "Jal neti: lukewarm saline only, never plain tap water — finish with gentle nose-blowing to clear residual solution.",
+    "Easiest calories to cut without feeling restricted: liquid ones. Sugary drinks and jaggery-heavy juices go first — see the drinks list in the Diet & Recipes Booklet.",
+    "Wheat bran is high-fibre but also high-oxalate — skip it even though 'more fibre' sounds like a universal good right now.",
+    "Luke's diet: the food logic fits your preferences well, but the calorie target looks too aggressive for 100kg — confirm the actual number with Dr Anupama before signing up, rather than assuming lower is automatically better.",
+    "Post-op caution is still active: buttermilk & hing, then coconut water — hold off on salads and sprouts until the antibiotics course finishes.",
+    "Before Thursday's Highgate physio: bring your open-questions list (the Technogym Monday yoga class, walk/run return timeline, wrist thera clay timing) — a written list gets more out of a short session than trying to remember on the day.",
+    "Steam inhalation (eucalyptus), 2-3 minutes each morning, is already in your routine — worth doing more of if a cold or cough is starting.",
+    "The real PureGym/Technogym class timetable is in now — check the Gym Class Timetable booklet in Resources before booking anything; it's colour-coded so you don't have to re-derive the L5-S1 safety call each time."
   ]
 }

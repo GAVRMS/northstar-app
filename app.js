@@ -682,10 +682,28 @@ function renderSkyPanel(){
 
 function tipOfDay(){
   if(!state.health || !state.health.tips || !state.health.tips.length) return null;
+  var n = state.health.tips.length;
+  if(typeof state.tipIndex === 'number'){ return state.health.tips[((state.tipIndex % n) + n) % n]; }
   var d = parseYmd(todayStr);
   var startOfYear = new Date(d.getFullYear(), 0, 0);
   var doy = Math.floor((d - startOfYear) / 86400000);
-  return state.health.tips[doy % state.health.tips.length];
+  return state.health.tips[doy % n];
+}
+function refreshTip(){
+  if(!state.health || !state.health.tips || !state.health.tips.length) return;
+  var n = state.health.tips.length;
+  var cur;
+  if(typeof state.tipIndex === 'number'){ cur = state.tipIndex; }
+  else {
+    var d = parseYmd(todayStr);
+    var startOfYear = new Date(d.getFullYear(), 0, 0);
+    cur = Math.floor((d - startOfYear) / 86400000);
+  }
+  var next;
+  if(n > 1){ do { next = Math.floor(Math.random()*n); } while(next === ((cur % n)+n)%n); }
+  else { next = 0; }
+  state.tipIndex = next;
+  renderToday();
 }
 
 /* ================= "Let's do this now champ" — live schedule ================= */
@@ -809,7 +827,15 @@ function renderToday(){
   var tip = tipOfDay();
   if(tip){
     html += '<div class="section" style="margin-top:8px;"><div class="card" style="padding:14px 16px;background:var(--focus-bg);border-color:var(--focus);">' +
-      '<div style="font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--focus);">💡 Thought for today</div>' +
+      '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">' +
+        '<div style="font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--focus);">💡 Thought for today</div>' +
+        '<button class="icon-btn tip-refresh" data-action="refresh-tip" title="Show another tip" aria-label="Show another tip">' +
+          '<svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+            '<path d="M16.5 10a6.5 6.5 0 1 1-2.1-4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>' +
+            '<path d="M16.8 3.5v4.3h-4.3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>' +
+          '</svg>' +
+        '</button>' +
+      '</div>' +
       '<div style="font-size:13.5px;margin-top:5px;line-height:1.4;">'+escapeHtml(tip)+'</div>' +
       '<button class="link-btn" data-goto="health" style="padding-left:0;margin-top:6px;">See full plan →</button>' +
     '</div></div>';
@@ -1357,6 +1383,7 @@ document.getElementById('mainContent').addEventListener('click', function(e){
 
   if(e.target.closest('[data-action="speak-today"]')){ speakTodayAgenda(); return; }
   if(e.target.closest('[data-action="speak-goals"]')){ speakGoalProgress(); return; }
+  if(e.target.closest('[data-action="refresh-tip"]')){ refreshTip(); return; }
 
   var focusEvt = e.target.closest('[data-action="focus-complete-event"]');
   if(focusEvt){ markEventDone(focusEvt.getAttribute('data-id'), true); return; }

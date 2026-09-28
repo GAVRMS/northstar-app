@@ -172,6 +172,10 @@
     color:var(--ink-dim); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;
   }
   .icon-btn:active{background:var(--surface-2);}
+  .tip-refresh{width:28px; height:28px; color:var(--focus); flex:0 0 auto;}
+  .tip-refresh:hover{background:rgba(255,255,255,.5);}
+  .tip-refresh svg{transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
+  .tip-refresh:active svg{transform:rotate(180deg);}
 
   /* recommendation / focus card */
   .focus-card{background:linear-gradient(135deg, var(--primary), #2E5468); color:var(--primary-ink); padding:16px; border-radius:var(--radius-l); box-shadow:var(--shadow);}
