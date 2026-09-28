@@ -1249,21 +1249,7 @@ function renderHealthGaps(){
 function renderHealth(){
   var view = state.healthView || 'week';
   var html = '<div class="section" style="margin-top:8px;">';
-  if(state.health && state.health.profile){
-    var p = state.health.profile;
-    html += '<div class="card" style="padding:14px 16px;">' +
-      '<div style="font-size:12.5px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Goal</div>' +
-      '<div style="font-size:14px;margin-top:4px;">'+escapeHtml(p.currentWeightKg+'kg now → target '+p.targetWeightKgRange+'kg')+' · '+escapeHtml((p.stepsGoalDaily||15000).toLocaleString())+' steps/day</div>' +
-      '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:6px;line-height:1.4;">'+escapeHtml(p.paceGuidance||'')+'</div>' +
-      (p.recoveryNote ? '<div class="warn-banner" style="margin-top:10px;">⚠️ '+escapeHtml(p.recoveryNote)+'</div>' : '') +
-    '</div>';
-  }
-  html += '<a href="https://claude.ai/artifact/FszEC4QE7WL2xjWSmv4wqM" target="_blank" rel="noopener" class="card" style="margin-top:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;color:inherit;">' +
-    '<div><div style="font-weight:700;font-size:14px;">📄 Printable diet &amp; exercise plan</div>' +
-    '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:3px;">2-page A4 sheet — open, then use the page\'s download button for a PDF</div></div>' +
-    '<span style="font-size:18px;color:var(--focus);flex:0 0 auto;">→</span>' +
-  '</a>';
-  html += '<div class="filter-pills" style="margin-top:16px;">' +
+  html += '<div class="filter-pills">' +
     '<button class="fpill '+(view==='week'?'active':'')+'" data-action="health-view" data-view="week">This week</button>' +
     '<button class="fpill '+(view==='library'?'active':'')+'" data-action="health-view" data-view="library">Exercise library</button>' +
     '<button class="fpill '+(view==='diet'?'active':'')+'" data-action="health-view" data-view="diet">Diet booklet</button>' +
@@ -1285,14 +1271,39 @@ function renderHealth(){
     }).join('') + '</div>';
   }
   html += state.health ? renderHealthGaps() : '';
+
+  if(state.health && state.health.profile){
+    var p = state.health.profile;
+    html += '<div class="card" style="margin-top:24px;padding:14px 16px;">' +
+      '<div style="font-size:12.5px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Goal</div>' +
+      '<div style="font-size:14px;margin-top:4px;">'+escapeHtml(p.currentWeightKg+'kg now → target '+p.targetWeightKgRange+'kg')+' · '+escapeHtml((p.stepsGoalDaily||15000).toLocaleString())+' steps/day</div>' +
+      '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:6px;line-height:1.4;">'+escapeHtml(p.paceGuidance||'')+'</div>' +
+      (p.recoveryNote ? '<div class="warn-banner" style="margin-top:10px;">⚠️ '+escapeHtml(p.recoveryNote)+'</div>' : '') +
+    '</div>';
+  }
+  html += '<a href="https://claude.ai/artifact/FszEC4QE7WL2xjWSmv4wqM" target="_blank" rel="noopener" class="card" style="margin-top:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;color:inherit;">' +
+    '<div><div style="font-weight:700;font-size:14px;">📄 Printable diet &amp; exercise plan</div>' +
+    '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:3px;">2-page A4 sheet — open, then use the page\'s download button for a PDF</div></div>' +
+    '<span style="font-size:18px;color:var(--focus);flex:0 0 auto;">→</span>' +
+  '</a>';
+
   html += '</div>';
   document.getElementById('mainContent').innerHTML = html;
 }
 
 function renderAll(){
   if(!state.ready) return;
-  renderStatStrip();
-  renderEncouragement();
+  var isToday = state.tab==='today';
+  var topbarEl = document.querySelector('.topbar');
+  var statStripEl = document.getElementById('statStrip');
+  var mainEl = document.getElementById('mainContent');
+  if(topbarEl) topbarEl.hidden = !isToday;
+  if(statStripEl) statStripEl.hidden = !isToday;
+  if(mainEl) mainEl.classList.toggle('no-header', !isToday);
+  if(isToday){
+    renderStatStrip();
+    renderEncouragement();
+  }
   if(state.tab==='today') renderToday();
   else if(state.tab==='planner') renderPlanner();
   else if(state.tab==='health') renderHealth();
