@@ -1,0 +1,91 @@
+{
+  "generatedAt": "2026-09-28T00:00:00.000Z",
+  "profile": {
+    "currentWeightKg": 100,
+    "targetWeightKgRange": "75-80",
+    "statedGoal": "Lose 20kg in 3 months (by mid-December)",
+    "paceGuidance": "Medically sustainable pace is ~0.5-1kg/week (~6-12kg over 3 months). Agreed approach: prioritise a deficit that doesn't rebound over hitting 20kg by a fixed date — decisive, visible progress by mid-December without the yo-yo pattern from past attempts.",
+    "recoveryNote": "Post kidney-stone surgery (uteroscopy + stent) — gentle walking + hydration only through October 2026. No gym/trainer/heavy exercise until doctor clearance at the mid-November follow-up with Dr Anupama."
+  },
+  "gapsToConfirm": [
+    "The exact PureGym Finchley and Technogym Canary Wharf weekly class timetables (names/times/durations) haven't been captured in a form I can read back verbatim — the slots below are placeholders ('confirm exact class') until you paste the real schedule into a chat with me so I can slot in specific class names and flag each one for L5-S1 safety.",
+    "Technogym Monday 17:30 'Aim at the Stars' yoga — you flagged this as possibly unsafe for L5-S1. Do not attend until physio at Highgate confirms it's safe; treated as excluded by default below.",
+    "Highgate Hospital Thursday physio — exact time not yet confirmed; placeholder is 'Thursday evening'."
+  ],
+  "weeklyExercise": {
+    "mon": [
+      {"time":"Morning","title":"Walk to/from Archway (part of commute)","location":"Home ↔ Archway","duration":"15 min","type":"Cardio — low impact","note":"Counts toward daily step target; safe throughout recovery."},
+      {"time":"Lunchtime","title":"Gym floor — core stability + light dumbbell wrist work","location":"Technogym Canary Wharf (gym floor, not a class)","duration":"25-30 min","sets":"3","reps":"10-12 (bird-dog, dead bug, glute bridge, wrist curls)","note":"Spondylolisthesis-safe: no loaded forward flexion, no heavy twisting. Only once doctor has cleared post-op exercise.","flag":"Not yet — paused during October recovery. Resume once cleared by Dr Anupama (target: mid-Nov)."},
+      {"time":"Evening","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","note":"Jindal routine; good wind-down before sleep."}
+    ],
+    "tue": [
+      {"time":"Morning","title":"Walk to/from Archway (part of commute)","location":"Home ↔ Archway","duration":"15 min","type":"Cardio — low impact"},
+      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","note":"Jindal routine, twice weekly (Tue + Fri)."},
+      {"time":"Evening","title":"Gentle spinal-safe stretch","location":"Home","duration":"10 min","note":"Use the Jindal spinal stretch video — avoid deep forward bends."}
+    ],
+    "wed": [
+      {"time":"Morning","title":"Walk to/from Archway (part of commute)","location":"Home ↔ Archway","duration":"15 min"},
+      {"time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","note":"Once your real weekly timetable is pasted in, this slot gets the actual class name/time and an L5-S1 safety check.","flag":"Placeholder — paused during October recovery."}
+    ],
+    "thu": [
+      {"time":"Morning (WFH day)","title":"Low-impact cardio — walk or stationary bike","location":"Home / local","duration":"30 min","note":"WFH day frees up the morning commute time — good slot for the longer session."},
+      {"time":"Morning","title":"Core stability circuit","location":"Home","duration":"20 min","sets":"3","reps":"10-12 (bird-dog, dead bug, glute bridge, modified plank)","note":"Spondylolisthesis-safe core work.","flag":"Paused during October recovery — resume once cleared."},
+      {"time":"Thursday evening","title":"Physio — Highgate Hospital","location":"Highgate Hospital","duration":"~45-60 min (confirm)","note":"New weekly slot. Also the right session to ask the physio directly about the Technogym Monday 17:30 'Aim at the Stars' yoga class and the 5K running return."}
+    ],
+    "fri": [
+      {"time":"Morning","title":"Walk to/from Archway (part of commute)","location":"Home ↔ Archway","duration":"15 min"},
+      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","note":"Second weekly session (Tue + Fri)."},
+      {"time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","flag":"Placeholder — paused during October recovery."}
+    ],
+    "sat": [
+      {"time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min","note":"Part of the 5x/week general-yoga + spinal target; Saturday session."},
+      {"time":"Late morning/afternoon","title":"Walk — longer weekend walk","location":"Local / Highgate Wood","duration":"30-40 min","note":"Once cleared, this is also the natural slot to test reintroducing light jogging intervals ahead of any 5K prep restart — physio sign-off first."},
+      {"time":"Any time","title":"Jal neti","location":"Home","duration":"5 min","note":"Twice weekly — Sat + one weekday. Use lukewarm saline, never plain tap water."}
+    ],
+    "sun": [
+      {"time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min"},
+      {"time":"Any time","title":"Light walk","location":"Local","duration":"20-30 min","note":"Rest-oriented day — keep it easy."},
+      {"time":"Any time","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min"}
+    ]
+  },
+  "diet": {
+    "principles": [
+      "BAUS is the primary authority for stone safety (calcium oxalate) — Jindal and Luke's diet are cross-checked against it, not the other way round.",
+      "Don't restrict calcium — pair calcium-rich food (paneer, curd, milk) with oxalate-containing food in the same meal; it binds oxalate in the gut.",
+      "Fluid target 2.5-3L/day, spread evenly, extra glass with every meal.",
+      "Sustainable deficit: ~500-750 kcal/day below maintenance (~2300-2900 kcal/day at 100kg) — not the ~1,230 kcal/day 'Luke's diet' level, which is too aggressive.",
+      "Weekday lunch is realistically salad/soup only (office) — dinner and weekends have more flexibility for cooked dishes."
+    ],
+    "favouritesKeepInRotation": ["Rajma", "Kala chana", "Bhindi (okra)", "Potatoes (moderate)", "Paneer", "Karela", "Dal makhani", "Kali dal", "Sourdough bread", "Rice", "Quinoa", "Rotis", "Homemade parathas", "Curd", "Milk", "Soya milk", "Apple, banana, berries, oranges and most fruit"],
+    "fineInModeration": ["Tofu", "Cauliflower", "Yellow dal", "Khichdi", "Ghee (small amounts)", "Saag paneer — pair the spinach with the paneer's calcium in the same dish, keep portion moderate", "Avocado toast (occasional, not daily)", "Dark chocolate (small square, occasional — not the daily norm)"],
+    "avoidOrMinimise": ["Ghiya (bottle gourd) — user dislikes anyway", "Spinach in large/frequent portions", "Beetroot, rhubarb", "Almonds, cashews, almond milk (high oxalate)", "Wheat bran, strong tea/coffee in excess", "Added salt", "Lay's kettle chips and shop-bought parathas/chips as a regular night habit — fine as an occasional treat, not the default", "M&S dark chocolate protein cereal / cocoa-based cereals as an everyday breakfast — occasional is fine"],
+    "weekdayTemplate": {
+      "breakfast": "Aldi muesli with milk or curd, or a piece of fruit + curd, or a homemade paratha with curd.",
+      "lunch": "Big mixed salad (lettuce/cucumber/pepper base, not spinach-heavy) with paneer, tofu or kala chana + olive oil-lemon dressing, or a vegetable soup with a slice of sourdough — realistic for office.",
+      "dinner": "Rajma, kala chana, bhindi, dal makhani or kali dal with rice or roti, moderate portion, with curd on the side.",
+      "snacks": "Fruit, curd, a small handful of roasted chana most days; kettle chips or dark chocolate as an occasional treat, not daily."
+    },
+    "weekendTemplate": {
+      "breakfast": "Dosa/idli + sambar (home-made), or paneer bhurji with sourdough.",
+      "lunch": "Khichdi, or a quinoa bowl with vegetables and paneer/tofu.",
+      "dinner": "Saag paneer (moderate spinach portion, paired with paneer) or rajma/kala chana, roti or rice, curd.",
+      "snacks": "Fruit, curd, occasional treat (dark chocolate square, kettle chips) if wanted."
+    }
+  },
+  "tips": [
+    "BAUS guidance: aim for 2.5-3L fluid daily, spread evenly, with an extra glass alongside each meal — dilute urine reduces stone-forming crystals.",
+    "Calcium isn't the enemy: BAUS advises keeping normal dietary calcium (dairy, paneer) rather than cutting it — pairing calcium with oxalate-rich food actually binds oxalate in the gut before it reaches your kidneys.",
+    "High-oxalate foods to keep occasional, not daily: spinach, rhubarb, beetroot, almonds/cashews, bran, cocoa/dark chocolate, strong tea.",
+    "Jindal principle: warm water with a squeeze of lime before breakfast supports digestion.",
+    "For L5-S1 spondylolisthesis: avoid deep forward spinal flexion and heavy twisting loads — core stability work (bird-dog, dead bug, glute bridge) protects the joint better than sit-ups.",
+    "Sitting numbness check: if you've been at your desk over 45 minutes, stand and move for 2 minutes — prolonged static sitting triggers the sciatic numbness, not activity itself.",
+    "Anulom Vilom, Bhramari and Ujjayi breathing (Jindal routine) work well as a 10-minute wind-down — helps sleep and lowers stress-driven cortisol, which also supports blood sugar control.",
+    "Prediabetic HbA1c of 39: pairing carbs with protein/fibre (roti with dal, not roti alone) blunts the glucose spike more than cutting carbs entirely.",
+    "Fatty liver, ALT already improving (67 to 45): keep added sugar and saturated fat down, and keep the walking consistent — daily movement is one of the few proven ways to reduce liver fat.",
+    "Sustainable pace beats speed: 0.5-1kg/week is the range least likely to rebound — matches your own goal of not yo-yo'ing back up.",
+    "Vitamin C caution (BAUS): keep supplemental vitamin C modest — high-dose supplements convert to oxalate. Get vitamin C from whole fruit instead (oranges, berries), where the effect is different.",
+    "Eye yoga day: palming, focus shifts and blinking exercises help offset a screen-heavy day.",
+    "Wrist strength: light dumbbells + the level-4 thera clay squeeze build grip gradually — little and often beats one heavy session.",
+    "Jal neti (twice weekly): use lukewarm saline, never plain tap water, and finish with gentle nose-blowing to clear residual solution."
+  ]
+}

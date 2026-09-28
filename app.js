@@ -42,6 +42,8 @@ var state = {
   routine: {},
   sky: null,
   uid: null,
+  health: null,
+  healthDay: null,
 };
 
 var todayStr = ymd(new Date());
@@ -193,6 +195,7 @@ async function onSignedIn(user, fs){
   showApp();
   renderAll();
   loadSkyData();
+  loadHealthData();
 }
 
 /* Sky/weather data is written by a scheduled background check into a static
@@ -204,6 +207,17 @@ function loadSkyData(){
   fetch('sky-data.json?_=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
     if(data){ state.sky = data; renderAll(); }
   }).catch(function(){ /* no sky data yet, that's fine */ });
+}
+
+/* Health Buddy data (diet + exercise plan, daily tips) is a static JSON file
+   in this repo, fetched client-side — same pattern as sky-data.json. This
+   means it shows up immediately for every account regardless of what's
+   already seeded in that account's Firestore, and it's updated just by
+   editing/committing health-data.json. */
+function loadHealthData(){
+  fetch('health-data.json?_=' + Date.now()).then(function(r){ return r.ok ? r.json() : null; }).then(function(data){
+    if(data){ state.health = data; renderAll(); }
+  }).catch(function(){ /* no health data yet, that's fine */ });
 }
 
 function initLocalFallback(){
@@ -233,6 +247,7 @@ function initLocalFallback(){
   showApp();
   renderAll();
   loadSkyData();
+  loadHealthData();
 }
 
 /* ================= write helpers (work with db or local) ================= */
@@ -665,10 +680,26 @@ function renderSkyPanel(){
   return html;
 }
 
+function tipOfDay(){
+  if(!state.health || !state.health.tips || !state.health.tips.length) return null;
+  var d = parseYmd(todayStr);
+  var startOfYear = new Date(d.getFullYear(), 0, 0);
+  var doy = Math.floor((d - startOfYear) / 86400000);
+  return state.health.tips[doy % state.health.tips.length];
+}
+
 function renderToday(){
   var today = eventsInRange(0,0).filter(function(e){return e.status!=='Cancelled';});
   var crit = criticalToPrep().slice(0,4);
   var html = '';
+  var tip = tipOfDay();
+  if(tip){
+    html += '<div class="section" style="margin-top:8px;"><div class="card" style="padding:14px 16px;background:var(--focus-bg);border-color:var(--focus);">' +
+      '<div style="font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:var(--focus);">💡 Thought for today</div>' +
+      '<div style="font-size:13.5px;margin-top:5px;line-height:1.4;">'+escapeHtml(tip)+'</div>' +
+      '<button class="link-btn" data-goto="health" style="padding-left:0;margin-top:6px;">See full plan →</button>' +
+    '</div></div>';
+  }
   if(state.sky && state.sky.tonight && state.sky.tonight.verdict==='good'){
     html += '<div class="section" style="margin-top:8px;"><div class="card" style="padding:14px 16px;background:var(--success-bg);border-color:var(--success);">' +
       '<div style="font-weight:700;font-size:14px;">✨ Good astrophotography conditions tonight</div>' +
@@ -941,12 +972,116 @@ function renderActivity(){
   document.getElementById('mainContent').innerHTML = html;
 }
 
+function exerciseBlockRow(b){
+  return '<div class="item-row"><div class="item-body">' +
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">' +
+      '<div class="item-title">'+escapeHtml(b.title)+'</div>' +
+      (b.time ? '<span class="chip time" style="flex:0 0 auto;">'+escapeHtml(b.time)+'</span>' : '') +
+    '</div>' +
+    '<div class="item-meta">' +
+      (b.location ? '<span class="chip">📍 '+escapeHtml(b.location)+'</span>' : '') +
+      (b.duration ? '<span class="chip">⏱ '+escapeHtml(b.duration)+'</span>' : '') +
+      (b.sets ? '<span class="chip">'+escapeHtml(b.sets)+' × '+escapeHtml(b.reps||'')+'</span>' : '') +
+    '</div>' +
+    (b.note ? '<div style="margin-top:6px;font-size:12.5px;color:var(--ink-dim);">'+escapeHtml(b.note)+'</div>' : '') +
+    (b.flag ? '<div class="warn-banner" style="margin-top:8px;">⚠️ '+escapeHtml(b.flag)+'</div>' : '') +
+  '</div></div>';
+}
+
+function renderHealthWeek(){
+  var dayDefs = [['mon','Mon'],['tue','Tue'],['wed','Wed'],['thu','Thu'],['fri','Fri'],['sat','Sat'],['sun','Sun']];
+  var todayKey = WEEKDAY_KEYS[new Date().getDay()];
+  var sel = state.healthDay || todayKey;
+  var html = '<div class="filter-pills">' + dayDefs.map(function(d){
+    return '<button class="fpill '+(sel===d[0]?'active':'')+'" data-action="health-day" data-day="'+d[0]+'">'+d[1]+(d[0]===todayKey?' •':'')+'</button>';
+  }).join('') + '</div>';
+  var blocks = (state.health && state.health.weeklyExercise && state.health.weeklyExercise[sel]) || [];
+  if(!blocks.length){
+    html += '<div class="empty">No exercise blocks for this day yet.</div>';
+  } else {
+    html += '<div class="card">' + blocks.map(exerciseBlockRow).join('') + '</div>';
+  }
+  return html;
+}
+
+function dietMealCard(title, meals){
+  if(!meals) return '';
+  var order = [['breakfast','Breakfast'],['lunch','Lunch'],['dinner','Dinner'],['snacks','Snacks']];
+  return '<div class="section-head" style="margin-top:16px;"><h2 style="font-size:15px;">'+escapeHtml(title)+'</h2></div>' +
+    '<div class="card">' + order.filter(function(o){return meals[o[0]];}).map(function(o){
+      return '<div class="item-row"><div class="item-body">' +
+        '<div class="item-title" style="font-size:13px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">'+o[1]+'</div>' +
+        '<div style="font-size:14px;margin-top:4px;line-height:1.4;">'+escapeHtml(meals[o[0]])+'</div>' +
+      '</div></div>';
+    }).join('') + '</div>';
+}
+
+function pillList(items, cls){
+  if(!items || !items.length) return '';
+  return '<div class="item-meta" style="margin-top:8px;">' + items.map(function(t){
+    return '<span class="chip '+(cls||'')+'">'+escapeHtml(t)+'</span>';
+  }).join('') + '</div>';
+}
+
+function renderHealthDiet(){
+  var d = state.health && state.health.diet;
+  if(!d) return '';
+  var html = '<div class="section-head" style="margin-top:24px;"><h2>Diet plan</h2></div>';
+  html += '<div class="card" style="padding:14px 16px;">' +
+    '<div style="font-size:12.5px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Principles</div>' +
+    '<ul style="margin:8px 0 0; padding-left:18px; font-size:13.5px; line-height:1.5;">' +
+      (d.principles||[]).map(function(p){return '<li style="margin-bottom:4px;">'+escapeHtml(p)+'</li>';}).join('') +
+    '</ul></div>';
+  html += dietMealCard('Weekday (office lunch)', d.weekdayTemplate);
+  html += dietMealCard('Weekend', d.weekendTemplate);
+  html += '<div class="section-head" style="margin-top:16px;"><h2 style="font-size:15px;">Foods</h2></div>';
+  html += '<div class="card" style="padding:14px 16px;">';
+  html += '<div style="font-size:12.5px;font-weight:700;color:var(--success);">Keep in rotation</div>' + pillList(d.favouritesKeepInRotation);
+  html += '<div style="font-size:12.5px;font-weight:700;color:var(--ink-dim);margin-top:12px;">Fine in moderation</div>' + pillList(d.fineInModeration);
+  html += '<div style="font-size:12.5px;font-weight:700;color:var(--danger);margin-top:12px;">Avoid / minimise</div>' + pillList(d.avoidOrMinimise, 'pri-critical');
+  html += '</div>';
+  return html;
+}
+
+function renderHealthGaps(){
+  var gaps = state.health && state.health.gapsToConfirm;
+  if(!gaps || !gaps.length) return '';
+  return '<div class="section-head" style="margin-top:24px;"><h2 style="font-size:15px;">Still to confirm</h2></div>' +
+    '<div class="card">' + gaps.map(function(g){
+      return '<div class="warn-banner" style="margin:10px 12px;">⚠️ '+escapeHtml(g)+'</div>';
+    }).join('') + '</div>';
+}
+
+function renderHealth(){
+  var html = '<div class="section" style="margin-top:8px;">';
+  if(state.health && state.health.profile){
+    var p = state.health.profile;
+    html += '<div class="card" style="padding:14px 16px;">' +
+      '<div style="font-size:12.5px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Goal</div>' +
+      '<div style="font-size:14px;margin-top:4px;">'+escapeHtml(p.currentWeightKg+'kg now → target '+p.targetWeightKgRange+'kg')+'</div>' +
+      '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:6px;line-height:1.4;">'+escapeHtml(p.paceGuidance||'')+'</div>' +
+      (p.recoveryNote ? '<div class="warn-banner" style="margin-top:10px;">⚠️ '+escapeHtml(p.recoveryNote)+'</div>' : '') +
+    '</div>';
+  }
+  html += '<div class="section-head" style="margin-top:20px;"><h2>This week — exercise</h2></div>';
+  html += state.health ? renderHealthWeek() : '<div class="empty">Loading your plan…</div>';
+  html += state.health ? renderHealthDiet() : '';
+  html += '<div class="section-head" style="margin-top:24px;"><h2>Daily tips</h2><span style="font-size:12px;color:var(--ink-dim);">BAUS + Jindal grounded</span></div>';
+  html += '<div class="card">' + (state.health && state.health.tips ? state.health.tips.map(function(t){
+    return '<div class="item-row"><div class="item-body"><div style="font-size:13.5px;line-height:1.4;">'+escapeHtml(t)+'</div></div></div>';
+  }).join('') : '<div class="empty">Loading tips…</div>') + '</div>';
+  html += state.health ? renderHealthGaps() : '';
+  html += '</div>';
+  document.getElementById('mainContent').innerHTML = html;
+}
+
 function renderAll(){
   if(!state.ready) return;
   renderStatStrip();
   renderEncouragement();
   if(state.tab==='today') renderToday();
   else if(state.tab==='planner') renderPlanner();
+  else if(state.tab==='health') renderHealth();
   else if(state.tab==='goals') renderGoals();
   else if(state.tab==='log') renderActivity();
 }
@@ -1028,6 +1163,12 @@ document.getElementById('mainContent').addEventListener('click', function(e){
     var lg = state.goals.find(function(x){return x.id===lgid;});
     if(lg){ spawnFloatingPoints(e.clientX, e.clientY, '+'+priorityPoints(lg.priority)); }
     logSubActionProgress(lgid, lidx);
+    return;
+  }
+  var healthDayBtn = e.target.closest('[data-action="health-day"]');
+  if(healthDayBtn){
+    state.healthDay = healthDayBtn.getAttribute('data-day');
+    renderHealth();
     return;
   }
   var filterBtn = e.target.closest('[data-action="filter-priority"]');
