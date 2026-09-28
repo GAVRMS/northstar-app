@@ -1298,40 +1298,351 @@
     ]
   },
   "tips": [
-    "BAUS guidance: aim for 2.5-3L fluid daily, spread evenly, with an extra glass alongside each meal — dilute urine reduces stone-forming crystals.",
-    "Calcium isn't the enemy: BAUS advises keeping normal dietary calcium (dairy, paneer) rather than cutting it — pairing calcium with oxalate-rich food actually binds oxalate in the gut before it reaches your kidneys.",
-    "High-oxalate foods to keep occasional, not daily: spinach, rhubarb, beetroot, almonds/cashews, bran, cocoa/dark chocolate, strong tea.",
-    "Jindal principle: warm water with a squeeze of lime before breakfast supports digestion.",
-    "For L5-S1 spondylolisthesis: avoid deep forward spinal flexion and heavy twisting loads — core stability work (bird-dog, dead bug, glute bridge) protects the joint better than sit-ups.",
-    "Sitting numbness check: if you've been at your desk over 45 minutes, stand and move for 2 minutes — prolonged static sitting triggers the sciatic numbness, not activity itself.",
-    "Anulom Vilom, Bhramari and Ujjayi breathing (Jindal routine) work well as a 10-minute wind-down — helps sleep and lowers stress-driven cortisol, which also supports blood sugar control.",
-    "Prediabetic HbA1c of 39: pairing carbs with protein/fibre (roti with dal, not roti alone) blunts the glucose spike more than cutting carbs entirely.",
-    "Fatty liver, ALT already improving (67 to 45): keep added sugar and saturated fat down, and keep the walking consistent — daily movement is one of the few proven ways to reduce liver fat.",
-    "Sustainable pace beats speed: 0.5-1kg/week is the range least likely to rebound — matches your own goal of not yo-yo'ing back up.",
-    "Vitamin C caution (BAUS): keep supplemental vitamin C modest — high-dose supplements convert to oxalate. Get vitamin C from whole fruit instead (oranges, berries), where the effect is different.",
-    "Eye yoga day: palming, focus shifts and blinking exercises help offset a screen-heavy day.",
-    "Wrist strength: light dumbbells + the level-4 thera clay squeeze build grip gradually — little and often beats one heavy session.",
-    "Jal neti (twice weekly): use lukewarm saline, never plain tap water, and finish with gentle nose-blowing to clear residual solution.",
-    "15k steps: your Archway-Canary Wharf-Highgate commute already covers a big chunk — the PM Highgate-to-home leg and lunchtime movement are usually where the gap closes or doesn't.",
-    "Spinning is generally a good low-impact cardio option for L5-S1 once cleared — just watch saddle position and skip heavy-resistance standing climbs.",
-    "Zumba: go for a low-impact/'Gold'-style class rather than full-intensity — the jumping and twisting in standard Zumba is the exact combination to be cautious about with a pars defect.",
-    "Seborrhoeic dermatitis is inflammation, not dryness — over-moisturising won't help, and the arthritic liniment/coconut oil should stay off any patch that's actively flaring.",
-    "Cataract is mild and early, but UV-protection sunglasses outdoors matter now, not just later — it's a cheap way to slow things down.",
-    "Black acne on your back is still an open item — worth raising with Dr Anupama alongside the seborrhoeic dermatitis, since some topical treatments overlap.",
-    "Hair loss routine (coconut oil, lemon massage) is a reasonable comfort measure — mention it alongside the vitamin D deficiency check, since low vitamin D is a possible contributor.",
-    "Vitamin D deficiency (right calves): worth asking Dr Anupama for a supplement dose and a retest date, rather than leaving it open-ended.",
-    "Stop the weekly ear-pick — it risks pushing wax deeper. Swap for olive oil drops, or a pharmacy/GP check if wax builds up.",
-    "Sleeping on your side is reasonable for L5-S1 comfort — a pillow between the knees helps keep the spine neutral overnight.",
-    "Salt discipline (~5-6g/day, no added table salt, no processed/tinned snacks) helps two goals at once: stone prevention and your 4.3 cholesterol/HDL ratio, which BAUS-aligned guidance targets under 3.9.",
-    "Face/eyebrow steam or sauna is fine to keep in rotation — just keep the water not too hot and take care around the eyes given the cataract.",
-    "Gargle with salt water at the first sign of a throat symptom — simple, and no need to wait for it to worsen.",
-    "Jal neti: lukewarm saline only, never plain tap water — finish with gentle nose-blowing to clear residual solution.",
-    "Easiest calories to cut without feeling restricted: liquid ones. Sugary drinks and jaggery-heavy juices go first — see the drinks list in the Diet & Recipes Booklet.",
-    "Wheat bran is high-fibre but also high-oxalate — skip it even though 'more fibre' sounds like a universal good right now.",
-    "Luke's diet: the food logic fits your preferences well, but the calorie target looks too aggressive for 100kg — confirm the actual number with Dr Anupama before signing up, rather than assuming lower is automatically better.",
-    "Post-op caution is still active: buttermilk & hing, then coconut water — hold off on salads and sprouts until the antibiotics course finishes.",
-    "Before Thursday's Highgate physio: bring your open-questions list (the Technogym Monday yoga class, walk/run return timeline, wrist thera clay timing) — a written list gets more out of a short session than trying to remember on the day.",
-    "Steam inhalation (eucalyptus), 2-3 minutes each morning, is already in your routine — worth doing more of if a cold or cough is starting.",
-    "The real PureGym/Technogym class timetable is in now — check the Gym Class Timetable booklet in Resources before booking anything; it's colour-coded so you don't have to re-derive the L5-S1 safety call each time."
+    {
+      "text": "BAUS guidance: aim for 2.5-3L fluid daily, spread evenly, with an extra glass alongside each meal — dilute urine reduces stone-forming crystals.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "Calcium isn't the enemy: BAUS advises keeping normal dietary calcium (dairy, paneer) rather than cutting it — pairing calcium with oxalate-rich food actually binds oxalate in the gut before it reaches your kidneys.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "High-oxalate foods to keep occasional, not daily: spinach, rhubarb, beetroot, almonds/cashews, bran, cocoa/dark chocolate, strong tea.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "Jindal principle: warm water with a squeeze of lime before breakfast supports digestion.",
+      "tags": [
+        "diet"
+      ]
+    },
+    {
+      "text": "For L5-S1 spondylolisthesis: avoid deep forward spinal flexion and heavy twisting loads — core stability work (bird-dog, dead bug, glute bridge) protects the joint better than sit-ups.",
+      "tags": [
+        "spondylolisthesis"
+      ]
+    },
+    {
+      "text": "Sitting numbness check: if you've been at your desk over 45 minutes, stand and move for 2 minutes — prolonged static sitting triggers the sciatic numbness, not activity itself.",
+      "tags": [
+        "spondylolisthesis"
+      ]
+    },
+    {
+      "text": "Anulom Vilom, Bhramari and Ujjayi breathing (Jindal routine) work well as a 10-minute wind-down — helps sleep and lowers stress-driven cortisol, which also supports blood sugar control.",
+      "tags": [
+        "sleep",
+        "spondylolisthesis"
+      ]
+    },
+    {
+      "text": "Prediabetic HbA1c of 39: pairing carbs with protein/fibre (roti with dal, not roti alone) blunts the glucose spike more than cutting carbs entirely.",
+      "tags": [
+        "prediabetes"
+      ]
+    },
+    {
+      "text": "Fatty liver, ALT already improving (67 to 45): keep added sugar and saturated fat down, and keep the walking consistent — daily movement is one of the few proven ways to reduce liver fat.",
+      "tags": [
+        "fatty-liver"
+      ]
+    },
+    {
+      "text": "Sustainable pace beats speed: 0.5-1kg/week is the range least likely to rebound — matches your own goal of not yo-yo'ing back up.",
+      "tags": [
+        "weight-loss"
+      ]
+    },
+    {
+      "text": "Vitamin C caution (BAUS): keep supplemental vitamin C modest — high-dose supplements convert to oxalate. Get vitamin C from whole fruit instead (oranges, berries), where the effect is different.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "Eye yoga day: palming, focus shifts and blinking exercises help offset a screen-heavy day.",
+      "tags": [
+        "eyes"
+      ]
+    },
+    {
+      "text": "Wrist strength: light dumbbells + the level-4 thera clay squeeze build grip gradually — little and often beats one heavy session.",
+      "tags": [
+        "spondylolisthesis",
+        "personal-care"
+      ]
+    },
+    {
+      "text": "Jal neti (twice weekly): use lukewarm saline, never plain tap water, and finish with gentle nose-blowing to clear residual solution.",
+      "tags": [
+        "personal-care"
+      ]
+    },
+    {
+      "text": "15k steps: your Archway-Canary Wharf-Highgate commute already covers a big chunk — the PM Highgate-to-home leg and lunchtime movement are usually where the gap closes or doesn't.",
+      "tags": [
+        "weight-loss"
+      ]
+    },
+    {
+      "text": "Spinning is generally a good low-impact cardio option for L5-S1 once cleared — just watch saddle position and skip heavy-resistance standing climbs.",
+      "tags": [
+        "spondylolisthesis",
+        "gym-safety"
+      ]
+    },
+    {
+      "text": "Zumba: go for a low-impact/'Gold'-style class rather than full-intensity — the jumping and twisting in standard Zumba is the exact combination to be cautious about with a pars defect.",
+      "tags": [
+        "spondylolisthesis",
+        "gym-safety"
+      ]
+    },
+    {
+      "text": "Seborrhoeic dermatitis is inflammation, not dryness — over-moisturising won't help, and the arthritic liniment/coconut oil should stay off any patch that's actively flaring.",
+      "tags": [
+        "skin"
+      ]
+    },
+    {
+      "text": "Cataract is mild and early, but UV-protection sunglasses outdoors matter now, not just later — it's a cheap way to slow things down.",
+      "tags": [
+        "eyes"
+      ]
+    },
+    {
+      "text": "Black acne on your back is still an open item — worth raising with Dr Anupama alongside the seborrhoeic dermatitis, since some topical treatments overlap.",
+      "tags": [
+        "skin"
+      ]
+    },
+    {
+      "text": "Hair loss routine (coconut oil, lemon massage) is a reasonable comfort measure — mention it alongside the vitamin D deficiency check, since low vitamin D is a possible contributor.",
+      "tags": [
+        "hair"
+      ]
+    },
+    {
+      "text": "Vitamin D deficiency (right calves): worth asking Dr Anupama for a supplement dose and a retest date, rather than leaving it open-ended.",
+      "tags": [
+        "vitamin-d"
+      ]
+    },
+    {
+      "text": "Stop the weekly ear-pick — it risks pushing wax deeper. Swap for olive oil drops, or a pharmacy/GP check if wax builds up.",
+      "tags": [
+        "ears"
+      ]
+    },
+    {
+      "text": "Sleeping on your side is reasonable for L5-S1 comfort — a pillow between the knees helps keep the spine neutral overnight.",
+      "tags": [
+        "spondylolisthesis",
+        "sleep"
+      ]
+    },
+    {
+      "text": "Salt discipline (~5-6g/day, no added table salt, no processed/tinned snacks) helps two goals at once: stone prevention and your 4.3 cholesterol/HDL ratio, which BAUS-aligned guidance targets under 3.9.",
+      "tags": [
+        "kidney-stones",
+        "fatty-liver"
+      ]
+    },
+    {
+      "text": "Face/eyebrow steam or sauna is fine to keep in rotation — just keep the water not too hot and take care around the eyes given the cataract.",
+      "tags": [
+        "skin"
+      ]
+    },
+    {
+      "text": "Gargle with salt water at the first sign of a throat symptom — simple, and no need to wait for it to worsen.",
+      "tags": [
+        "personal-care"
+      ]
+    },
+    {
+      "text": "Jal neti: lukewarm saline only, never plain tap water — finish with gentle nose-blowing to clear residual solution.",
+      "tags": [
+        "personal-care"
+      ]
+    },
+    {
+      "text": "Easiest calories to cut without feeling restricted: liquid ones. Sugary drinks and jaggery-heavy juices go first — see the drinks list in the Diet & Recipes Booklet.",
+      "tags": [
+        "weight-loss"
+      ]
+    },
+    {
+      "text": "Wheat bran is high-fibre but also high-oxalate — skip it even though 'more fibre' sounds like a universal good right now.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "Luke's diet: the food logic fits your preferences well, but the calorie target looks too aggressive for 100kg — confirm the actual number with Dr Anupama before signing up, rather than assuming lower is automatically better.",
+      "tags": [
+        "weight-loss"
+      ]
+    },
+    {
+      "text": "Post-op caution is still active: buttermilk & hing, then coconut water — hold off on salads and sprouts until the antibiotics course finishes.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "Before Thursday's Highgate physio: bring your open-questions list (the Technogym Monday yoga class, walk/run return timeline, wrist thera clay timing) — a written list gets more out of a short session than trying to remember on the day.",
+      "tags": [
+        "spondylolisthesis"
+      ]
+    },
+    {
+      "text": "Steam inhalation (eucalyptus), 2-3 minutes each morning, is already in your routine — worth doing more of if a cold or cough is starting.",
+      "tags": [
+        "personal-care"
+      ]
+    },
+    {
+      "text": "The real PureGym/Technogym class timetable is in now — check the Gym Class Timetable booklet in Resources before booking anything; it's colour-coded so you don't have to re-derive the L5-S1 safety call each time.",
+      "tags": [
+        "gym-safety",
+        "spondylolisthesis"
+      ]
+    },
+    {
+      "text": "Nature's Commandments (Jindal): avoid the six 'S's — sugar, salt, smoking, stress, sedentary life and alcohol — a simple daily checklist that lines up with your stone, liver and prediabetes goals at once.",
+      "tags": [
+        "diet",
+        "fatty-liver",
+        "prediabetes"
+      ]
+    },
+    {
+      "text": "Gel/ice pack on the abdomen (Jindal's kidney-patient note): hot water bag on the lower back, ice bag on the abdomen wrapped in a wet cloth, alternate days — worth confirming with Dr Anupama it's fine this soon after your stent removal before starting.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "Full body massage + steam/sauna, once or twice a week, is on Jindal's own follow-up sheet for you — a reasonable routine to keep, alongside your existing face/eyebrow steam habit.",
+      "tags": [
+        "skin",
+        "sleep"
+      ]
+    },
+    {
+      "text": "Your Jindal diet-plan template times meals closely to BAUS: lunch 12:00-13:30 (2 phulka, 100g leafy veg, 100g boiled veg, 1/2 cup dal), dinner 18:30 (millets, 200g cooked veg, soup/buttermilk) — the raw-salad dinner option on the same sheet is the one still on hold until your antibiotics course finishes.",
+      "tags": [
+        "kidney-stones",
+        "diet"
+      ]
+    },
+    {
+      "text": "Jindal's general advice says 'reduce pulses' — but dal is both your favourite and your main protein source under the BAUS-aligned plan. Worth asking Dr Anupama directly which one she means for you, rather than cutting dal on a generic template's say-so.",
+      "tags": [
+        "diet"
+      ]
+    },
+    {
+      "text": "The full Trifala eye tonic recipe: half tsp Trifala eye powder in 200ml water overnight, filtered in the morning, used with eye cups, blink 20-25 times — same routine you already do twice a week, now with the exact recipe (Amla 33%, Harade 23%, Baheda 17%, Chandan 14%, Bhimsani Karpur 13%).",
+      "tags": [
+        "eyes"
+      ]
+    },
+    {
+      "text": "Trataka (candle gazing): a lit candle at eye level, one metre away, gaze without blinking until your eyes water, then close and rest, followed by palming — a deeper eye-yoga practice than your current palming/focus-shifts routine, worth trying on your twice-weekly eye-yoga day.",
+      "tags": [
+        "eyes"
+      ]
+    },
+    {
+      "text": "Sleep hormone basics: melatonin needs darkness and no screens before bed; cortisol (your wake-up signal) responds to morning light — the two work as a pair, so cutting evening screen time and getting outside early both help the same sleep quality goal.",
+      "tags": [
+        "sleep"
+      ]
+    },
+    {
+      "text": "Serotonin (mood + melatonin precursor) is boosted by sunlight, exercise and a healthy diet — three things already in your plan, reinforcing each other rather than being separate boxes to tick.",
+      "tags": [
+        "sleep"
+      ]
+    },
+    {
+      "text": "For sleep, your own notes list tart cherries, pineapple, banana and sweet potato as natural melatonin/potassium sources worth working into an evening snack instead of something processed.",
+      "tags": [
+        "sleep",
+        "diet"
+      ]
+    },
+    {
+      "text": "Insomnia vs sleep apnoea: insomnia is trouble falling/staying asleep and you're aware of it; sleep apnoea is breathing interruptions you're often unaware of (snoring, gasping, daytime drowsiness noticed by others) — worth mentioning to Dr Anupama if anyone's ever flagged loud snoring, since the fix is different (CPAP/weight loss, not sleep hygiene).",
+      "tags": [
+        "sleep",
+        "weight-loss"
+      ]
+    },
+    {
+      "text": "Herbs that heal (Jindal): Brahmi and Ashwagandha tablets plus peppermint tea are on the institute's list — no dosage given in what you photographed, and worth checking with Dr Anupama before starting any new supplement given your fatty liver and current medications.",
+      "tags": [
+        "fatty-liver",
+        "sleep"
+      ]
+    },
+    {
+      "text": "Calorie-swap habit: tuna in oil to tuna in water saves ~150 kcal, and two whole eggs to three egg whites saves ~100 kcal — small label-reading swaps like these add up faster than one big diet overhaul.",
+      "tags": [
+        "weight-loss"
+      ]
+    },
+    {
+      "text": "At your current weight (~220lb/100kg), the full exercise-calorie table gives more realistic numbers than a generic 160-180lb reference: walking fast burns ~257kcal/30min, stationary cycling vigorous ~520kcal/30min, yoga ~192kcal/30min — useful once gym work resumes.",
+      "tags": [
+        "weight-loss",
+        "gym-safety"
+      ]
+    },
+    {
+      "text": "Kidney-disease naturopathy advice reinforces the BAUS plan from a different angle: natural diuretics (tender coconut water, barley water, thin buttermilk, dhaniya water), avoid animal protein, low salt/fat, and treat any infection immediately rather than waiting it out.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "Diabetes prevention advice (relevant given your prediabetic HbA1c): losing just 7% of body weight if overweight, plus daily 30-minute walks, is the single highest-leverage naturopathy recommendation — and it's exactly your existing weight and steps goals, not a separate task.",
+      "tags": [
+        "prediabetes",
+        "weight-loss"
+      ]
+    },
+    {
+      "text": "Warm water enema and abdominal mud pack appear on the institute's diabetes/kidney posters, but they're more invasive than the rest of the list — treat these as 'ask Dr Anupama first,' not default self-care, especially this soon post-op.",
+      "tags": [
+        "kidney-stones"
+      ]
+    },
+    {
+      "text": "Insomnia naturopathy advice: go to bed only when sleepy, don't nap in the day, eat a light dinner early, keep a fixed sleep/wake time, and practice Yoga Nidra for stress — all low-risk and worth trying before anything more involved.",
+      "tags": [
+        "sleep"
+      ]
+    },
+    {
+      "text": "Spondylosis posters recommend hot mud, hot stone massage and infrared heat for general spinal wear — but you have Grade 1 spondylolisthesis (a pars defect with vertebral slippage), a different and more load-sensitive condition, so treat heat therapy as probably fine but still confirm with the physio rather than assuming a full transfer.",
+      "tags": [
+        "spondylolisthesis"
+      ]
+    },
+    {
+      "text": "The Jindal 'Yoga for Spinal Disorder' class (marked 'Imp' on your own brochure) is the closest match to your L5-S1 condition — worth asking specifically if it's suitable for spondylolisthesis specifically, since most institute yoga classes are written for general spinal stiffness, not a pars defect.",
+      "tags": [
+        "spondylolisthesis"
+      ]
+    }
   ]
 }

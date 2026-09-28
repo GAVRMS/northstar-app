@@ -680,6 +680,30 @@ function renderSkyPanel(){
   return html;
 }
 
+var HB_TAG_LABELS = {
+  'kidney-stones': ['🪨', 'Kidney stones'],
+  'spondylolisthesis': ['🦴', 'L5-S1 spine'],
+  'fatty-liver': ['🫀', 'Fatty liver'],
+  'prediabetes': ['🩸', 'Prediabetes'],
+  'weight-loss': ['⚖️', 'Weight goal'],
+  'skin': ['🧴', 'Skin'],
+  'eyes': ['👁️', 'Eyes'],
+  'ears': ['👂', 'Ears'],
+  'hair': ['💇', 'Hair'],
+  'sleep': ['😴', 'Sleep'],
+  'vitamin-d': ['☀️', 'Vitamin D'],
+  'gym-safety': ['🏋️', 'Gym safety'],
+  'personal-care': ['🧘', 'Personal care'],
+  'diet': ['🍽️', 'Diet'],
+  'general': ['💡', 'General']
+};
+function tipTagChips(tip){
+  if(!tip || !tip.tags) return '';
+  return tip.tags.map(function(tag){
+    var m = HB_TAG_LABELS[tag] || ['💡', tag];
+    return '<span class="chip" style="background:rgba(255,255,255,.55);color:var(--focus);font-weight:600;">'+m[0]+' '+escapeHtml(m[1])+'</span>';
+  }).join('');
+}
 function tipOfDay(){
   if(!state.health || !state.health.tips || !state.health.tips.length) return null;
   var n = state.health.tips.length;
@@ -836,7 +860,8 @@ function renderToday(){
           '</svg>' +
         '</button>' +
       '</div>' +
-      '<div style="font-size:13.5px;margin-top:5px;line-height:1.4;">'+escapeHtml(tip)+'</div>' +
+      '<div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">'+tipTagChips(tip)+'</div>' +
+      '<div style="font-size:13.5px;margin-top:6px;line-height:1.4;">'+escapeHtml(tip.text)+'</div>' +
       '<button class="link-btn" data-goto="health" style="padding-left:0;margin-top:6px;">See full plan →</button>' +
     '</div></div>';
   }
@@ -1099,6 +1124,7 @@ function renderGoals(){
 }
 
 var HB_RESOURCES = [
+  {title:'Top Tips', desc:'Everything from your Jindal Naturecure photos — diet timing, eye care, sleep, yoga classes, calorie tables, condition-specific naturopathy — cross-checked against your conditions.', url:'https://claude.ai/artifact/8hqmnpUbtfqxiPTznZJ9ES', icon:'⭐'},
   {title:'Diet & Recipes Booklet', desc:'Jindal-informed breakfast/lunch/dinner picks, color-coded, with a clickable contents page.', url:'https://claude.ai/artifact/FP1w1EDiaJynvGVfSGmS7B', icon:'🥗'},
   {title:'Exercise & Well-Being Booklet', desc:'Spinal yoga library, calorie-burn reference, daily routine — indexed and cross-checked.', url:'https://claude.ai/artifact/J2hR6ok9cmwCK4VNeNExEN', icon:'🧘'},
   {title:'Gym Class Timetable', desc:'The real PureGym Finchley & Technogym Canary Wharf weekly classes, with an L5-S1 safety read on each.', url:'https://claude.ai/artifact/AfUrqDke4VSTqhhKfvMzfr', icon:'🏋️'},
