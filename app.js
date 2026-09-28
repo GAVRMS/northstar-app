@@ -701,7 +701,7 @@ function tipTagChips(tip){
   if(!tip || !tip.tags) return '';
   return tip.tags.map(function(tag){
     var m = HB_TAG_LABELS[tag] || ['💡', tag];
-    return '<span class="chip" style="background:rgba(255,255,255,.55);color:var(--focus);font-weight:600;">'+m[0]+' '+escapeHtml(m[1])+'</span>';
+    return '<span class="chip" style="background:var(--surface);color:var(--focus);font-weight:600;border:1px solid var(--focus);">'+m[0]+' '+escapeHtml(m[1])+'</span>';
   }).join('');
 }
 function tipOfDay(){
@@ -862,7 +862,7 @@ function renderToday(){
         '</button>' +
       '</div>' +
       '<div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;">'+tipTagChips(tip)+'</div>' +
-      '<div style="font-size:13.5px;margin-top:6px;line-height:1.4;">'+escapeHtml(tip.text)+'</div>' +
+      '<div style="font-size:13.5px;margin-top:6px;line-height:1.4;color:var(--ink);">'+escapeHtml(tip.text)+'</div>' +
       '<button class="link-btn" data-goto="health" style="padding-left:0;margin-top:6px;">See full plan →</button>' +
     '</div></div>';
   }
