@@ -1075,6 +1075,7 @@ function renderGoals(){
 var HB_RESOURCES = [
   {title:'Diet & Recipes Booklet', desc:'Jindal-informed breakfast/lunch/dinner picks, color-coded, with a clickable contents page.', url:'https://claude.ai/artifact/FP1w1EDiaJynvGVfSGmS7B', icon:'🥗'},
   {title:'Exercise & Well-Being Booklet', desc:'Spinal yoga library, calorie-burn reference, daily routine — indexed and cross-checked.', url:'https://claude.ai/artifact/J2hR6ok9cmwCK4VNeNExEN', icon:'🧘'},
+  {title:'Gym Class Timetable', desc:'The real PureGym Finchley & Technogym Canary Wharf weekly classes, with an L5-S1 safety read on each.', url:'https://claude.ai/artifact/AfUrqDke4VSTqhhKfvMzfr', icon:'🏋️'},
   {title:'Printable diet & exercise plan (2-page)', desc:'Quick-reference A4 sheet for the fridge or gym bag.', url:'https://claude.ai/artifact/FszEC4QE7WL2xjWSmv4wqM', icon:'📄'}
 ];
 function renderResourcesSection(){

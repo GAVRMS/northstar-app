@@ -30,8 +30,8 @@
     ]
   },
   "gapsToConfirm": [
-    "IMPORTANT — the PureGym Finchley / Technogym Canary Wharf weekly class timetables: a separate voice conversation referenced having captured these, but voice and text sessions don't share memory or files, so this build still does not have the actual class names/times. Please paste the real weekly timetable (both gyms, Monday-Sunday, class name + time + duration) into a message here and I'll slot exact classes into the planner below with an L5-S1 safety check on each one — right now the exercise library gives class-type guidance (which kinds of class are safe) rather than your specific timetable.",
-      "Technogym Monday 17:30 'Aim at the Stars' yoga — you flagged this as possibly unsafe for L5-S1. Treated as excluded/pending physio clearance until confirmed.",
+    "PureGym Finchley / Technogym Canary Wharf weekly class timetables — captured 28 Sep 2026, see the Gym Class Timetable booklet in Resources. A few odd durations (Wed PureGym HIT 18:45-19:50, Sat PureGym GLC time) are transcribed as read out and worth a quick confirm next visit.",
+    "Technogym Monday 17:30 'Aim at the Stars' yoga — you flagged this as possibly unsafe for L5-S1. Treated as excluded/pending physio clearance until confirmed.",
     "Highgate Hospital Thursday physio — exact time not yet confirmed; placeholder is 'Thursday evening'."
   ],
   "weeklyExercise": {
@@ -85,7 +85,7 @@
     ],
     "wed": [
       {"id":"wed-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"}},
-      {"id":"wed-2","time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","category":"Class — TBC","safety":{"status":"confirm","note":"Placeholder until real timetable is shared — paused during October recovery regardless."},"detail":"Once you share the real weekly timetable, this becomes a specific class name/time with an L5-S1 check. Good candidates once your schedule is in: a low-impact/beginner spin class (see Dance & Spin library) or a gentle mobility class."}
+      {"id":"wed-2","time":"13:10","title":"Vinyasa Yoga (Technogym Canary Wharf)","location":"Technogym Canary Wharf","duration":"45 min","category":"Yoga","safety":{"status":"confirm","note":"Likely fine for L5-S1 (vinyasa flow, not the flagged 'Aim at the Stars' class) — still paused during October recovery, and confirm with the instructor no deep backbends/forward folds."},"detail":"From the real Wednesday Technogym timetable — fits the lunch window on an office day. Alternative same slot: Cardio Tone 12:15 (confirm form) or Technogym Boot Camp 12:00/13:00 (higher-impact, ask physio first). Full timetable in the Gym Class Timetable booklet, Resources section."}
     ],
     "thu": [
       {"id":"thu-1","time":"Morning (WFH day)","title":"Low-impact cardio — walk or stationary bike","location":"Home / local","duration":"30 min","category":"Cardio","safety":{"status":"confirm","note":"Walking is safe now; stationary bike once cleared."},"detail":"No commute today, so this is a deliberate step-floor session — walking is fine during recovery; swap in the bike once cleared for exercise."},
@@ -123,7 +123,7 @@
         {"label":"Focus shifts","seconds":240,"cue":"Alternate focus between a near object and a far object."},
         {"label":"Blinking exercises","seconds":180,"cue":"Blink rapidly for 10 seconds, then rest eyes closed for 10 seconds — repeat."}
       ]},
-      {"id":"fri-2","time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","category":"Class — TBC","safety":{"status":"confirm"},"detail":"Placeholder — paused during October recovery."}
+      {"id":"fri-2","time":"13:30","title":"Flow to Reserve — Restore Yoga (Technogym Canary Wharf)","location":"Technogym Canary Wharf","duration":"45 min","category":"Yoga","safety":{"status":"confirm","note":"Restorative yoga, likely fine for L5-S1 — still paused during October recovery, confirm with the instructor no deep backbends/forward folds."},"detail":"From the real Friday Technogym timetable — fits the lunch window on an office day. Alternative same slot: Group Cycle 12:00 (likely fine, seated cardio). Full timetable in the Gym Class Timetable booklet, Resources section."}
     ],
     "sat": [
       {"id":"sat-1","time":"Morning","title":"Spinal Yoga — full session (Jindal-informed)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Follow the 'safe' asana list only."},"detail":"See the Spinal Yoga library for the specific asana list, with the ones Jindal itself flagged half-only or crossed-out. Suggested structure: 5 min Cat-Cow + gentle warm-up, 15 min safe-list asanas held 20-30 sec each, 5-10 min Balasana/relaxation.","resource":{"title":"Yoga for Spondylolisthesis | Safe & Gentle Live Practice","url":"https://www.youtube.com/watch?v=sKxYHxDAPAI","note":"General online resource, not personalised — cross-check any new pose against the safe-list before following along."},"guide":[
