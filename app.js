@@ -688,6 +688,120 @@ function tipOfDay(){
   return state.health.tips[doy % state.health.tips.length];
 }
 
+/* ================= "Let's do this now champ" — live schedule ================= */
+var HB_TIME_KEYWORDS = [
+  ['am commute', 8*60],
+  ['pm commute', 17*60+30],
+  ["morning (wfh day)", 7*60+30],
+  ['late morning/afternoon', 11*60+30],
+  ['lunchtime or evening', 12*60+45],
+  ['lunchtime', 12*60+45],
+  ['thursday evening', 18*60+30],
+  ['morning', 7*60+30],
+  ['evening', 19*60]
+];
+var HB_MEAL_TIMES = {
+  'breakfast': [7*60+30],
+  'lunch-weekday': [12*60+30],
+  'dinner': [19*60],
+  'snacks-drinks': [11*60, 16*60+30]
+};
+function hbTimeToMinutes(raw){
+  if(!raw) return null;
+  var s = raw.toLowerCase();
+  for(var i=0;i<HB_TIME_KEYWORDS.length;i++){
+    if(s.indexOf(HB_TIME_KEYWORDS[i][0])!==-1) return HB_TIME_KEYWORDS[i][1];
+  }
+  return null;
+}
+function hbDurationMinutes(raw){
+  if(!raw) return 30;
+  var m = raw.match(/(\d+)/);
+  return m ? Math.max(parseInt(m[1],10), 15) : 30;
+}
+function hbBuildTimeline(dayKey){
+  var items = [];
+  var exList = (state.health && state.health.weeklyExercise && state.health.weeklyExercise[dayKey]) || [];
+  exList.forEach(function(b, idx){
+    var t = (b.time||'').toLowerCase();
+    if(t.indexOf('any time')!==-1) return;
+    if(t.indexOf('am/pm commute')!==-1){
+      items.push({minutes:8*60, endMinutes:8*60+15, title:b.title+' (morning leg)', sub:b.location, kind:'exercise', dayKey:dayKey, idx:idx});
+      items.push({minutes:17*60+30, endMinutes:17*60+45, title:b.title+' (evening leg)', sub:b.location, kind:'exercise', dayKey:dayKey, idx:idx});
+      return;
+    }
+    var mins = hbTimeToMinutes(b.time);
+    if(mins==null) return;
+    var dur = hbDurationMinutes(b.duration);
+    items.push({minutes:mins, endMinutes:mins+dur, title:b.title, sub:(b.location||'')+(b.duration?' · '+b.duration:''), kind:'exercise', dayKey:dayKey, idx:idx});
+  });
+  var db = state.health && state.health.dietBooklet;
+  if(db){
+    var isWeekday = ['mon','tue','wed','thu','fri'].indexOf(dayKey)!==-1;
+    (db.sections||[]).forEach(function(sec){
+      if(sec.id==='avoid') return;
+      if(sec.id==='lunch-weekday' && !isWeekday) return;
+      var starts = HB_MEAL_TIMES[sec.id];
+      if(!starts) return;
+      starts.forEach(function(mins){
+        items.push({minutes:mins, endMinutes:mins+45, title:sec.title, sub:'Tap to see options in the diet booklet', kind:'meal', sectionId:sec.id});
+      });
+    });
+  }
+  items.sort(function(a,b){ return a.minutes-b.minutes; });
+  return items;
+}
+function hbNowNext(){
+  if(!state.health) return null;
+  var now = new Date();
+  var nowMinutes = now.getHours()*60 + now.getMinutes();
+  var dayKey = WEEKDAY_KEYS[now.getDay()];
+  var timeline = hbBuildTimeline(dayKey);
+  var current = null, upcoming = [];
+  for(var i=0;i<timeline.length;i++){
+    var it = timeline[i];
+    if(it.minutes<=nowMinutes && nowMinutes<it.endMinutes && !current){ current = it; continue; }
+    if(it.minutes>nowMinutes){ upcoming.push(it); }
+  }
+  if(upcoming.length < 2){
+    var tomorrowKey = WEEKDAY_KEYS[(now.getDay()+1)%7];
+    var tomorrowTimeline = hbBuildTimeline(tomorrowKey);
+    tomorrowTimeline.forEach(function(it){
+      if(upcoming.length<2){ upcoming.push({minutes:it.minutes, endMinutes:it.endMinutes, title:it.title, sub:it.sub, kind:it.kind, dayKey:it.dayKey, idx:it.idx, sectionId:it.sectionId, tomorrow:true}); }
+    });
+  }
+  return {current:current, next:upcoming.slice(0,2)};
+}
+function hbFmtTime(mins){
+  var h = Math.floor(mins/60)%24, m = mins%60;
+  var ap = h<12 ? 'am' : 'pm';
+  var h12 = h%12; if(h12===0) h12=12;
+  return h12 + (m ? ':'+(m<10?'0':'')+m : '') + ap;
+}
+function hbChampRow(it, label){
+  var dataAttrs = it.kind==='exercise' ? 'data-action="ex-detail" data-day="'+it.dayKey+'" data-idx="'+it.idx+'"' : 'data-action="health-view" data-view="diet"';
+  return '<div class="item-row" '+dataAttrs+' style="cursor:pointer;"><div class="item-body">' +
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">' +
+      '<div><div style="font-size:11px;font-weight:700;color:var(--focus);text-transform:uppercase;letter-spacing:.03em;">'+escapeHtml(label)+(it.tomorrow?' · tomorrow':'')+'</div>' +
+      '<div class="item-title" style="margin-top:2px;">'+escapeHtml(it.title)+'</div></div>' +
+      '<span class="chip time" style="flex:0 0 auto;">'+hbFmtTime(it.minutes)+'</span>' +
+    '</div>' +
+    (it.sub ? '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:4px;">'+escapeHtml(it.sub)+'</div>' : '') +
+  '</div></div>';
+}
+function renderChampCard(){
+  if(!state.health) return '';
+  var nn = hbNowNext();
+  if(!nn || (!nn.current && !nn.next.length)) return '';
+  var html = '<div class="section" style="margin-top:8px;"><div class="focus-card">';
+  html += '<h2>🙌 Let’s do this now champ</h2>';
+  html += '<div class="card" style="margin-top:10px;">';
+  if(nn.current){ html += hbChampRow(nn.current, 'Right now'); }
+  nn.next.forEach(function(it, i){ html += hbChampRow(it, i===0 && !nn.current ? 'Up next' : (i===0 ? 'Then' : 'After that')); });
+  html += '</div></div></div>';
+  return html;
+}
+
 function renderToday(){
   var today = eventsInRange(0,0).filter(function(e){return e.status!=='Cancelled';});
   var crit = criticalToPrep().slice(0,4);
@@ -706,6 +820,7 @@ function renderToday(){
       '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:3px;">Clear-ish skies and low moon over Highgate — worth setting up the Dwarf 3. See Goals for details.</div>' +
     '</div></div>';
   }
+  html += renderChampCard();
   html += renderFocusCard();
   html += renderRoutineCard();
   html += '<div class="section"><div class="section-head"><h2>Today’s agenda</h2><button class="icon-btn" data-action="speak-today" title="Read agenda aloud" aria-label="Read agenda aloud">🔊</button></div>';
@@ -1143,6 +1258,11 @@ function renderHealth(){
       (p.recoveryNote ? '<div class="warn-banner" style="margin-top:10px;">⚠️ '+escapeHtml(p.recoveryNote)+'</div>' : '') +
     '</div>';
   }
+  html += '<a href="https://claude.ai/artifact/FszEC4QE7WL2xjWSmv4wqM" target="_blank" rel="noopener" class="card" style="margin-top:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;color:inherit;">' +
+    '<div><div style="font-weight:700;font-size:14px;">📄 Printable diet &amp; exercise plan</div>' +
+    '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:3px;">2-page A4 sheet — open, then use the page\'s download button for a PDF</div></div>' +
+    '<span style="font-size:18px;color:var(--focus);flex:0 0 auto;">→</span>' +
+  '</a>';
   html += '<div class="filter-pills" style="margin-top:16px;">' +
     '<button class="fpill '+(view==='week'?'active':'')+'" data-action="health-view" data-view="week">This week</button>' +
     '<button class="fpill '+(view==='library'?'active':'')+'" data-action="health-view" data-view="library">Exercise library</button>' +
