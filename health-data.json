@@ -1,76 +1,202 @@
 {
-  "generatedAt": "2026-09-28T00:00:00.000Z",
+  "generatedAt": "2026-09-28T16:00:00.000Z",
   "profile": {
     "currentWeightKg": 100,
     "targetWeightKgRange": "75-80",
     "statedGoal": "Lose 20kg in 3 months (by mid-December)",
     "paceGuidance": "Medically sustainable pace is ~0.5-1kg/week (~6-12kg over 3 months). Agreed approach: prioritise a deficit that doesn't rebound over hitting 20kg by a fixed date — decisive, visible progress by mid-December without the yo-yo pattern from past attempts.",
-    "recoveryNote": "Post kidney-stone surgery (uteroscopy + stent) — gentle walking + hydration only through October 2026. No gym/trainer/heavy exercise until doctor clearance at the mid-November follow-up with Dr Anupama."
+    "recoveryNote": "Post kidney-stone surgery (uteroscopy + stent) — gentle walking + hydration only through October 2026. No gym/trainer/heavy exercise until doctor clearance at the mid-November follow-up with Dr Anupama.",
+    "stepsGoalDaily": 15000,
+    "commute": {
+      "outbound": "Archway → Canary Wharf (tube)",
+      "return": "Canary Wharf → Highgate station (tube), then walk home",
+      "note": "The two legs aren't symmetric — the Highgate-station walk home is a different distance/route to the Archway-station walk to the office, so the two directions won't naturally contribute equal steps. Built into the daily step plan below."
+    }
+  },
+  "stepsPlan": {
+    "target": 15000,
+    "howItAddsUp": [
+      {"segment":"Home → Archway station (AM)", "approxSteps":"~1,800-2,200", "note":"Walk or short bus — walking it fully counts toward the target."},
+      {"segment":"Tube transfers + platform walking (both legs)", "approxSteps":"~1,000-1,500", "note":"Canary Wharf and Archway/Highgate are deep stations with long passageways — this adds up without extra effort."},
+      {"segment":"Highgate station → home (PM)", "approxSteps":"~1,500-2,500", "note":"Confirm your usual route distance — if it's short, this is the easiest place to add a deliberate 10-15 min loop before heading indoors."},
+      {"segment":"Office movement (Canary Wharf)", "approxSteps":"~1,500-2,500", "note":"Walking to meetings, lunch, coffee — take the stairs where the station/office allows instead of the lift/escalator."},
+      {"segment":"Deliberate walk blocks (planner)", "approxSteps":"~3,000-5,000", "note":"The 15-20 min AM/PM walk blocks and the weekend longer walk in the weekly exercise plan below."}
+    ],
+    "tips": [
+      "Commute days (Mon/Tue/Wed/Fri) naturally give you a big chunk of the 15k just from Archway↔Canary Wharf↔Highgate — the gap to close is usually the PM Highgate-to-home leg and lunchtime movement.",
+      "On your WFH day (Thursday) there's no commute step floor, so that's the day most likely to fall short — schedule the 30-min walk/bike block in the morning deliberately rather than leaving it to chance.",
+      "Getting off one stop early on the Canary Wharf leg (either direction) is an easy, low-commitment way to add 1,500-2,000 steps without adding a dedicated session.",
+      "A short 10-15 min loop after getting off at Highgate station (before going straight home) is the single easiest lever if you're short for the day — flat, no extra planning, no kit needed."
+    ]
   },
   "gapsToConfirm": [
-    "The exact PureGym Finchley and Technogym Canary Wharf weekly class timetables (names/times/durations) haven't been captured in a form I can read back verbatim — the slots below are placeholders ('confirm exact class') until you paste the real schedule into a chat with me so I can slot in specific class names and flag each one for L5-S1 safety.",
-    "Technogym Monday 17:30 'Aim at the Stars' yoga — you flagged this as possibly unsafe for L5-S1. Do not attend until physio at Highgate confirms it's safe; treated as excluded by default below.",
+    "IMPORTANT — the PureGym Finchley / Technogym Canary Wharf weekly class timetables: a separate voice conversation referenced having captured these, but voice and text sessions don't share memory or files, so this build still does not have the actual class names/times. Please paste the real weekly timetable (both gyms, Monday-Sunday, class name + time + duration) into a message here and I'll slot exact classes into the planner below with an L5-S1 safety check on each one — right now the exercise library gives class-type guidance (which kinds of class are safe) rather than your specific timetable.",
+      "Technogym Monday 17:30 'Aim at the Stars' yoga — you flagged this as possibly unsafe for L5-S1. Treated as excluded/pending physio clearance until confirmed.",
     "Highgate Hospital Thursday physio — exact time not yet confirmed; placeholder is 'Thursday evening'."
   ],
   "weeklyExercise": {
     "mon": [
-      {"time":"Morning","title":"Walk to/from Archway (part of commute)","location":"Home ↔ Archway","duration":"15 min","type":"Cardio — low impact","note":"Counts toward daily step target; safe throughout recovery."},
-      {"time":"Lunchtime","title":"Gym floor — core stability + light dumbbell wrist work","location":"Technogym Canary Wharf (gym floor, not a class)","duration":"25-30 min","sets":"3","reps":"10-12 (bird-dog, dead bug, glute bridge, wrist curls)","note":"Spondylolisthesis-safe: no loaded forward flexion, no heavy twisting. Only once doctor has cleared post-op exercise.","flag":"Not yet — paused during October recovery. Resume once cleared by Dr Anupama (target: mid-Nov)."},
-      {"time":"Evening","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","note":"Jindal routine; good wind-down before sleep."}
+      {"id":"mon-1","time":"AM commute","title":"Walk — Home → Archway station","location":"Home ↔ Archway","duration":"15 min","category":"Walking","safety":{"status":"safe","note":"Safe throughout recovery."},"detail":"Counts toward the 15k step target. Brisk pace once cleared for exercise; easy pace during October recovery."},
+      {"id":"mon-2","time":"Lunchtime","title":"Gym floor — core stability + light dumbbell wrist work","location":"Technogym Canary Wharf (gym floor)","duration":"25-30 min","category":"Strength","sets":"3","reps":"10-12","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared by Dr Anupama (target: mid-Nov)."},"detail":"Bird-dog, dead bug, glute bridge, wrist curls with light dumbbells. Spondylolisthesis-safe: no loaded forward flexion, no heavy twisting, no crunches/sit-ups."},
+      {"id":"mon-3","time":"PM commute","title":"Walk — Highgate station → home","location":"Highgate ↔ Home","duration":"15-20 min","category":"Walking","safety":{"status":"safe","note":"Safe throughout recovery."},"detail":"Your main lever for closing the daily step gap — if you're short for the day, extend this into a 10-15 min loop before heading in."},
+      {"time":"Evening","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"},"detail":"Jindal routine; good wind-down before sleep."}
     ],
     "tue": [
-      {"time":"Morning","title":"Walk to/from Archway (part of commute)","location":"Home ↔ Archway","duration":"15 min","type":"Cardio — low impact"},
-      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","note":"Jindal routine, twice weekly (Tue + Fri)."},
-      {"time":"Evening","title":"Gentle spinal-safe stretch","location":"Home","duration":"10 min","note":"Use the Jindal spinal stretch video — avoid deep forward bends."}
+      {"id":"tue-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"},"detail":"Both commute legs walked in full."},
+      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Jindal routine, twice weekly (Tue + Fri) — palming, focus shifts, blinking exercises."},
+      {"time":"Evening","title":"Spinal-safe stretch (see Spinal Yoga library)","location":"Home","duration":"10 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Use only the 'safe' asana list — see Exercise library tab."},"detail":"Cat-Cow, gentle Sphinx, supported Bridge, Child's pose. Avoid deep forward folds and full backbends."}
     ],
     "wed": [
-      {"time":"Morning","title":"Walk to/from Archway (part of commute)","location":"Home ↔ Archway","duration":"15 min"},
-      {"time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","note":"Once your real weekly timetable is pasted in, this slot gets the actual class name/time and an L5-S1 safety check.","flag":"Placeholder — paused during October recovery."}
+      {"id":"wed-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"}},
+      {"id":"wed-2","time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","category":"Class — TBC","safety":{"status":"confirm","note":"Placeholder until real timetable is shared — paused during October recovery regardless."},"detail":"Once you share the real weekly timetable, this becomes a specific class name/time with an L5-S1 check. Good candidates once your schedule is in: a low-impact/beginner spin class (see Dance & Spin library) or a gentle mobility class."}
     ],
     "thu": [
-      {"time":"Morning (WFH day)","title":"Low-impact cardio — walk or stationary bike","location":"Home / local","duration":"30 min","note":"WFH day frees up the morning commute time — good slot for the longer session."},
-      {"time":"Morning","title":"Core stability circuit","location":"Home","duration":"20 min","sets":"3","reps":"10-12 (bird-dog, dead bug, glute bridge, modified plank)","note":"Spondylolisthesis-safe core work.","flag":"Paused during October recovery — resume once cleared."},
-      {"time":"Thursday evening","title":"Physio — Highgate Hospital","location":"Highgate Hospital","duration":"~45-60 min (confirm)","note":"New weekly slot. Also the right session to ask the physio directly about the Technogym Monday 17:30 'Aim at the Stars' yoga class and the 5K running return."}
+      {"id":"thu-1","time":"Morning (WFH day)","title":"Low-impact cardio — walk or stationary bike","location":"Home / local","duration":"30 min","category":"Cardio","safety":{"status":"confirm","note":"Walking is safe now; stationary bike once cleared."},"detail":"No commute today, so this is a deliberate step-floor session — walking is fine during recovery; swap in the bike once cleared for exercise."},
+      {"id":"thu-2","time":"Morning","title":"Core stability circuit","location":"Home","duration":"20 min","category":"Strength","sets":"3","reps":"10-12","safety":{"status":"confirm","note":"Paused during October recovery — resume once cleared."},"detail":"Bird-dog, dead bug, glute bridge, modified plank."},
+      {"id":"thu-3","time":"Thursday evening","title":"Physio — Highgate Hospital","location":"Highgate Hospital","duration":"~45-60 min (confirm)","category":"Physio","safety":{"status":"safe"},"detail":"New weekly slot. Ask directly about: the Technogym Monday 17:30 yoga class, Zumba/dance and spinning safety for L5-S1, and the walk/run-to-5K return timeline."}
     ],
     "fri": [
-      {"time":"Morning","title":"Walk to/from Archway (part of commute)","location":"Home ↔ Archway","duration":"15 min"},
-      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","note":"Second weekly session (Tue + Fri)."},
-      {"time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","flag":"Placeholder — paused during October recovery."}
+      {"id":"fri-1","time":"AM/PM commute","title":"Walk — Archway ↔ Canary Wharf legs","location":"Archway ↔ Canary Wharf ↔ Highgate","duration":"~30 min total","category":"Walking","safety":{"status":"safe"}},
+      {"time":"Lunchtime or evening","title":"Eye yoga","location":"Home or office","duration":"10 min","category":"Eye care","safety":{"status":"safe"},"detail":"Second weekly session (Tue + Fri)."},
+      {"id":"fri-2","time":"Lunchtime","title":"Gym class — confirm exact class","location":"PureGym Finchley or Technogym Canary Wharf","duration":"TBC","category":"Class — TBC","safety":{"status":"confirm"},"detail":"Placeholder — paused during October recovery."}
     ],
     "sat": [
-      {"time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min","note":"Part of the 5x/week general-yoga + spinal target; Saturday session."},
-      {"time":"Late morning/afternoon","title":"Walk — longer weekend walk","location":"Local / Highgate Wood","duration":"30-40 min","note":"Once cleared, this is also the natural slot to test reintroducing light jogging intervals ahead of any 5K prep restart — physio sign-off first."},
-      {"time":"Any time","title":"Jal neti","location":"Home","duration":"5 min","note":"Twice weekly — Sat + one weekday. Use lukewarm saline, never plain tap water."}
+      {"id":"sat-1","time":"Morning","title":"Spinal Yoga — full session (Jindal-informed)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe","note":"Follow the 'safe' asana list only."},"detail":"See the Spinal Yoga library for the specific asana list, with the ones Jindal itself flagged half-only or crossed-out."},
+      {"id":"sat-2","time":"Late morning/afternoon","title":"Longer weekend walk","location":"Local / Highgate Wood","duration":"30-40 min","category":"Walking","safety":{"status":"safe"},"detail":"Once cleared, this is also the natural slot to test light jogging intervals ahead of any 5K prep restart — see Walk/Run library. Physio sign-off first."},
+      {"time":"Any time","title":"Jal neti","location":"Home","duration":"5 min","category":"Other","safety":{"status":"safe"},"detail":"Twice weekly — Sat + one weekday. Lukewarm saline, never plain tap water."}
     ],
     "sun": [
-      {"time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min"},
-      {"time":"Any time","title":"Light walk","location":"Local","duration":"20-30 min","note":"Rest-oriented day — keep it easy."},
-      {"time":"Any time","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min"}
+      {"id":"sun-1","time":"Morning","title":"General yoga + spinal full class (Jindal)","location":"Home","duration":"25-30 min","category":"Spinal Yoga","safety":{"status":"safe"}},
+      {"id":"sun-2","time":"Any time","title":"Light walk","location":"Local","duration":"20-30 min","category":"Walking","safety":{"status":"safe"},"detail":"Rest-oriented day — keep it easy. Top up steps if you're behind for the week."},
+      {"time":"Any time","title":"Breathing practice — Anulom Vilom + Bhramari + Ujjayi","location":"Home","duration":"10 min","category":"Breathing","safety":{"status":"safe"}}
     ]
   },
-  "diet": {
-    "principles": [
-      "BAUS is the primary authority for stone safety (calcium oxalate) — Jindal and Luke's diet are cross-checked against it, not the other way round.",
-      "Don't restrict calcium — pair calcium-rich food (paneer, curd, milk) with oxalate-containing food in the same meal; it binds oxalate in the gut.",
-      "Fluid target 2.5-3L/day, spread evenly, extra glass with every meal.",
-      "Sustainable deficit: ~500-750 kcal/day below maintenance (~2300-2900 kcal/day at 100kg) — not the ~1,230 kcal/day 'Luke's diet' level, which is too aggressive.",
-      "Weekday lunch is realistically salad/soup only (office) — dinner and weekends have more flexibility for cooked dishes."
-    ],
-    "favouritesKeepInRotation": ["Rajma", "Kala chana", "Bhindi (okra)", "Potatoes (moderate)", "Paneer", "Karela", "Dal makhani", "Kali dal", "Sourdough bread", "Rice", "Quinoa", "Rotis", "Homemade parathas", "Curd", "Milk", "Soya milk", "Apple, banana, berries, oranges and most fruit"],
-    "fineInModeration": ["Tofu", "Cauliflower", "Yellow dal", "Khichdi", "Ghee (small amounts)", "Saag paneer — pair the spinach with the paneer's calcium in the same dish, keep portion moderate", "Avocado toast (occasional, not daily)", "Dark chocolate (small square, occasional — not the daily norm)"],
-    "avoidOrMinimise": ["Ghiya (bottle gourd) — user dislikes anyway", "Spinach in large/frequent portions", "Beetroot, rhubarb", "Almonds, cashews, almond milk (high oxalate)", "Wheat bran, strong tea/coffee in excess", "Added salt", "Lay's kettle chips and shop-bought parathas/chips as a regular night habit — fine as an occasional treat, not the default", "M&S dark chocolate protein cereal / cocoa-based cereals as an everyday breakfast — occasional is fine"],
-    "weekdayTemplate": {
-      "breakfast": "Aldi muesli with milk or curd, or a piece of fruit + curd, or a homemade paratha with curd.",
-      "lunch": "Big mixed salad (lettuce/cucumber/pepper base, not spinach-heavy) with paneer, tofu or kala chana + olive oil-lemon dressing, or a vegetable soup with a slice of sourdough — realistic for office.",
-      "dinner": "Rajma, kala chana, bhindi, dal makhani or kali dal with rice or roti, moderate portion, with curd on the side.",
-      "snacks": "Fruit, curd, a small handful of roasted chana most days; kettle chips or dark chocolate as an occasional treat, not daily."
+  "exerciseLibrary": {
+    "spinalYoga": {
+      "title": "Spinal Yoga — Jindal-informed asana list",
+      "intro": "Cross-checked against Grade 1 L5-S1 spondylolisthesis: avoid deep forward spinal flexion, heavy loaded twisting and full backbends; favour core stabilisation and gentle, supported movement. Jindal's own spinal-disorder sheet already marked some poses as crossed-out or half-only — those calls are kept here rather than overridden.",
+      "safeAsanas": [
+        {"name":"Tadasana (Mountain pose)", "note":"Posture-reset, fully safe."},
+        {"name":"Marjariasana-Bitilasana (Cat-Cow)", "note":"Gentle spinal mobility, well tolerated with spondylolisthesis."},
+        {"name":"Setu Bandhasana, supported/gentle (Bridge)", "note":"Strengthens glutes/posterior chain without loaded flexion — keep it a gentle lift, not a deep backbend."},
+        {"name":"Balasana (Child's pose)", "note":"Passive, supported — comfortable rest pose."},
+        {"name":"Bhujangasana, mini/Sphinx variant only", "note":"Small, gentle extension only — not the full deep cobra."},
+        {"name":"Pawanmuktasana, gentle single-leg", "note":"One knee to chest at a time, gently — avoid pulling both knees in hard."},
+        {"name":"Vrikshasana (Tree pose)", "note":"Balance and core, spine-neutral."}
+      ],
+      "halfOrModifiedOnly": [
+        {"name":"Ustrasana (Camel pose)", "note":"Jindal's own sheet marks this half-only — shallow backbend, hands on hips or lower back, not full reach to heels."},
+        {"name":"Shalabhasana (Locust pose)", "note":"Jindal's own sheet marks this half-only — lift one leg at a time gently, not both legs with full chest lift."}
+      ],
+      "avoidAsanas": [
+        {"name":"Surya Namaskar (full sequence)", "note":"Crossed out on Jindal's own sheet — the forward-fold/lunge/backbend sequence loads the lumbar spine repeatedly."},
+        {"name":"Naukasana (Boat pose)", "note":"Crossed out on Jindal's own sheet — strong abdominal/hip-flexor loading compresses the lower spine."},
+        {"name":"Halasana (Plough pose)", "note":"Deep spinal flexion under load — avoid."},
+        {"name":"Sarvangasana (Shoulder stand)", "note":"Inverted spinal load — avoid without specific clearance."},
+        {"name":"Paschimottanasana (deep seated forward fold)", "note":"Deep forward flexion — avoid the full pose; a gentle hamstring stretch with a soft spine is fine instead."},
+        {"name":"Chakrasana / full Dhanurasana (Wheel / full Bow)", "note":"Full backbends — avoid without physio clearance."}
+      ],
+      "note": "Ask the Highgate physio to confirm this list directly — it's built from Jindal's own annotations plus general spondylolisthesis guidance, not a personalised physio assessment."
     },
-    "weekendTemplate": {
-      "breakfast": "Dosa/idli + sambar (home-made), or paneer bhurji with sourdough.",
-      "lunch": "Khichdi, or a quinoa bowl with vegetables and paneer/tofu.",
-      "dinner": "Saag paneer (moderate spinach portion, paired with paneer) or rajma/kala chana, roti or rice, curd.",
-      "snacks": "Fruit, curd, occasional treat (dark chocolate square, kettle chips) if wanted."
+    "danceAndSpin": {
+      "zumba": {
+        "verdict": "Caution — go low-impact",
+        "detail": "Standard Zumba involves jumping, rapid direction changes and twisting under momentum — exactly the loaded-twist / high-impact combination generally cautioned against with a bilateral pars defect. A low-impact format (often branded 'Zumba Gold' or a studio's 'low-impact' class) keeps the cardio and the fun without the jumping/twisting load. Ask the Highgate physio to confirm before doing a full-intensity class; start with low-impact only."
+      },
+      "spinning": {
+        "verdict": "Generally good, with setup caveats",
+        "detail": "Stationary cycling is low-impact and commonly recommended for spondylolisthesis, but posture matters: get the saddle height/position set so you're not hunched forward, keep the core gently braced, and avoid heavy-resistance standing climbs (they load the lumbar spine through the hips). A seated, moderate-resistance spin class is a solid cardio option once cleared for exercise."
+      }
+    },
+    "walkRun": {
+      "title": "Walking → running progression",
+      "phases": [
+        {"name":"Phase 1 — Recovery (now, through October)", "detail":"Gentle daily walking only, built into the commute + deliberate walk blocks above. No running. Focus: hydration + consistency, not pace or distance."},
+        {"name":"Phase 2 — Post-clearance build-up (from doctor + physio sign-off, ~mid-Nov)", "detail":"Brisk walking, building duration before intensity — e.g. extend the weekend walk toward 45-60 min before introducing any jogging."},
+        {"name":"Phase 3 — Walk-run intervals (physio-gated)", "detail":"Short jogging intervals inside a walk (e.g. 1 min jog / 2 min walk, building gradually) only once the physio has specifically assessed the back for impact tolerance — ask this at the Highgate session."},
+        {"name":"Phase 4 — 5K prep restart (physio-gated)", "detail":"Resume the earlier-2026 5K training programme only after Phase 3 is tolerated without back symptoms. Bring the old programme to the physio session to sanity-check the jump in weekly mileage."}
+      ],
+      "note": "Every phase transition is physio/doctor-gated, not date-gated — move to the next phase when cleared, not on a calendar."
+    },
+    "trainerFocus": {
+      "title": "What to focus on once trainer sessions resume",
+      "areas": [
+        {"title":"Core stability, not core flexion", "detail":"Bird-dog, dead bug, Pallof press, planks (modified as needed) — brace-and-hold work rather than crunches/sit-ups, which load the spine in the direction spondylolisthesis is most vulnerable to."},
+        {"title":"Posterior chain / glute strengthening", "detail":"Glute bridges, hip thrusts, clamshells — weak glutes are commonly implicated in spondylolisthesis-related back strain, so this is a high-value focus area."},
+        {"title":"Avoid axial spinal loading", "detail":"Skip loaded back squats/deadlifts with spinal flexion initially — prefer goblet squats, leg press, supported rows, chest press. Reintroduce heavier axial loading only with physio sign-off."},
+        {"title":"Wrist/grip strength", "detail":"Continues the thera clay + light dumbbell work already underway — progressive, little and often."},
+        {"title":"General conditioning for weight loss", "detail":"Moderate-intensity circuits/intervals (bike, rower, walking incline) rather than high-impact plyometrics — supports the 500-750 kcal/day deficit without adding injury risk."},
+        {"title":"Posture", "detail":"Given the L5-S1 pars defect and long desk/commute hours, posture cueing (neutral pelvis, avoiding prolonged flexion) is worth a standing agenda item in every session."}
+      ]
     }
+  },
+  "dietBooklet": {
+    "intro": "A browsable set of options — not a rigid single menu — weaving together BAUS (primary authority for stone safety), Jindal Naturecure, and the food logic from 'Luke's diet', filtered to what you actually like and what's realistic for a weekday office lunch. Tap/click any item for the reasoning.",
+    "sections": [
+      {
+        "id": "breakfast",
+        "title": "Breakfast options",
+        "items": [
+          {"name":"Aldi muesli with milk or curd", "tags":["Weekday","Favourite"], "detail":"Your regular — fine as an everyday choice. Curd instead of milk adds a calcium hit that pairs well with the day's oxalate intake (BAUS)."},
+          {"name":"Fruit + curd", "tags":["Weekday","Weekend","BAUS"], "detail":"Quick, hits BAUS's 'well-balanced, not too many calories' principle, and the curd covers the calcium-pairing point."},
+          {"name":"Homemade paratha + curd", "tags":["Weekday","Weekend","Favourite"], "detail":"Homemade (not shop-bought/frozen) keeps salt and processed fat down versus the 'sneaky' pre-made versions you flagged. Curd alongside is the calcium pairing."},
+          {"name":"Dosa/idli + sambar (wife's home-made)", "tags":["Weekend","Jindal","Favourite"], "detail":"Fermented batter is gentle on digestion (Jindal principle); sambar's lentils add protein and fibre, which helps blunt the post-meal glucose rise given the prediabetic HbA1c."},
+          {"name":"Ragi Dosa / Idli", "tags":["Jindal recipe"], "detail":"From the Jindal recipe batch — fits the stone/liver/sugar checks (section C3 of your tracker) and is a reasonable rotation option alongside the usual dosa."},
+          {"name":"Oats Porridge", "tags":["Jindal recipe","Luke's diet"], "detail":"Appears in both the Jindal material and Luke's diet — fibre-forward, helps the fatty-liver and glucose picture."},
+          {"name":"Occasional: M&S dark-chocolate protein cereal", "tags":["Occasional treat"], "detail":"Fine occasionally, not as the daily default — cocoa is a moderate-oxalate item and it's higher in sugar than the everyday options above."}
+        ]
+      },
+      {
+        "id": "lunch-weekday",
+        "title": "Weekday lunch (office-realistic — salad/soup)",
+        "items": [
+          {"name":"Big mixed salad + paneer", "tags":["Weekday","Favourite","BAUS-safe"], "detail":"Lettuce/cucumber/pepper base (not spinach-heavy), paneer for protein + calcium, olive oil-lemon dressing — the lemon also supports BAUS's citrate/less-acidic-urine advice."},
+          {"name":"Big mixed salad + kala chana or tofu", "tags":["Weekday","Favourite"], "detail":"Same base, swap protein for variety across the week."},
+          {"name":"Vegetable soup + sourdough slice", "tags":["Weekday","Favourite"], "detail":"Good option on a cold or lower-appetite day — sourdough is on your favourites list and easier to digest than some other breads."},
+          {"name":"Quinoa salad bowl", "tags":["Weekday","Weekend"], "detail":"Higher protein/fibre than a plain salad, still realistic to buy or bring in."}
+        ]
+      },
+      {
+        "id": "dinner",
+        "title": "Dinner options",
+        "items": [
+          {"name":"Rajma + rice/roti + curd", "tags":["Favourite","BAUS-safe"], "detail":"Kidney beans are a moderate-oxalate item, fine in a normal portion, especially paired with the curd's calcium."},
+          {"name":"Kala chana + roti + curd", "tags":["Favourite"], "detail":"Same logic as rajma — favourite, moderate oxalate, calcium-paired."},
+          {"name":"Dal makhani + rice, moderate portion + curd", "tags":["Favourite"], "detail":"You like this a lot — keep portion moderate given the butter/cream content, for the fatty-liver and weight goals rather than the stone risk."},
+          {"name":"Kali dal + roti + curd", "tags":["Favourite"], "detail":"Same as dal makhani — moderate portion for the liver/weight goals."},
+          {"name":"Bhindi (okra) sabzi + roti", "tags":["Favourite"], "detail":"Okra is a moderate-oxalate item per BAUS — fine in sensible portions, no need to exclude."},
+          {"name":"Karela sabzi + roti", "tags":["Favourite"], "detail":"You like it, and it's not flagged on any oxalate list — freely fine."},
+          {"name":"Saag paneer, moderate spinach portion", "tags":["Favourite","Moderate — watch portion"], "detail":"Spinach is on BAUS's avoid list, but pairing it with paneer's calcium in the same dish binds much of the oxalate before it reaches the kidneys — the trade-off is keeping this occasional and the spinach portion moderate, not the everyday spinach-heavy version."},
+          {"name":"Khichdi", "tags":["Weekend","Easy"], "detail":"Gentle, easy-digestion option from both Jindal and Luke's diet — good for a lighter evening."},
+          {"name":"Channa Dal Cabbage Curry", "tags":["Jindal recipe"], "detail":"Fits the stone/liver/sugar fit-check in your tracker (section C3)."},
+          {"name":"Beans and Corn Subzi / Makai Capsicum White Sauce / Mushroom with Dhania", "tags":["Jindal recipe"], "detail":"All checked fine against BAUS — good rotation options for variety."}
+        ]
+      },
+      {
+        "id": "snacks-drinks",
+        "title": "Snacks & drinks",
+        "items": [
+          {"name":"Fruit (apple, banana, berries, oranges)", "tags":["Favourite","BAUS-safe","Everyday"], "detail":"Whole fruit is the preferred vitamin-C source over supplements (BAUS caution on high-dose vitamin C supplements)."},
+          {"name":"Curd / buttermilk", "tags":["Everyday"], "detail":"Calcium top-up throughout the day, not just at meals."},
+          {"name":"Roasted chana", "tags":["Everyday swap"], "detail":"A savoury-crunch swap for the chip habit that still fits the diet."},
+          {"name":"Coconut water, lemon water, barley water", "tags":["BAUS-safe","Jindal"], "detail":"All on the 'fine to use now' drinks list — support hydration target and citrate."},
+          {"name":"Occasional: Lay's kettle chips (salted)", "tags":["Occasional treat"], "detail":"Fine as an occasional treat, not the nightly default — salt content works against both the stone-prevention salt target and the cholesterol/HDL ratio."},
+          {"name":"Occasional: dark chocolate square", "tags":["Occasional treat"], "detail":"Cocoa is moderate-oxalate and adds sugar — a square now and then is fine, daily isn't the target."},
+          {"name":"Occasional: avocado toast (Farmer J)", "tags":["Occasional treat"], "detail":"Nutritionally fine in itself — keep it occasional mainly for the overall calorie/weight-loss budget."}
+        ]
+      },
+      {
+        "id": "avoid",
+        "title": "Keep off the regular rotation",
+        "items": [
+          {"name":"Ghiya / bottle gourd", "tags":["Disliked anyway"], "detail":"You dislike it regardless — no loss. Also note the tracker's safety flag: if any ghiya juice tastes bitter, don't drink it — can cause serious illness."},
+          {"name":"Almond milk / almonds / cashews", "tags":["Avoid — oxalate"], "detail":"High-oxalate nuts — you're not a fan of almond milk anyway, so this is an easy one to actually stick to."},
+          {"name":"Beetroot, rhubarb, celery", "tags":["Avoid — oxalate"], "detail":"BAUS avoid list — you're also not a big beetroot fan, so little is lost."},
+          {"name":"Wheat bran", "tags":["Avoid — oxalate"], "detail":"High-oxalate despite being high-fibre — BAUS specifically calls this out."},
+          {"name":"Shop-bought/frozen parathas & chips as a nightly habit", "tags":["Reduce frequency"], "detail":"The 'sneaky' night snacks you flagged yourself — swap for homemade versions or fruit/curd most nights, keep as an occasional exception."}
+        ]
+      }
+    ]
   },
   "tips": [
     "BAUS guidance: aim for 2.5-3L fluid daily, spread evenly, with an extra glass alongside each meal — dilute urine reduces stone-forming crystals.",
@@ -86,6 +212,9 @@
     "Vitamin C caution (BAUS): keep supplemental vitamin C modest — high-dose supplements convert to oxalate. Get vitamin C from whole fruit instead (oranges, berries), where the effect is different.",
     "Eye yoga day: palming, focus shifts and blinking exercises help offset a screen-heavy day.",
     "Wrist strength: light dumbbells + the level-4 thera clay squeeze build grip gradually — little and often beats one heavy session.",
-    "Jal neti (twice weekly): use lukewarm saline, never plain tap water, and finish with gentle nose-blowing to clear residual solution."
+    "Jal neti (twice weekly): use lukewarm saline, never plain tap water, and finish with gentle nose-blowing to clear residual solution.",
+    "15k steps: your Archway-Canary Wharf-Highgate commute already covers a big chunk — the PM Highgate-to-home leg and lunchtime movement are usually where the gap closes or doesn't.",
+    "Spinning is generally a good low-impact cardio option for L5-S1 once cleared — just watch saddle position and skip heavy-resistance standing climbs.",
+    "Zumba: go for a low-impact/'Gold'-style class rather than full-intensity — the jumping and twisting in standard Zumba is the exact combination to be cautious about with a pars defect."
   ]
 }

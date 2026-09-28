@@ -972,8 +972,16 @@ function renderActivity(){
   document.getElementById('mainContent').innerHTML = html;
 }
 
-function exerciseBlockRow(b){
-  return '<div class="item-row"><div class="item-body">' +
+function safetyBadge(safety){
+  if(!safety || !safety.status) return '';
+  var map = {safe:['✓ Safe','pri-medium'], caution:['⚠ Caution','pri-high'], confirm:['⏸ Confirm first','pri-critical']};
+  var m = map[safety.status] || ['',''];
+  return m[0] ? '<span class="chip '+m[1]+'">'+m[0]+'</span>' : '';
+}
+
+function exerciseBlockRow(b, dayKey, idx){
+  var hasDetail = !!(b.detail || (b.safety && b.safety.note));
+  return '<div class="item-row" '+(hasDetail?'data-action="ex-detail" data-day="'+dayKey+'" data-idx="'+idx+'" style="cursor:pointer;"':'')+'><div class="item-body">' +
     '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">' +
       '<div class="item-title">'+escapeHtml(b.title)+'</div>' +
       (b.time ? '<span class="chip time" style="flex:0 0 auto;">'+escapeHtml(b.time)+'</span>' : '') +
@@ -982,10 +990,18 @@ function exerciseBlockRow(b){
       (b.location ? '<span class="chip">📍 '+escapeHtml(b.location)+'</span>' : '') +
       (b.duration ? '<span class="chip">⏱ '+escapeHtml(b.duration)+'</span>' : '') +
       (b.sets ? '<span class="chip">'+escapeHtml(b.sets)+' × '+escapeHtml(b.reps||'')+'</span>' : '') +
+      (b.category ? '<span class="chip">'+escapeHtml(b.category)+'</span>' : '') +
+      safetyBadge(b.safety) +
     '</div>' +
-    (b.note ? '<div style="margin-top:6px;font-size:12.5px;color:var(--ink-dim);">'+escapeHtml(b.note)+'</div>' : '') +
-    (b.flag ? '<div class="warn-banner" style="margin-top:8px;">⚠️ '+escapeHtml(b.flag)+'</div>' : '') +
+    (hasDetail ? '<div style="margin-top:6px;font-size:12px;color:var(--focus);font-weight:600;">Tap for details →</div>' : '') +
   '</div></div>';
+}
+
+function openDetailModal(title, bodyHtml){
+  modalBody.innerHTML = '<h3>'+escapeHtml(title)+'</h3><div style="font-size:14px;line-height:1.55;">'+bodyHtml+'</div>' +
+    '<div class="modal-actions"><button class="btn-primary" id="detailClose">Close</button></div>';
+  modalBackdrop.hidden = false;
+  document.getElementById('detailClose').onclick = closeModal;
 }
 
 function renderHealthWeek(){
@@ -999,47 +1015,109 @@ function renderHealthWeek(){
   if(!blocks.length){
     html += '<div class="empty">No exercise blocks for this day yet.</div>';
   } else {
-    html += '<div class="card">' + blocks.map(exerciseBlockRow).join('') + '</div>';
+    html += '<div class="card">' + blocks.map(function(b,i){ return exerciseBlockRow(b, sel, i); }).join('') + '</div>';
   }
   return html;
 }
 
-function dietMealCard(title, meals){
-  if(!meals) return '';
-  var order = [['breakfast','Breakfast'],['lunch','Lunch'],['dinner','Dinner'],['snacks','Snacks']];
-  return '<div class="section-head" style="margin-top:16px;"><h2 style="font-size:15px;">'+escapeHtml(title)+'</h2></div>' +
-    '<div class="card">' + order.filter(function(o){return meals[o[0]];}).map(function(o){
-      return '<div class="item-row"><div class="item-body">' +
-        '<div class="item-title" style="font-size:13px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">'+o[1]+'</div>' +
-        '<div style="font-size:14px;margin-top:4px;line-height:1.4;">'+escapeHtml(meals[o[0]])+'</div>' +
-      '</div></div>';
+function renderStepsCard(){
+  var sp = state.health && state.health.stepsPlan;
+  var profile = state.health && state.health.profile;
+  if(!sp) return '';
+  var html = '<div class="section-head" style="margin-top:20px;"><h2 style="font-size:15px;">👟 15,000 steps/day</h2></div>';
+  html += '<div class="card" style="padding:14px 16px;">';
+  if(profile && profile.commute){
+    html += '<div style="font-size:12.5px;color:var(--ink-dim);margin-bottom:10px;">'+escapeHtml(profile.commute.outbound)+' · '+escapeHtml(profile.commute.return)+'</div>';
+  }
+  html += '<div style="display:flex;flex-direction:column;gap:8px;">' + (sp.howItAddsUp||[]).map(function(s){
+    return '<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline;">' +
+      '<div style="font-size:13.5px;flex:1;">'+escapeHtml(s.segment)+'</div>' +
+      '<div class="mono" style="font-size:12px;color:var(--ink-dim);flex:0 0 auto;">'+escapeHtml(s.approxSteps)+'</div>' +
+    '</div>';
+  }).join('') + '</div>';
+  html += '</div>';
+  html += '<div class="card" style="margin-top:8px;">' + (sp.tips||[]).map(function(t){
+    return '<div class="item-row"><div class="item-body"><div style="font-size:13px;line-height:1.4;">'+escapeHtml(t)+'</div></div></div>';
+  }).join('') + '</div>';
+  return html;
+}
+
+function asanaList(title, items, cls){
+  if(!items || !items.length) return '';
+  return '<div style="margin-top:10px;"><div style="font-size:12.5px;font-weight:700;" class="'+(cls||'')+'">'+escapeHtml(title)+'</div>' +
+    '<ul style="margin:6px 0 0;padding-left:18px;font-size:13.5px;line-height:1.5;">' +
+      items.map(function(a){ return '<li style="margin-bottom:5px;"><b>'+escapeHtml(a.name)+'</b>'+(a.note?' — <span style="color:var(--ink-dim);">'+escapeHtml(a.note)+'</span>':'')+'</li>'; }).join('') +
+    '</ul></div>';
+}
+
+function renderHealthLibrary(){
+  var lib = state.health && state.health.exerciseLibrary;
+  if(!lib) return '<div class="empty">Loading…</div>';
+  var html = '';
+  if(lib.spinalYoga){
+    var sy = lib.spinalYoga;
+    html += '<div class="section-head" style="margin-top:8px;"><h2 style="font-size:15px;">🧘 '+escapeHtml(sy.title)+'</h2></div>';
+    html += '<div class="card" style="padding:14px 16px;">';
+    html += '<div style="font-size:13px;color:var(--ink-dim);line-height:1.5;">'+escapeHtml(sy.intro)+'</div>';
+    html += asanaList('Safe', sy.safeAsanas, '');
+    html += asanaList('Half / modified only (Jindal-flagged)', sy.halfOrModifiedOnly);
+    html += asanaList('Avoid', sy.avoidAsanas);
+    if(sy.note) html += '<div class="warn-banner" style="margin-top:10px;">ℹ️ '+escapeHtml(sy.note)+'</div>';
+    html += '</div>';
+  }
+  if(lib.danceAndSpin){
+    html += '<div class="section-head" style="margin-top:20px;"><h2 style="font-size:15px;">💃 Dance & Spin</h2></div>';
+    html += '<div class="card" style="padding:14px 16px;">';
+    ['zumba','spinning'].forEach(function(k){
+      var it = lib.danceAndSpin[k];
+      if(!it) return;
+      html += '<div style="margin-bottom:12px;"><div style="font-weight:700;font-size:14px;text-transform:capitalize;">'+escapeHtml(k)+' — '+escapeHtml(it.verdict)+'</div>' +
+        '<div style="font-size:13px;color:var(--ink-dim);margin-top:3px;line-height:1.5;">'+escapeHtml(it.detail)+'</div></div>';
+    });
+    html += '</div>';
+  }
+  if(lib.walkRun){
+    html += '<div class="section-head" style="margin-top:20px;"><h2 style="font-size:15px;">🏃 '+escapeHtml(lib.walkRun.title)+'</h2></div>';
+    html += '<div class="card">' + (lib.walkRun.phases||[]).map(function(ph){
+      return '<div class="item-row"><div class="item-body"><div class="item-title" style="font-size:14px;">'+escapeHtml(ph.name)+'</div>' +
+        '<div style="font-size:13px;color:var(--ink-dim);margin-top:4px;line-height:1.5;">'+escapeHtml(ph.detail)+'</div></div></div>';
     }).join('') + '</div>';
+    if(lib.walkRun.note) html += '<div class="warn-banner" style="margin-top:8px;">ℹ️ '+escapeHtml(lib.walkRun.note)+'</div>';
+  }
+  if(lib.trainerFocus){
+    html += '<div class="section-head" style="margin-top:20px;"><h2 style="font-size:15px;">🏋️ '+escapeHtml(lib.trainerFocus.title)+'</h2></div>';
+    html += '<div class="card">' + (lib.trainerFocus.areas||[]).map(function(a){
+      return '<div class="item-row"><div class="item-body"><div class="item-title" style="font-size:14px;">'+escapeHtml(a.title)+'</div>' +
+        '<div style="font-size:13px;color:var(--ink-dim);margin-top:4px;line-height:1.5;">'+escapeHtml(a.detail)+'</div></div></div>';
+    }).join('') + '</div>';
+  }
+  return html;
+}
+
+function dietItemRow(item, sectionId, idx){
+  return '<div class="item-row" data-action="diet-detail" data-section="'+sectionId+'" data-idx="'+idx+'" style="cursor:pointer;"><div class="item-body">' +
+    '<div class="item-title" style="font-size:14px;">'+escapeHtml(item.name)+'</div>' +
+    pillList(item.tags) +
+    '<div style="margin-top:5px;font-size:12px;color:var(--focus);font-weight:600;">Tap for details →</div>' +
+  '</div></div>';
 }
 
 function pillList(items, cls){
   if(!items || !items.length) return '';
-  return '<div class="item-meta" style="margin-top:8px;">' + items.map(function(t){
+  return '<div class="item-meta" style="margin-top:6px;">' + items.map(function(t){
     return '<span class="chip '+(cls||'')+'">'+escapeHtml(t)+'</span>';
   }).join('') + '</div>';
 }
 
 function renderHealthDiet(){
-  var d = state.health && state.health.diet;
-  if(!d) return '';
-  var html = '<div class="section-head" style="margin-top:24px;"><h2>Diet plan</h2></div>';
-  html += '<div class="card" style="padding:14px 16px;">' +
-    '<div style="font-size:12.5px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Principles</div>' +
-    '<ul style="margin:8px 0 0; padding-left:18px; font-size:13.5px; line-height:1.5;">' +
-      (d.principles||[]).map(function(p){return '<li style="margin-bottom:4px;">'+escapeHtml(p)+'</li>';}).join('') +
-    '</ul></div>';
-  html += dietMealCard('Weekday (office lunch)', d.weekdayTemplate);
-  html += dietMealCard('Weekend', d.weekendTemplate);
-  html += '<div class="section-head" style="margin-top:16px;"><h2 style="font-size:15px;">Foods</h2></div>';
-  html += '<div class="card" style="padding:14px 16px;">';
-  html += '<div style="font-size:12.5px;font-weight:700;color:var(--success);">Keep in rotation</div>' + pillList(d.favouritesKeepInRotation);
-  html += '<div style="font-size:12.5px;font-weight:700;color:var(--ink-dim);margin-top:12px;">Fine in moderation</div>' + pillList(d.fineInModeration);
-  html += '<div style="font-size:12.5px;font-weight:700;color:var(--danger);margin-top:12px;">Avoid / minimise</div>' + pillList(d.avoidOrMinimise, 'pri-critical');
-  html += '</div>';
+  var d = state.health && state.health.dietBooklet;
+  if(!d) return '<div class="empty">Loading…</div>';
+  var html = '';
+  if(d.intro) html += '<div class="card" style="padding:14px 16px;margin-bottom:14px;"><div style="font-size:13.5px;line-height:1.5;">'+escapeHtml(d.intro)+'</div></div>';
+  (d.sections||[]).forEach(function(sec){
+    html += '<div class="section-head" style="margin-top:16px;"><h2 style="font-size:15px;">'+escapeHtml(sec.title)+'</h2></div>';
+    html += '<div class="card">' + (sec.items||[]).map(function(it,i){ return dietItemRow(it, sec.id, i); }).join('') + '</div>';
+  });
   return html;
 }
 
@@ -1053,23 +1131,38 @@ function renderHealthGaps(){
 }
 
 function renderHealth(){
+  var view = state.healthView || 'week';
   var html = '<div class="section" style="margin-top:8px;">';
   if(state.health && state.health.profile){
     var p = state.health.profile;
     html += '<div class="card" style="padding:14px 16px;">' +
       '<div style="font-size:12.5px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.03em;">Goal</div>' +
-      '<div style="font-size:14px;margin-top:4px;">'+escapeHtml(p.currentWeightKg+'kg now → target '+p.targetWeightKgRange+'kg')+'</div>' +
+      '<div style="font-size:14px;margin-top:4px;">'+escapeHtml(p.currentWeightKg+'kg now → target '+p.targetWeightKgRange+'kg')+' · '+escapeHtml((p.stepsGoalDaily||15000).toLocaleString())+' steps/day</div>' +
       '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:6px;line-height:1.4;">'+escapeHtml(p.paceGuidance||'')+'</div>' +
       (p.recoveryNote ? '<div class="warn-banner" style="margin-top:10px;">⚠️ '+escapeHtml(p.recoveryNote)+'</div>' : '') +
     '</div>';
   }
-  html += '<div class="section-head" style="margin-top:20px;"><h2>This week — exercise</h2></div>';
-  html += state.health ? renderHealthWeek() : '<div class="empty">Loading your plan…</div>';
-  html += state.health ? renderHealthDiet() : '';
-  html += '<div class="section-head" style="margin-top:24px;"><h2>Daily tips</h2><span style="font-size:12px;color:var(--ink-dim);">BAUS + Jindal grounded</span></div>';
-  html += '<div class="card">' + (state.health && state.health.tips ? state.health.tips.map(function(t){
-    return '<div class="item-row"><div class="item-body"><div style="font-size:13.5px;line-height:1.4;">'+escapeHtml(t)+'</div></div></div>';
-  }).join('') : '<div class="empty">Loading tips…</div>') + '</div>';
+  html += '<div class="filter-pills" style="margin-top:16px;">' +
+    '<button class="fpill '+(view==='week'?'active':'')+'" data-action="health-view" data-view="week">This week</button>' +
+    '<button class="fpill '+(view==='library'?'active':'')+'" data-action="health-view" data-view="library">Exercise library</button>' +
+    '<button class="fpill '+(view==='diet'?'active':'')+'" data-action="health-view" data-view="diet">Diet booklet</button>' +
+    '<button class="fpill '+(view==='tips'?'active':'')+'" data-action="health-view" data-view="tips">Tips</button>' +
+  '</div>';
+
+  if(!state.health){
+    html += '<div class="empty">Loading your plan…</div>';
+  } else if(view==='week'){
+    html += renderHealthWeek();
+    html += renderStepsCard();
+  } else if(view==='library'){
+    html += renderHealthLibrary();
+  } else if(view==='diet'){
+    html += renderHealthDiet();
+  } else if(view==='tips'){
+    html += '<div class="card">' + (state.health.tips||[]).map(function(t){
+      return '<div class="item-row"><div class="item-body"><div style="font-size:13.5px;line-height:1.4;">'+escapeHtml(t)+'</div></div></div>';
+    }).join('') + '</div>';
+  }
   html += state.health ? renderHealthGaps() : '';
   html += '</div>';
   document.getElementById('mainContent').innerHTML = html;
@@ -1169,6 +1262,35 @@ document.getElementById('mainContent').addEventListener('click', function(e){
   if(healthDayBtn){
     state.healthDay = healthDayBtn.getAttribute('data-day');
     renderHealth();
+    return;
+  }
+  var healthViewBtn = e.target.closest('[data-action="health-view"]');
+  if(healthViewBtn){
+    state.healthView = healthViewBtn.getAttribute('data-view');
+    renderHealth();
+    return;
+  }
+  var exDetailBtn = e.target.closest('[data-action="ex-detail"]');
+  if(exDetailBtn){
+    var exDay = exDetailBtn.getAttribute('data-day');
+    var exIdx = parseInt(exDetailBtn.getAttribute('data-idx'),10);
+    var exBlock = state.health && state.health.weeklyExercise && state.health.weeklyExercise[exDay] && state.health.weeklyExercise[exDay][exIdx];
+    if(exBlock){
+      var exBody = (exBlock.detail ? '<p style="margin:0 0 10px;">'+escapeHtml(exBlock.detail)+'</p>' : '') +
+        (exBlock.safety && exBlock.safety.note ? '<div class="warn-banner">⚠️ '+escapeHtml(exBlock.safety.note)+'</div>' : '');
+      openDetailModal(exBlock.title, exBody || '<p style="margin:0;color:var(--ink-dim);">No further detail yet.</p>');
+    }
+    return;
+  }
+  var dietDetailBtn = e.target.closest('[data-action="diet-detail"]');
+  if(dietDetailBtn){
+    var dsId = dietDetailBtn.getAttribute('data-section');
+    var dsIdx = parseInt(dietDetailBtn.getAttribute('data-idx'),10);
+    var dsSection = state.health && state.health.dietBooklet && (state.health.dietBooklet.sections||[]).find(function(s){return s.id===dsId;});
+    var dsItem = dsSection && dsSection.items[dsIdx];
+    if(dsItem){
+      openDetailModal(dsItem.name, '<p style="margin:0;">'+escapeHtml(dsItem.detail||'No further detail yet.')+'</p>');
+    }
     return;
   }
   var filterBtn = e.target.closest('[data-action="filter-priority"]');
