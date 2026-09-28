@@ -1067,8 +1067,27 @@ function renderGoals(){
     '<span class="heat-cell" data-level="0"></span><span class="heat-cell" data-level="1"></span>' +
     '<span class="heat-cell" data-level="2"></span><span class="heat-cell" data-level="3"></span>' +
     '<span class="heat-cell" data-level="4"></span>More</div></div>';
+  html += renderResourcesSection();
   html += '</div>';
   document.getElementById('mainContent').innerHTML = html;
+}
+
+var HB_RESOURCES = [
+  {title:'Diet & Recipes Booklet', desc:'Jindal-informed breakfast/lunch/dinner picks, color-coded, with a clickable contents page.', url:'https://claude.ai/artifact/FP1w1EDiaJynvGVfSGmS7B', icon:'🥗'},
+  {title:'Exercise & Well-Being Booklet', desc:'Spinal yoga library, calorie-burn reference, daily routine — indexed and cross-checked.', url:'https://claude.ai/artifact/J2hR6ok9cmwCK4VNeNExEN', icon:'🧘'},
+  {title:'Printable diet & exercise plan (2-page)', desc:'Quick-reference A4 sheet for the fridge or gym bag.', url:'https://claude.ai/artifact/FszEC4QE7WL2xjWSmv4wqM', icon:'📄'}
+];
+function renderResourcesSection(){
+  var html = '<div class="section-head" style="margin-top:24px;"><h2>Resources</h2><span style="font-size:12px;color:var(--ink-dim);">Booklets & references</span></div>';
+  html += '<div class="card" style="padding:6px;">' + HB_RESOURCES.map(function(r){
+    return '<a class="item-row" href="'+escapeHtml(r.url)+'" target="_blank" style="text-decoration:none;color:inherit;display:flex;">' +
+      '<div class="item-body">' +
+        '<div class="item-title">'+r.icon+' '+escapeHtml(r.title)+'</div>' +
+        '<div class="item-meta" style="margin-top:4px;"><span style="font-size:12.5px;color:var(--ink-dim);">'+escapeHtml(r.desc)+'</span></div>' +
+      '</div>' +
+    '</a>';
+  }).join('') + '</div>';
+  return html;
 }
 
 function renderActivity(){
@@ -1294,11 +1313,7 @@ function renderHealth(){
       (p.recoveryNote ? '<div class="warn-banner" style="margin-top:10px;">⚠️ '+escapeHtml(p.recoveryNote)+'</div>' : '') +
     '</div>';
   }
-  html += '<a href="https://claude.ai/artifact/FszEC4QE7WL2xjWSmv4wqM" target="_blank" rel="noopener" class="card" style="margin-top:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;text-decoration:none;color:inherit;">' +
-    '<div><div style="font-weight:700;font-size:14px;">📄 Printable diet &amp; exercise plan</div>' +
-    '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:3px;">2-page A4 sheet — open, then use the page\'s download button for a PDF</div></div>' +
-    '<span style="font-size:18px;color:var(--focus);flex:0 0 auto;">→</span>' +
-  '</a>';
+  html += '<div style="margin-top:24px;">' + renderResourcesSection() + '</div>';
 
   html += '</div>';
   document.getElementById('mainContent').innerHTML = html;
