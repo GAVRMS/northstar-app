@@ -778,12 +778,12 @@ function hbFmtTime(mins){
   var h12 = h%12; if(h12===0) h12=12;
   return h12 + (m ? ':'+(m<10?'0':'')+m : '') + ap;
 }
-function hbChampRow(it, label){
+function hbChampRow(it, label, isCurrent){
   var dataAttrs = it.kind==='exercise' ? 'data-action="ex-detail" data-day="'+it.dayKey+'" data-idx="'+it.idx+'"' : 'data-action="health-view" data-view="diet"';
-  return '<div class="item-row" '+dataAttrs+' style="cursor:pointer;"><div class="item-body">' +
+  return '<div class="item-row" '+dataAttrs+' style="cursor:pointer;'+(isCurrent?'background:var(--focus-bg);':'')+'"><div class="item-body">' +
     '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">' +
       '<div><div style="font-size:11px;font-weight:700;color:var(--focus);text-transform:uppercase;letter-spacing:.03em;">'+escapeHtml(label)+(it.tomorrow?' · tomorrow':'')+'</div>' +
-      '<div class="item-title" style="margin-top:2px;">'+escapeHtml(it.title)+'</div></div>' +
+      '<div style="font-weight:600;font-size:15px;line-height:1.3;color:var(--ink);margin-top:2px;">'+escapeHtml(it.title)+'</div></div>' +
       '<span class="chip time" style="flex:0 0 auto;">'+hbFmtTime(it.minutes)+'</span>' +
     '</div>' +
     (it.sub ? '<div style="font-size:12.5px;color:var(--ink-dim);margin-top:4px;">'+escapeHtml(it.sub)+'</div>' : '') +
@@ -795,9 +795,9 @@ function renderChampCard(){
   if(!nn || (!nn.current && !nn.next.length)) return '';
   var html = '<div class="section" style="margin-top:8px;"><div class="focus-card">';
   html += '<h2>🙌 Let’s do this now champ</h2>';
-  html += '<div class="card" style="margin-top:10px;">';
-  if(nn.current){ html += hbChampRow(nn.current, 'Right now'); }
-  nn.next.forEach(function(it, i){ html += hbChampRow(it, i===0 && !nn.current ? 'Up next' : (i===0 ? 'Then' : 'After that')); });
+  html += '<div class="card" style="margin-top:10px;color:var(--ink);">';
+  if(nn.current){ html += hbChampRow(nn.current, 'Right now', true); }
+  nn.next.forEach(function(it, i){ html += hbChampRow(it, i===0 && !nn.current ? 'Up next' : (i===0 ? 'Then' : 'After that'), false); });
   html += '</div></div></div>';
   return html;
 }
