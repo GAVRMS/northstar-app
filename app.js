@@ -105,6 +105,27 @@ function makeScopedDb(uid, fs){
   };
 }
 
+var HB_ROUTINE_UPDATE_20261001 = {"mon": [{"label": "Wake up, wake Reva", "time": "6:30am"}, {"label": "Cycle (PureGym Finchley)", "time": "6:45am", "note": "From your new weekly planner — 30 min, before the commute. Paused during October recovery, resume once cleared by Dr Anupama."}, {"label": "Leave home", "time": "7:45am"}, {"label": "Drop Reva at Channing School", "note": "Cutoff is 8:20", "time": "8:10am"}, {"label": "Commute to office", "note": "Walk/bus ~15m to Archway, then ~40-45m tube to Canary Wharf (E14 5HP)", "time": "8:20am"}, {"label": "Reformer Pilates (Technogym Canary Wharf)", "time": "11:10am", "note": "From your new weekly planner — 45 min. Paused during October recovery, resume once cleared. Replaces the earlier generic ‘optional gym slot’ placeholder."}, {"label": "Leave office", "time": "6:30pm"}, {"label": "Home", "time": "7:30pm"}, {"label": "Family time / job search or supporting wife's search", "note": "Mental tasks suit evenings", "time": "Evening"}], "tue": [{"label": "Wake up, wake Reva", "time": "6:30am"}, {"label": "Stretch + Yoga (Home)", "time": "6:40am", "note": "From your new weekly planner — quick session before leaving."}, {"label": "Leave home", "time": "7:45am"}, {"label": "Drop Reva at Channing School", "note": "Cutoff is 8:20", "time": "8:10am"}, {"label": "Commute to office", "note": "Walk/bus ~15m to Archway, then ~40-45m tube to Canary Wharf", "time": "8:20am"}, {"label": "Reformer Pilates (Technogym Canary Wharf)", "time": "4:45pm", "note": "From your new weekly planner — 45 min. Paused during October recovery, resume once cleared. Replaces the earlier generic ‘optional gym slot’ placeholder."}, {"label": "Leave office", "time": "6:30pm"}, {"label": "Home", "time": "7:30pm"}, {"label": "Family time / job search or supporting wife's search", "time": "Evening"}], "wed": [{"label": "Wake up, wake Reva", "time": "6:30am"}, {"label": "Leave home", "time": "7:45am"}, {"label": "Drop Reva at Channing School", "note": "Cutoff is 8:20", "time": "8:10am"}, {"label": "Commute to office", "note": "Walk/bus ~15m to Archway, then ~40-45m tube to Canary Wharf", "time": "8:20am"}, {"label": "Cardio Tone (Technogym Canary Wharf)", "time": "12:15pm", "note": "From your new weekly planner — replaces the earlier generic ‘optional gym slot’, and replaces what the Health tab had set as Vinyasa Yoga in this slot. Flagged: lower safety tier than Vinyasa Yoga, and a structured class that falls under the October recovery pause — confirm with Dr Anupama first. See the Health tab for details."}, {"label": "Walk (Highgate Wood)", "time": "Lunchtime", "note": "From your new weekly planner."}, {"label": "Stretch (Home)", "time": "Lunchtime", "note": "From your new weekly planner."}, {"label": "Leave office", "time": "6:30pm"}, {"label": "Home", "time": "7:30pm"}, {"label": "Family time / job search or supporting wife's search", "time": "Evening"}], "thu": [{"label": "Wake up, wake Reva", "time": "6:30am"}, {"label": "Leave home to drop Reva", "note": "Cutoff is 8:20", "time": "7:45am"}, {"label": "Home — start WFH", "note": "No commute today: use the freed time for a deeper health or focus block", "time": "8:20am"}, {"label": "Stretch (Home)", "time": "Morning", "note": "From your new weekly planner."}, {"label": "Walk (Highgate Wood)", "time": "Morning", "note": "From your new weekly planner."}, {"label": "Health-focus block or deep work", "note": "Physical stuff suits mornings", "time": "Morning"}, {"label": "Physio — Nuffield", "time": "4:00pm", "note": "From your new weekly planner — replaces the earlier ‘Highgate Hospital, Thursday evening’ entry. Flagged in case this is a provider mix-up rather than an intentional change."}, {"label": "Zumba (PureGym Finchley)", "time": "6:30pm", "note": "From your new weekly planner. Flagged — not yet physio-cleared: standard Zumba involves jumping/twisting generally cautioned against for your pars defect. See Health tab → Exercise library → Dance & Spin."}, {"label": "Deeper job-search / family time", "note": "Mental tasks suit evenings; good day for the weekly job-search checkpoint", "time": "Evening"}], "fri": [{"label": "Wake up, wake Reva", "time": "6:30am"}, {"label": "Leave home", "time": "7:45am"}, {"label": "Drop Reva at Channing School", "note": "Cutoff is 8:20", "time": "8:10am"}, {"label": "Commute to office", "note": "Walk/bus ~15m to Archway, then ~40-45m tube to Canary Wharf", "time": "8:20am"}, {"label": "Pilates ‘Pil Arms’ (Technogym Canary Wharf)", "time": "11:15am", "note": "From your new weekly planner — replaces the earlier generic ‘optional gym slot’. Flagged: doesn’t exactly match a named class on the real Technogym timetable (closest is ‘Pilates — Fits, Rolls, Planks, Push-Ups’, 11:15). Confirm before doing it at full intensity."}, {"label": "Leave office", "time": "6:30pm"}, {"label": "Home", "time": "7:30pm"}, {"label": "Friday outing / family time", "time": "Evening", "note": "Family Time goal — pick a place for Reva + Miraya, wind down for the weekend"}], "sat": [{"label": "Gym with trainer", "note": "10-min drive — paused during recovery, resume once cleared by doctor. Time updated to 7:45am per your new weekly planner (was 7:30am).", "time": "7:45am"}, {"label": "Leave home for Reva's music lesson", "time": "9:30am"}, {"label": "Music lesson 1", "time": "9:50am"}, {"label": "Break (~30 min)", "time": "~10:20am"}, {"label": "Music lesson 2", "note": "Finishes around 11:20", "time": "~10:50am"}, {"label": "Home", "time": "11:20am"}, {"label": "Stretch (Home)", "time": "~11:30am", "note": "From your new weekly planner — squeezed in before tennis."}, {"time": "12:00pm", "label": "Tennis together", "note": "Kids Extra Curricular/Sports — Reva + Gaurav, ~45 min before drama-club prep"}, {"label": "Prep to leave", "time": "2:10pm"}, {"label": "Drop Reva at drama club", "note": "Runs 2:30–5:30", "time": "2:30pm"}, {"label": "Pick up Reva", "time": "5:30pm"}, {"label": "Home", "time": "5:45pm"}, {"label": "Car charging every other week", "note": "Slot in around the pickups/drops", "time": "All day"}], "sun": [{"label": "Yoga (Home)", "time": "Morning", "note": "From your new weekly planner — matches the existing Sunday spinal yoga session in the Health tab."}, {"label": "Reva: reasoning practice (light, ~30-45 min)", "note": "Henrietta Barnett prep — playful, not test-like, through Year 4", "time": "Morning"}, {"label": "Miraya: outdoor time", "note": "Forest opposite the house or local play areas — no garden at home, so daily/near-daily matters", "time": "Morning"}, {"label": "Family time", "time": "Daytime"}, {"label": "Birthday party drop-off", "note": "Reva's friends' parties", "time": "Every other Sunday"}, {"label": "Astrophotography check", "note": "Dwarf 3 — only worth it when skies are both clear and moonless", "time": "Night (if clear + moonless)"}, {"time": "Afternoon (1st Sun/month)", "label": "Finances & House admin catch-up", "note": "Wealth manager check-in, tax filing tracker, house fix list — batch the admin instead of letting it drift"}, {"label": "Eye Yoga (Home)", "time": "Evening", "note": "From your new weekly planner — a third weekly eye-yoga session alongside the existing Tue + Fri sessions in the Health tab."}]};
+
+// One-time merge of the 1 Oct 2026 weekly exercise planner into each day's
+// Week plan routine (Planner tab). Gated by a flag doc so it only runs once
+// per account; safe to leave in after that date has passed.
+async function applyRoutineUpdate_20261001(db){
+  try{
+    var flagRef = db.doc('meta/migrations');
+    var flagSnap = await flagRef.get();
+    var flags = (flagSnap.exists && flagSnap.data()) || {};
+    if(flags.routineExercisePlanOct1) return;
+    var days = Object.keys(HB_ROUTINE_UPDATE_20261001);
+    for(var i=0;i<days.length;i++){
+      var day = days[i];
+      await db.doc('routine/'+day).set({blocks: HB_ROUTINE_UPDATE_20261001[day]}, {merge:true});
+    }
+    await flagRef.set({routineExercisePlanOct1: true}, {merge:true});
+    console.log('Northstar: applied 1 Oct 2026 routine/exercise planner update.');
+  }catch(e){ console.warn('routine update migration failed', e); }
+}
+
 async function seedIfEmpty(db){
   try{
     var snap = await db.collection('events').limit(1).get();
@@ -160,6 +181,7 @@ async function onSignedIn(user, fs){
   state.db = db;
 
   await seedIfEmpty(db);
+  await applyRoutineUpdate_20261001(db);
 
   db.collection('events').onSnapshot(function(snap){
     state.events = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
@@ -740,7 +762,8 @@ var HB_TIME_KEYWORDS = [
   ['lunchtime', 12*60+45],
   ['thursday evening', 18*60+30],
   ['morning', 7*60+30],
-  ['evening', 19*60]
+  ['evening', 19*60],
+  ['lunch', 12*60+45]
 ];
 var HB_MEAL_TIMES = {
   'breakfast': [7*60+30],
@@ -751,6 +774,13 @@ var HB_MEAL_TIMES = {
 function hbTimeToMinutes(raw){
   if(!raw) return null;
   var s = raw.toLowerCase();
+  // Exact "HH:MM" (24h, as used in the weekly exercise plan) takes priority
+  // over the fuzzy keyword matches below.
+  var exact = s.match(/^(\d{1,2}):(\d{2})$/);
+  if(exact){
+    var hh = parseInt(exact[1],10), mm = parseInt(exact[2],10);
+    if(hh>=0 && hh<24 && mm>=0 && mm<60) return hh*60+mm;
+  }
   for(var i=0;i<HB_TIME_KEYWORDS.length;i++){
     if(s.indexOf(HB_TIME_KEYWORDS[i][0])!==-1) return HB_TIME_KEYWORDS[i][1];
   }

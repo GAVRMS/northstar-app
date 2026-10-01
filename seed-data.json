@@ -1184,8 +1184,9 @@
           "time": "8:20am"
         },
         {
-          "label": "Office — optional gym slot",
-          "time": "9:15am"
+          "label": "Pilates ‘Pil Arms’ (Technogym Canary Wharf)",
+          "time": "11:15am",
+          "note": "From your new weekly planner — replaces the earlier generic ‘optional gym slot’. Flagged: doesn’t exactly match a named class on the real Technogym timetable (closest is ‘Pilates — Fits, Rolls, Planks, Push-Ups’, 11:15). Confirm before doing it at full intensity."
         },
         {
           "label": "Leave office",
@@ -1210,6 +1211,11 @@
           "time": "6:30am"
         },
         {
+          "label": "Cycle (PureGym Finchley)",
+          "time": "6:45am",
+          "note": "From your new weekly planner — 30 min, before the commute. Paused during October recovery, resume once cleared by Dr Anupama."
+        },
+        {
           "label": "Leave home",
           "time": "7:45am"
         },
@@ -1224,9 +1230,9 @@
           "time": "8:20am"
         },
         {
-          "label": "Office — optional gym slot",
-          "note": "Morning or lunchtime, since mornings suit physical stuff",
-          "time": "9:15am"
+          "label": "Reformer Pilates (Technogym Canary Wharf)",
+          "time": "11:10am",
+          "note": "From your new weekly planner — 45 min. Paused during October recovery, resume once cleared. Replaces the earlier generic ‘optional gym slot’ placeholder."
         },
         {
           "label": "Leave office",
@@ -1248,8 +1254,8 @@
       "blocks": [
         {
           "label": "Gym with trainer",
-          "note": "10-min drive — paused during recovery, resume once cleared by doctor",
-          "time": "7:30am"
+          "note": "10-min drive — paused during recovery, resume once cleared by doctor. Time updated to 7:45am per your new weekly planner (was 7:30am).",
+          "time": "7:45am"
         },
         {
           "label": "Leave home for Reva's music lesson",
@@ -1271,6 +1277,11 @@
         {
           "label": "Home",
           "time": "11:20am"
+        },
+        {
+          "label": "Stretch (Home)",
+          "time": "~11:30am",
+          "note": "From your new weekly planner — squeezed in before tennis."
         },
         {
           "time": "12:00pm",
@@ -1305,6 +1316,11 @@
     "sun": {
       "blocks": [
         {
+          "label": "Yoga (Home)",
+          "time": "Morning",
+          "note": "From your new weekly planner — matches the existing Sunday spinal yoga session in the Health tab."
+        },
+        {
           "label": "Reva: reasoning practice (light, ~30-45 min)",
           "note": "Henrietta Barnett prep — playful, not test-like, through Year 4",
           "time": "Morning"
@@ -1332,6 +1348,11 @@
           "time": "Afternoon (1st Sun/month)",
           "label": "Finances & House admin catch-up",
           "note": "Wealth manager check-in, tax filing tracker, house fix list — batch the admin instead of letting it drift"
+        },
+        {
+          "label": "Eye Yoga (Home)",
+          "time": "Evening",
+          "note": "From your new weekly planner — a third weekly eye-yoga session alongside the existing Tue + Fri sessions in the Health tab."
         }
       ],
       "mode": "Weekend — lighter day"
@@ -1353,9 +1374,29 @@
           "time": "8:20am"
         },
         {
+          "label": "Stretch (Home)",
+          "time": "Morning",
+          "note": "From your new weekly planner."
+        },
+        {
+          "label": "Walk (Highgate Wood)",
+          "time": "Morning",
+          "note": "From your new weekly planner."
+        },
+        {
           "label": "Health-focus block or deep work",
           "note": "Physical stuff suits mornings",
           "time": "Morning"
+        },
+        {
+          "label": "Physio — Nuffield",
+          "time": "4:00pm",
+          "note": "From your new weekly planner — replaces the earlier ‘Highgate Hospital, Thursday evening’ entry. Flagged in case this is a provider mix-up rather than an intentional change."
+        },
+        {
+          "label": "Zumba (PureGym Finchley)",
+          "time": "6:30pm",
+          "note": "From your new weekly planner. Flagged — not yet physio-cleared: standard Zumba involves jumping/twisting generally cautioned against for your pars defect. See Health tab → Exercise library → Dance & Spin."
         },
         {
           "label": "Deeper job-search / family time",
@@ -1372,6 +1413,11 @@
           "time": "6:30am"
         },
         {
+          "label": "Stretch + Yoga (Home)",
+          "time": "6:40am",
+          "note": "From your new weekly planner — quick session before leaving."
+        },
+        {
           "label": "Leave home",
           "time": "7:45am"
         },
@@ -1386,8 +1432,9 @@
           "time": "8:20am"
         },
         {
-          "label": "Office — optional gym slot",
-          "time": "9:15am"
+          "label": "Reformer Pilates (Technogym Canary Wharf)",
+          "time": "4:45pm",
+          "note": "From your new weekly planner — 45 min. Paused during October recovery, resume once cleared. Replaces the earlier generic ‘optional gym slot’ placeholder."
         },
         {
           "label": "Leave office",
@@ -1425,8 +1472,19 @@
           "time": "8:20am"
         },
         {
-          "label": "Office — optional gym slot",
-          "time": "9:15am"
+          "label": "Cardio Tone (Technogym Canary Wharf)",
+          "time": "12:15pm",
+          "note": "From your new weekly planner — replaces the earlier generic ‘optional gym slot’, and replaces what the Health tab had set as Vinyasa Yoga in this slot. Flagged: lower safety tier than Vinyasa Yoga, and a structured class that falls under the October recovery pause — confirm with Dr Anupama first. See the Health tab for details."
+        },
+        {
+          "label": "Walk (Highgate Wood)",
+          "time": "Lunchtime",
+          "note": "From your new weekly planner."
+        },
+        {
+          "label": "Stretch (Home)",
+          "time": "Lunchtime",
+          "note": "From your new weekly planner."
         },
         {
           "label": "Leave office",
