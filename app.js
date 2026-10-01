@@ -44,6 +44,7 @@ var state = {
   uid: null,
   health: null,
   healthDay: null,
+  healthOverrides: {},
 };
 
 var todayStr = ymd(new Date());
@@ -133,7 +134,7 @@ function loadLocal(){
   return null;
 }
 function saveLocal(){
-  try{ localStorage.setItem(LS_KEY, JSON.stringify({events:state.events, goals:state.goals, checkins:state.checkins, checkinPoints:state.checkinPoints, bestStreak:state.bestStreak, activity:state.activity})); }catch(e){}
+  try{ localStorage.setItem(LS_KEY, JSON.stringify({events:state.events, goals:state.goals, checkins:state.checkins, checkinPoints:state.checkinPoints, bestStreak:state.bestStreak, activity:state.activity, healthOverrides:state.healthOverrides})); }catch(e){}
 }
 
 /* ================= firebase init ================= */
@@ -262,6 +263,11 @@ async function onSignedIn(user, fs){
     renderAll();
   }, function(err){ console.warn('routine sub error', err); });
 
+  db.doc('health/weeklyExerciseOverrides').onSnapshot(function(snap){
+    state.healthOverrides = (snap.exists && snap.data()) || {};
+    renderAll();
+  }, function(err){ console.warn('health overrides sub error', err); });
+
   state.ready = true;
   showApp();
   renderAll();
@@ -291,6 +297,43 @@ function loadHealthData(){
   }).catch(function(){ /* no health data yet, that's fine */ });
 }
 
+/* Per-day edits to the weekly exercise plan, layered on top of the static
+   health-data.json baseline above. Stored per-account in Firestore
+   (health/weeklyExerciseOverrides, one key per weekday) so edits made in the
+   app persist and sync, without needing to touch the shared JSON file. An
+   overridden day fully replaces that day's baseline block list; there's a
+   "Reset to default" action to drop back to the baseline. */
+function healthExerciseBlocksFor(dayKey){
+  var ov = state.healthOverrides && state.healthOverrides[dayKey];
+  if(ov) return ov;
+  return (state.health && state.health.weeklyExercise && state.health.weeklyExercise[dayKey]) || [];
+}
+function healthDayIsOverridden(dayKey){
+  return !!(state.healthOverrides && state.healthOverrides[dayKey]);
+}
+async function saveHealthOverrideDay(dayKey, blocks){
+  if(state.db){
+    var patch = {}; patch[dayKey] = blocks;
+    await state.db.doc('health/weeklyExerciseOverrides').set(patch, {merge:true});
+  } else {
+    state.healthOverrides = Object.assign({}, state.healthOverrides||{});
+    state.healthOverrides[dayKey] = blocks;
+    saveLocal(); renderAll();
+  }
+}
+async function resetHealthOverrideDay(dayKey){
+  if(state.db){
+    try{
+      var patch = {}; patch[dayKey] = firebase.firestore.FieldValue.delete();
+      await state.db.doc('health/weeklyExerciseOverrides').update(patch);
+    }catch(e){ console.warn('reset override failed', e); }
+  } else if(state.healthOverrides){
+    state.healthOverrides = Object.assign({}, state.healthOverrides);
+    delete state.healthOverrides[dayKey];
+    saveLocal(); renderAll();
+  }
+}
+
 function initLocalFallback(){
   document.getElementById('offlineBanner').hidden = false;
   var local = loadLocal();
@@ -301,6 +344,7 @@ function initLocalFallback(){
     state.checkinPoints = local.checkinPoints||{};
     state.bestStreak = local.bestStreak||0;
     state.activity = local.activity||[];
+    state.healthOverrides = local.healthOverrides||{};
   } else {
     fetch('seed-data.json').then(function(r){ return r.json(); }).then(function(seed){
       state.events = seed.events||[];
@@ -848,7 +892,7 @@ function hbDurationMinutes(raw){
 }
 function hbBuildTimeline(dayKey){
   var items = [];
-  var exList = (state.health && state.health.weeklyExercise && state.health.weeklyExercise[dayKey]) || [];
+  var exList = healthExerciseBlocksFor(dayKey);
   exList.forEach(function(b, idx){
     var t = (b.time||'').toLowerCase();
     if(t.indexOf('any time')!==-1) return;
@@ -1247,27 +1291,33 @@ function renderActivity(){
 
 function safetyBadge(safety){
   if(!safety || !safety.status) return '';
-  var map = {safe:['✓ Safe','pri-medium'], caution:['⚠ Caution','pri-high'], confirm:['⏸ Confirm first','pri-critical']};
+  var map = {safe:['✓ Safe','pri-medium'], caution:['⚠ Caution','pri-high'], confirm:['⏸ Confirm first','pri-critical'], 'ask-physio':['🚩 Ask physio first','pri-critical']};
   var m = map[safety.status] || ['',''];
   return m[0] ? '<span class="chip '+m[1]+'">'+m[0]+'</span>' : '';
 }
 
 function exerciseBlockRow(b, dayKey, idx){
   var hasDetail = !!(b.detail || (b.safety && b.safety.note));
-  return '<div class="item-row" '+(hasDetail?'data-action="ex-detail" data-day="'+dayKey+'" data-idx="'+idx+'" style="cursor:pointer;"':'')+'><div class="item-body">' +
-    '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">' +
-      '<div class="item-title">'+escapeHtml(b.title)+'</div>' +
-      (b.time ? '<span class="chip time" style="flex:0 0 auto;">'+escapeHtml(b.time)+'</span>' : '') +
+  return '<div class="item-row">' +
+    '<div class="item-body" '+(hasDetail?'data-action="ex-detail" data-day="'+dayKey+'" data-idx="'+idx+'" style="cursor:pointer;"':'')+'>' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">' +
+        '<div class="item-title">'+escapeHtml(b.title)+'</div>' +
+        (b.time ? '<span class="chip time" style="flex:0 0 auto;">'+escapeHtml(b.time)+'</span>' : '') +
+      '</div>' +
+      '<div class="item-meta">' +
+        (b.location ? '<span class="chip">📍 '+escapeHtml(b.location)+'</span>' : '') +
+        (b.duration ? '<span class="chip">⏱ '+escapeHtml(b.duration)+'</span>' : '') +
+        (b.sets ? '<span class="chip">'+escapeHtml(b.sets)+' × '+escapeHtml(b.reps||'')+'</span>' : '') +
+        (b.category ? '<span class="chip">'+escapeHtml(b.category)+'</span>' : '') +
+        safetyBadge(b.safety) +
+      '</div>' +
+      (hasDetail ? '<div style="margin-top:6px;font-size:12px;color:var(--focus);font-weight:600;">Tap for details →</div>' : '') +
     '</div>' +
-    '<div class="item-meta">' +
-      (b.location ? '<span class="chip">📍 '+escapeHtml(b.location)+'</span>' : '') +
-      (b.duration ? '<span class="chip">⏱ '+escapeHtml(b.duration)+'</span>' : '') +
-      (b.sets ? '<span class="chip">'+escapeHtml(b.sets)+' × '+escapeHtml(b.reps||'')+'</span>' : '') +
-      (b.category ? '<span class="chip">'+escapeHtml(b.category)+'</span>' : '') +
-      safetyBadge(b.safety) +
+    '<div class="item-actions">' +
+      '<button class="icon-btn" data-action="ex-edit" data-day="'+dayKey+'" data-idx="'+idx+'" title="Edit">✎</button>' +
+      '<button class="icon-btn" data-action="ex-delete" data-day="'+dayKey+'" data-idx="'+idx+'" title="Delete">🗑</button>' +
     '</div>' +
-    (hasDetail ? '<div style="margin-top:6px;font-size:12px;color:var(--focus);font-weight:600;">Tap for details →</div>' : '') +
-  '</div></div>';
+  '</div>';
 }
 
 function openDetailModal(title, bodyHtml, extraActions){
@@ -1284,6 +1334,52 @@ function openDetailModal(title, bodyHtml, extraActions){
   });
 }
 
+var HB_EX_CATEGORIES = ['Walking','Strength','Yoga','Spinal Yoga','Cardio','Breathing','Eye care','Dance','Physio','Other'];
+var HB_EX_SAFETY = [['safe','Safe'],['confirm','Confirm first'],['ask-physio','Ask physio first'],['caution','Caution']];
+function openExerciseBlockModal(day, idx){
+  var blocks = healthExerciseBlocksFor(day);
+  var editing = (idx!=null && idx>=0) ? blocks[idx] : null;
+  var curSafety = (editing && editing.safety && editing.safety.status) || 'safe';
+  modalBody.innerHTML =
+    '<h3>'+(editing?'Edit exercise':'Add exercise')+'</h3>' +
+    '<div class="field"><label>Title</label><input id="ex-f-title" type="text" value="'+escapeHtml(editing?editing.title:'')+'" placeholder="e.g. Reformer Pilates"></div>' +
+    '<div class="field-row">' +
+      '<div class="field"><label>Time</label><input id="ex-f-time" type="text" value="'+escapeHtml(editing&&editing.time||'')+'" placeholder="e.g. 11:10 or Morning"></div>' +
+      '<div class="field"><label>Duration</label><input id="ex-f-duration" type="text" value="'+escapeHtml(editing&&editing.duration||'')+'" placeholder="e.g. 45 min"></div>' +
+    '</div>' +
+    '<div class="field"><label>Location</label><input id="ex-f-location" type="text" value="'+escapeHtml(editing&&editing.location||'')+'" placeholder="e.g. Technogym Canary Wharf"></div>' +
+    '<div class="field-row">' +
+      '<div class="field"><label>Category</label><select id="ex-f-cat">'+HB_EX_CATEGORIES.map(function(c){return '<option '+(editing&&editing.category===c?'selected':'')+'>'+c+'</option>';}).join('')+'</select></div>' +
+      '<div class="field"><label>Safety</label><select id="ex-f-safety">'+HB_EX_SAFETY.map(function(s){return '<option value="'+s[0]+'" '+(curSafety===s[0]?'selected':'')+'>'+s[1]+'</option>';}).join('')+'</select></div>' +
+    '</div>' +
+    '<div class="field"><label>Safety note (optional)</label><textarea id="ex-f-note" rows="2">'+escapeHtml((editing&&editing.safety&&editing.safety.note)||'')+'</textarea></div>' +
+    '<div class="field"><label>Detail (optional)</label><textarea id="ex-f-detail" rows="2">'+escapeHtml(editing&&editing.detail||'')+'</textarea></div>' +
+    '<div class="modal-actions">' +
+      '<button class="btn-ghost" id="modalCancel">Cancel</button>' +
+      '<button class="btn-primary" id="modalSave">'+(editing?'Save changes':'Add')+'</button>' +
+    '</div>';
+  modalBackdrop.hidden = false;
+  document.getElementById('modalCancel').onclick = closeModal;
+  document.getElementById('modalSave').onclick = async function(){
+    var title = document.getElementById('ex-f-title').value.trim();
+    if(!title) return;
+    var newBlock = Object.assign({}, editing||{}, {
+      title: title,
+      time: document.getElementById('ex-f-time').value.trim() || null,
+      duration: document.getElementById('ex-f-duration').value.trim() || null,
+      location: document.getElementById('ex-f-location').value.trim() || null,
+      category: document.getElementById('ex-f-cat').value,
+      safety: {status: document.getElementById('ex-f-safety').value, note: document.getElementById('ex-f-note').value.trim() || null},
+      detail: document.getElementById('ex-f-detail').value.trim() || null,
+    });
+    var newBlocks = blocks.slice();
+    if(editing){ newBlocks[idx] = newBlock; } else { newBlocks.push(newBlock); }
+    await saveHealthOverrideDay(day, newBlocks);
+    logActivity((editing?'Edited':'Added')+' exercise "'+title+'"', editing?'edit':'add');
+    closeModal();
+  };
+}
+
 function renderHealthWeek(){
   var dayDefs = [['mon','Mon'],['tue','Tue'],['wed','Wed'],['thu','Thu'],['fri','Fri'],['sat','Sat'],['sun','Sun']];
   var todayKey = WEEKDAY_KEYS[new Date().getDay()];
@@ -1291,12 +1387,20 @@ function renderHealthWeek(){
   var html = '<div class="filter-pills">' + dayDefs.map(function(d){
     return '<button class="fpill '+(sel===d[0]?'active':'')+'" data-action="health-day" data-day="'+d[0]+'">'+d[1]+(d[0]===todayKey?' •':'')+'</button>';
   }).join('') + '</div>';
-  var blocks = (state.health && state.health.weeklyExercise && state.health.weeklyExercise[sel]) || [];
+  var blocks = healthExerciseBlocksFor(sel);
+  var overridden = healthDayIsOverridden(sel);
+  if(overridden){
+    html += '<div style="display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:8px 2px 2px;">' +
+      '<span class="chip">✎ Edited</span>' +
+      '<button class="link-btn" data-action="ex-day-reset" data-day="'+sel+'">Reset to default</button>' +
+    '</div>';
+  }
   if(!blocks.length){
     html += '<div class="empty">No exercise blocks for this day yet.</div>';
   } else {
     html += '<div class="card">' + blocks.map(function(b,i){ return exerciseBlockRow(b, sel, i); }).join('') + '</div>';
   }
+  html += '<button class="btn-ghost" style="width:100%;margin-top:10px;" data-action="ex-add" data-day="'+sel+'">+ Add exercise</button>';
   return html;
 }
 
@@ -1581,11 +1685,34 @@ document.getElementById('mainContent').addEventListener('click', function(e){
     renderHealth();
     return;
   }
+  var exAddBtn = e.target.closest('[data-action="ex-add"]');
+  if(exAddBtn){ openExerciseBlockModal(exAddBtn.getAttribute('data-day'), null); return; }
+  var exEditBtn = e.target.closest('[data-action="ex-edit"]');
+  if(exEditBtn){ openExerciseBlockModal(exEditBtn.getAttribute('data-day'), parseInt(exEditBtn.getAttribute('data-idx'),10)); return; }
+  var exDeleteBtn = e.target.closest('[data-action="ex-delete"]');
+  if(exDeleteBtn){
+    var exDelDay = exDeleteBtn.getAttribute('data-day');
+    var exDelIdx = parseInt(exDeleteBtn.getAttribute('data-idx'),10);
+    var exDelBlocks = healthExerciseBlocksFor(exDelDay).slice();
+    var exDelBlock = exDelBlocks[exDelIdx];
+    if(exDelBlock && window.confirm('Delete "'+exDelBlock.title+'"?')){
+      exDelBlocks.splice(exDelIdx,1);
+      saveHealthOverrideDay(exDelDay, exDelBlocks);
+    }
+    return;
+  }
+  var exResetBtn = e.target.closest('[data-action="ex-day-reset"]');
+  if(exResetBtn){
+    if(window.confirm('Reset this day back to the default plan? Your edits for this day will be lost.')){
+      resetHealthOverrideDay(exResetBtn.getAttribute('data-day'));
+    }
+    return;
+  }
   var exDetailBtn = e.target.closest('[data-action="ex-detail"]');
   if(exDetailBtn){
     var exDay = exDetailBtn.getAttribute('data-day');
     var exIdx = parseInt(exDetailBtn.getAttribute('data-idx'),10);
-    var exBlock = state.health && state.health.weeklyExercise && state.health.weeklyExercise[exDay] && state.health.weeklyExercise[exDay][exIdx];
+    var exBlock = healthExerciseBlocksFor(exDay)[exIdx];
     if(exBlock){
       var exBody = (exBlock.sets ? '<div class="item-meta" style="margin:0 0 10px;"><span class="chip">'+escapeHtml(exBlock.sets)+(exBlock.reps?' × '+escapeHtml(exBlock.reps):'')+'</span>'+(exBlock.duration?'<span class="chip">⏱ '+escapeHtml(exBlock.duration)+'</span>':'')+'</div>' : '') +
         (exBlock.detail ? '<p style="margin:0 0 10px;">'+escapeHtml(exBlock.detail)+'</p>' : '') +
