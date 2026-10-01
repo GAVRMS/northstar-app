@@ -1353,7 +1353,10 @@ function renderHealth(){
     html += renderHealthDiet();
   } else if(view==='tips'){
     html += '<div class="card">' + (state.health.tips||[]).map(function(t){
-      return '<div class="item-row"><div class="item-body"><div style="font-size:13.5px;line-height:1.4;">'+escapeHtml(t)+'</div></div></div>';
+      if(typeof t === 'string'){ t = {text: t, tags: []}; }
+      return '<div class="item-row"><div class="item-body">' +
+        '<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px;">'+tipTagChips(t)+'</div>' +
+        '<div style="font-size:13.5px;line-height:1.4;color:var(--ink);">'+escapeHtml(t.text)+'</div></div></div>';
     }).join('') + '</div>';
   }
   html += state.health ? renderHealthGaps() : '';

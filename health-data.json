@@ -52,10 +52,37 @@
   "gapsToConfirm": [
     "PureGym Finchley / Technogym Canary Wharf weekly class timetables — captured 28 Sep 2026, see the Gym Class Timetable booklet in Resources. A few odd durations (Wed PureGym HIT 18:45-19:50, Sat PureGym GLC time) are transcribed as read out and worth a quick confirm next visit.",
     "Technogym Monday 17:30 'Aim at the Stars' yoga — you flagged this as possibly unsafe for L5-S1. Treated as excluded/pending physio clearance until confirmed.",
-    "Highgate Hospital Thursday physio — exact time not yet confirmed; placeholder is 'Thursday evening'."
+    "New weekly planner (1 Oct 2026) swapped several class slots — flagged in the Health tab on the affected days: Wed Cardio Tone replaces Vinyasa Yoga (lower safety tier, confirm with Dr Anupama), Fri 'Pil Arms' doesn't exactly match a named class on the real Technogym timetable, Thu physio is now 'Nuffield' not 'Highgate Hospital' (confirm this isn't a mix-up), Sat trainer time is 7:45am here vs 7:30am in the life-routine planner, and Thu evening Zumba is new and not yet physio-cleared (see Exercise library — Dance & Spin).",
+    "High Wood (Highgate Wood) walks on Wed lunch and Thu morning in the new planner — not clear if these are in addition to or instead of the existing commute walks on those days."
   ],
   "weeklyExercise": {
     "mon": [
+      {
+        "id": "mon-0",
+        "time": "06:45",
+        "title": "Cycle (PureGym Finchley)",
+        "location": "PureGym Finchley",
+        "duration": "30 min",
+        "category": "Cardio",
+        "safety": {
+          "status": "safe",
+          "note": "Seated/moderate-resistance cycling is generally fine for L5-S1 — still paused during October recovery, resume once cleared."
+        },
+        "detail": "From your new weekly planner. Keep resistance moderate and avoid standing climbs (they load the lumbar spine through the hips) — see Dance & Spin guidance in the Exercise library."
+      },
+      {
+        "id": "mon-2",
+        "time": "11:10",
+        "title": "Reformer Pilates (Technogym Canary Wharf)",
+        "location": "Technogym Canary Wharf",
+        "duration": "45 min",
+        "category": "Strength",
+        "safety": {
+          "status": "confirm",
+          "note": "Reformer Pilates generally reads as L5-S1-friendly (controlled, supported movement) — still paused during October recovery, resume once cleared by Dr Anupama (target: mid-Nov). Confirm with the instructor: no loaded forward flexion, no deep twisting."
+        },
+        "detail": "From your new weekly planner — replaces the earlier generic 'gym floor core + wrist work' placeholder with the actual booked class. Full class list in the Gym Class Timetable booklet, Resources section."
+      },
       {
         "id": "mon-1",
         "time": "AM commute",
@@ -68,138 +95,6 @@
           "note": "Safe throughout recovery."
         },
         "detail": "Counts toward the 15k step target. Brisk pace once cleared for exercise; easy pace during October recovery."
-      },
-      {
-        "id": "mon-2",
-        "time": "Lunchtime",
-        "title": "Gym floor — core stability + light dumbbell wrist work",
-        "location": "Technogym Canary Wharf (gym floor)",
-        "duration": "25-30 min",
-        "category": "Strength",
-        "sets": "3",
-        "reps": "10-12",
-        "safety": {
-          "status": "confirm",
-          "note": "Paused during October recovery — resume once cleared by Dr Anupama (target: mid-Nov)."
-        },
-        "detail": "Bird-dog, dead bug, glute bridge, wrist curls with light dumbbells. Spondylolisthesis-safe: no loaded forward flexion, no heavy twisting, no crunches/sit-ups.",
-        "guide": [
-          {
-            "label": "Round 1 — Bird-dog",
-            "seconds": 40,
-            "cue": "Opposite arm/leg extended, hold, slow and controlled."
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": "Shake it out, breathe."
-          },
-          {
-            "label": "Round 1 — Dead bug",
-            "seconds": 40,
-            "cue": "Lower opposite arm/leg slowly, keep low back flat."
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": ""
-          },
-          {
-            "label": "Round 1 — Glute bridge",
-            "seconds": 40,
-            "cue": "Squeeze glutes at the top, no arching in the low back."
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": ""
-          },
-          {
-            "label": "Round 1 — Wrist curls (light dumbbells)",
-            "seconds": 30,
-            "cue": "Slow and controlled, full range of motion."
-          },
-          {
-            "label": "Rest",
-            "seconds": 30,
-            "cue": "Longer rest before round 2."
-          },
-          {
-            "label": "Round 2 — Bird-dog",
-            "seconds": 40,
-            "cue": ""
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": ""
-          },
-          {
-            "label": "Round 2 — Dead bug",
-            "seconds": 40,
-            "cue": ""
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": ""
-          },
-          {
-            "label": "Round 2 — Glute bridge",
-            "seconds": 40,
-            "cue": ""
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": ""
-          },
-          {
-            "label": "Round 2 — Wrist curls (light dumbbells)",
-            "seconds": 30,
-            "cue": ""
-          },
-          {
-            "label": "Rest",
-            "seconds": 30,
-            "cue": "Longer rest before round 3."
-          },
-          {
-            "label": "Round 3 — Bird-dog",
-            "seconds": 40,
-            "cue": ""
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": ""
-          },
-          {
-            "label": "Round 3 — Dead bug",
-            "seconds": 40,
-            "cue": ""
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": ""
-          },
-          {
-            "label": "Round 3 — Glute bridge",
-            "seconds": 40,
-            "cue": ""
-          },
-          {
-            "label": "Rest",
-            "seconds": 20,
-            "cue": ""
-          },
-          {
-            "label": "Round 3 — Wrist curls (light dumbbells)",
-            "seconds": 30,
-            "cue": "Last set — finish strong."
-          }
-        ]
       },
       {
         "id": "mon-3",
@@ -255,6 +150,19 @@
           "status": "safe"
         },
         "detail": "Both commute legs walked in full."
+      },
+      {
+        "id": "tue-0",
+        "time": "Morning",
+        "title": "Stretch + Yoga (Home)",
+        "location": "Home",
+        "duration": "15-20 min",
+        "category": "Spinal Yoga",
+        "safety": {
+          "status": "safe",
+          "note": "Use only the 'safe' asana list — see Exercise library tab."
+        },
+        "detail": "From your new weekly planner — a morning stretch + yoga block before the commute."
       },
       {
         "time": "Lunchtime or evening",
@@ -322,6 +230,19 @@
             "cue": "Sink hips to heels, arms extended, relax and breathe."
           }
         ]
+      },
+      {
+        "id": "tue-4",
+        "time": "16:45",
+        "title": "Reformer Pilates (Technogym Canary Wharf)",
+        "location": "Technogym Canary Wharf",
+        "duration": "45 min",
+        "category": "Strength",
+        "safety": {
+          "status": "confirm",
+          "note": "Generally L5-S1-friendly — still paused during October recovery, resume once cleared by Dr Anupama (target: mid-Nov). Confirm with the instructor: no loaded forward flexion, no deep twisting."
+        },
+        "detail": "From your new weekly planner — a second weekly Reformer Pilates session, after work."
       }
     ],
     "wed": [
@@ -338,19 +259,68 @@
       },
       {
         "id": "wed-2",
-        "time": "13:10",
-        "title": "Vinyasa Yoga (Technogym Canary Wharf)",
+        "time": "12:15",
+        "title": "Cardio Tone (Technogym Canary Wharf)",
         "location": "Technogym Canary Wharf",
         "duration": "45 min",
-        "category": "Yoga",
+        "category": "Strength",
         "safety": {
           "status": "confirm",
-          "note": "Likely fine for L5-S1 (vinyasa flow, not the flagged 'Aim at the Stars' class) — still paused during October recovery, and confirm with the instructor no deep backbends/forward folds."
+          "note": "Flagged change: your new planner swaps the previous Vinyasa Yoga slot (rated 'likely fine') for Cardio Tone, which the Gym Class Timetable cross-check rates 'caution — confirm form first' (ask the instructor to swap out any weighted spinal flexion or twisting). This is also a structured cardio/strength class, which falls under the October recovery pause pending Dr Anupama's clearance — worth confirming it's actually cleared before this one, not just carried over from the planner."
         },
-        "detail": "From the real Wednesday Technogym timetable — fits the lunch window on an office day. Alternative same slot: Cardio Tone 12:15 (confirm form) or Technogym Boot Camp 12:00/13:00 (higher-impact, ask physio first). Full timetable in the Gym Class Timetable booklet, Resources section."
+        "detail": "Updated from your new weekly planner (previously Vinyasa Yoga 13:10 in this slot). Full class list in the Gym Class Timetable booklet, Resources section."
+      },
+      {
+        "id": "wed-3",
+        "time": "Lunch",
+        "title": "Walk — High Wood (Highgate Wood)",
+        "location": "Highgate Wood",
+        "duration": "15-20 min",
+        "category": "Walking",
+        "safety": {
+          "status": "safe",
+          "note": "Safe throughout recovery."
+        },
+        "detail": "From your new weekly planner. Not sure if this is in addition to or instead of your usual commute walk — flagging rather than guessing, worth confirming which."
+      },
+      {
+        "time": "Lunch",
+        "title": "Stretch (Home)",
+        "location": "Home",
+        "duration": "5-10 min",
+        "category": "Spinal Yoga",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "From your new weekly planner."
       }
     ],
     "thu": [
+      {
+        "id": "thu-0a",
+        "time": "Morning",
+        "title": "Stretch (Home)",
+        "location": "Home",
+        "duration": "5-10 min",
+        "category": "Spinal Yoga",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "From your new weekly planner."
+      },
+      {
+        "id": "thu-0b",
+        "time": "Morning",
+        "title": "Walk — High Wood (Highgate Wood)",
+        "location": "Highgate Wood",
+        "duration": "15-20 min",
+        "category": "Walking",
+        "safety": {
+          "status": "safe",
+          "note": "Safe throughout recovery."
+        },
+        "detail": "From your new weekly planner."
+      },
       {
         "id": "thu-1",
         "time": "Morning (WFH day)",
@@ -503,15 +473,28 @@
       },
       {
         "id": "thu-3",
-        "time": "Thursday evening",
-        "title": "Physio — Highgate Hospital",
-        "location": "Highgate Hospital",
+        "time": "16:00",
+        "title": "Physio — Nuffield",
+        "location": "Nuffield",
         "duration": "~45-60 min (confirm)",
         "category": "Physio",
         "safety": {
           "status": "safe"
         },
-        "detail": "New weekly slot. Ask directly about: the Technogym Monday 17:30 yoga class, Zumba/dance and spinning safety for L5-S1, and the walk/run-to-5K return timeline."
+        "detail": "Flagged change: your new planner says 'Nuffield Physio' at 4pm — this replaces the earlier 'Highgate Hospital, Thursday evening' entry. Updating to match what you just gave me, but flagging in case Highgate Hospital was the correct provider and this is a mix-up, since the two don't obviously refer to the same place."
+      },
+      {
+        "id": "thu-4",
+        "time": "18:30",
+        "title": "Zumba (PureGym Finchley)",
+        "location": "PureGym Finchley",
+        "duration": "45 min",
+        "category": "Dance",
+        "safety": {
+          "status": "ask-physio",
+          "note": "Flagged, not cleared: standard Zumba involves jumping, rapid direction changes and twisting under momentum — exactly what's generally cautioned against with a bilateral pars defect. The Exercise library's Dance & Spin verdict says 'Caution — go low-impact': ask the Highgate physio before a full-intensity class, and look for a low-impact/'Zumba Gold' format in the meantime. This is new to your planner and wasn't in the weekly routine before — please don't start it without physio sign-off."
+        },
+        "detail": "From your new weekly planner. See Exercise library → Dance & Spin for the full verdict and reasoning."
       }
     ],
     "fri": [
@@ -556,19 +539,32 @@
       },
       {
         "id": "fri-2",
-        "time": "13:30",
-        "title": "Flow to Reserve — Restore Yoga (Technogym Canary Wharf)",
+        "time": "11:15",
+        "title": "Pilates — 'Pil Arms' (Technogym Canary Wharf)",
         "location": "Technogym Canary Wharf",
-        "duration": "45 min",
+        "duration": "30 min",
         "category": "Yoga",
         "safety": {
           "status": "confirm",
-          "note": "Restorative yoga, likely fine for L5-S1 — still paused during October recovery, confirm with the instructor no deep backbends/forward folds."
+          "note": "Flagged mapping: your new planner says 'Pil Arms' at 11:15 — the closest match on the real Technogym Friday timetable (transcribed earlier) is 'Pilates — Fits, Rolls, Planks, Push-Ups' at 11:15, 30 min, which may or may not be the same class under a shortened name. This also replaces the previous Flow to Reserve restore yoga 13:30 slot. Plank/push-up work is usually spine-neutral but worth confirming with the instructor given the October recovery pause."
         },
-        "detail": "From the real Friday Technogym timetable — fits the lunch window on an office day. Alternative same slot: Group Cycle 12:00 (likely fine, seated cardio). Full timetable in the Gym Class Timetable booklet, Resources section."
+        "detail": "Updated from your new weekly planner (previously Flow to Reserve — Restore Yoga 13:30 in this slot). Full class list in the Gym Class Timetable booklet, Resources section."
       }
     ],
     "sat": [
+      {
+        "id": "sat-0",
+        "time": "07:45",
+        "title": "Personal trainer session",
+        "location": "Local gym (10-min drive)",
+        "duration": "~45-60 min (confirm)",
+        "category": "Strength",
+        "safety": {
+          "status": "confirm",
+          "note": "Paused during October recovery — resume once cleared by Dr Anupama. Your planner says 7:45am; the existing weekly life-routine has this at 7:30am — minor mismatch worth confirming the actual time."
+        },
+        "detail": "From your new weekly planner."
+      },
       {
         "id": "sat-1",
         "time": "Morning",
@@ -633,6 +629,17 @@
             "cue": "Sink back, breathe deeply, let the back release. Hold longer if it feels good."
           }
         ]
+      },
+      {
+        "time": "Lunch",
+        "title": "Stretch (Home)",
+        "location": "Home",
+        "duration": "5-10 min",
+        "category": "Spinal Yoga",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "From your new weekly planner."
       },
       {
         "id": "sat-2",
@@ -759,6 +766,35 @@
             "label": "Ujjayi (ocean breath)",
             "seconds": 240,
             "cue": "Breathe through the nose with a slight throat constriction, slow and even."
+          }
+        ]
+      },
+      {
+        "id": "sun-3",
+        "time": "Evening",
+        "title": "Eye yoga",
+        "location": "Home",
+        "duration": "10 min",
+        "category": "Eye care",
+        "safety": {
+          "status": "safe"
+        },
+        "detail": "From your new weekly planner, added as a third weekly eye-yoga session alongside the existing Tue + Fri sessions (not a replacement — flagging in case you meant to move rather than add).",
+        "guide": [
+          {
+            "label": "Palming",
+            "seconds": 180,
+            "cue": "Rub palms warm, cup gently over closed eyes, breathe."
+          },
+          {
+            "label": "Focus shifts",
+            "seconds": 240,
+            "cue": "Alternate focus between a near object and a far object."
+          },
+          {
+            "label": "Blinking exercises",
+            "seconds": 180,
+            "cue": "Blink rapidly for 10 seconds, then rest eyes closed for 10 seconds — repeat."
           }
         ]
       }
