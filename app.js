@@ -55,13 +55,62 @@ function parseYmd(s){
   var p = s.split('-'); return new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]));
 }
 function addDays(d, n){ var r = new Date(d); r.setDate(r.getDate()+n); return r; }
+function recurrenceFreqOf(ev){
+  if(ev && ev.recurrence && ev.recurrence.freq) return ev.recurrence.freq;
+  if(ev && ev.recurringAnnual) return 'yearly'; // legacy flag, pre-dates the general recurrence field
+  return null;
+}
 function effectiveDate(ev){
-  if(!ev.recurringAnnual) return ev.date;
-  var stored = parseYmd(ev.date);
+  var freq = recurrenceFreqOf(ev);
+  if(!freq) return ev.date;
+  var anchor = parseYmd(ev.date);
   var todayD = parseYmd(todayStr);
-  var candidate = new Date(todayD.getFullYear(), stored.getMonth(), stored.getDate());
-  if(candidate < todayD) candidate = new Date(todayD.getFullYear()+1, stored.getMonth(), stored.getDate());
+  var candidate;
+  if(freq==='yearly'){
+    candidate = new Date(todayD.getFullYear(), anchor.getMonth(), anchor.getDate());
+    if(candidate < todayD) candidate = new Date(todayD.getFullYear()+1, anchor.getMonth(), anchor.getDate());
+  } else if(freq==='monthly'){
+    var dom = anchor.getDate();
+    var clamp = function(y,m){ var last = new Date(y, m+1, 0).getDate(); return new Date(y, m, Math.min(dom,last)); };
+    candidate = clamp(todayD.getFullYear(), todayD.getMonth());
+    if(candidate < todayD){ var ny=todayD.getFullYear(), nm=todayD.getMonth()+1; if(nm>11){nm=0; ny++;} candidate = clamp(ny,nm); }
+  } else if(freq==='weekly'){
+    var base = todayD < anchor ? anchor : todayD;
+    var diff = (anchor.getDay() - base.getDay() + 7) % 7;
+    candidate = addDays(base, diff);
+  } else if(freq==='daily'){
+    candidate = todayD < anchor ? anchor : todayD;
+  } else {
+    return ev.date;
+  }
+  if(candidate < anchor) candidate = anchor; // never show an occurrence before the series started
   return ymd(candidate);
+}
+function effectiveStatus(ev){
+  var freq = recurrenceFreqOf(ev);
+  if(!freq) return ev.status;
+  var ov = ev.occurrenceOverrides || {};
+  return ov[effectiveDate(ev)] || 'Planned';
+}
+function resolvedEvent(ev){
+  var freq = recurrenceFreqOf(ev);
+  if(!freq) return ev;
+  var occDate = effectiveDate(ev);
+  var ov = ev.occurrenceOverrides || {};
+  return Object.assign({}, ev, {date: occDate, status: ov[occDate] || 'Planned'});
+}
+async function setOccurrenceStatus(id, dateStr, status){
+  if(state.db){
+    var patch = {}; patch['occurrenceOverrides.'+dateStr] = status;
+    await state.db.collection('events').doc(id).update(patch);
+  } else {
+    var e = state.events.find(function(x){return x.id===id;});
+    if(e){
+      e.occurrenceOverrides = Object.assign({}, e.occurrenceOverrides||{});
+      e.occurrenceOverrides[dateStr] = status;
+      saveLocal(); renderAll();
+    }
+  }
 }
 function daysUntil(dateStr){
   return Math.round((parseYmd(dateStr) - parseYmd(todayStr)) / 86400000);
@@ -336,11 +385,16 @@ async function checkinToday(pts){
 
 async function markEventDone(id, done){
   var ev = state.events.find(function(x){return x.id===id;});
-  await updateEvent(id, {status: done ? 'Done' : 'Planned'});
+  var freq = ev ? recurrenceFreqOf(ev) : null;
+  if(freq){
+    await setOccurrenceStatus(id, effectiveDate(ev), done ? 'Done' : 'Planned');
+  } else {
+    await updateEvent(id, {status: done ? 'Done' : 'Planned'});
+  }
   if(done){
     var pts = priorityPoints(ev ? ev.priority : 'Medium');
     await checkinToday(pts);
-    logActivity('Completed "'+(ev?ev.entry:'task')+'" (+'+pts+' pts)', 'complete');
+    logActivity('Completed "'+(ev?ev.entry:'task')+'"'+(freq?' ('+fmtDateShort(effectiveDate(ev))+')':'')+' (+'+pts+' pts)', 'complete');
   }
 }
 async function toggleSubAction(goalId, idx, done){
@@ -416,16 +470,15 @@ function computeStreak(){
 function eventsInRange(startOffset, endOffset){
   var start = ymd(addDays(parseYmd(todayStr), startOffset));
   var end = ymd(addDays(parseYmd(todayStr), endOffset));
-  return state.events.filter(function(e){ var d = effectiveDate(e); return d >= start && d <= end; })
-    .sort(function(a,b){ return (effectiveDate(a)+String(a.startTime||'')).localeCompare(effectiveDate(b)+String(b.startTime||'')); });
+  return state.events.map(resolvedEvent).filter(function(e){ return e.date >= start && e.date <= end; })
+    .sort(function(a,b){ return (a.date+String(a.startTime||'')).localeCompare(b.date+String(b.startTime||'')); });
 }
 function openGoalsCount(){
   return state.goals.filter(function(g){ return g.status !== 'Done'; }).length;
 }
 function criticalToPrep(){
-  return state.events.filter(function(e){
-    var d = effectiveDate(e);
-    return e.status!=='Done' && e.status!=='Cancelled' && (e.priority==='Critical' || e.prepNeeded) && d >= todayStr && d <= ymd(addDays(parseYmd(todayStr),14));
+  return state.events.map(resolvedEvent).filter(function(e){
+    return e.status!=='Done' && e.status!=='Cancelled' && (e.priority==='Critical' || e.prepNeeded) && e.date >= todayStr && e.date <= ymd(addDays(parseYmd(todayStr),14));
   });
 }
 
@@ -438,9 +491,9 @@ function computeRecommendations(){
   var candidates = [];
   var priWeight = {Critical:40, High:25, Medium:10, Low:2};
 
-  state.events.forEach(function(e){
+  state.events.map(resolvedEvent).forEach(function(e){
     if(e.status==='Done' || e.status==='Cancelled') return;
-    var d = effectiveDate(e);
+    var d = e.date;
     var du = daysUntil(d);
     var score = priWeight[e.priority]!=null ? priWeight[e.priority] : 10;
     var reason;
@@ -477,15 +530,15 @@ function computeHeadsUp(){
   if(today.length >= 5){
     msgs.push('You have '+today.length+' open items today. Consider moving anything not Critical/High to tomorrow.');
   }
-  var critSoon = state.events.filter(function(e){
-    var du = daysUntil(effectiveDate(e));
+  var critSoon = state.events.map(resolvedEvent).filter(function(e){
+    var du = daysUntil(e.date);
     return e.status!=='Done' && e.status!=='Cancelled' && e.priority==='Critical' && du>=0 && du<=3;
   });
   if(critSoon.length >= 2){
     msgs.push(critSoon.length+' critical items land in the next 3 days: '+critSoon.map(function(e){return e.entry;}).join(', ')+'.');
   }
-  var overdue = state.events.filter(function(e){
-    return e.status!=='Done' && e.status!=='Cancelled' && daysUntil(effectiveDate(e)) < 0;
+  var overdue = state.events.map(resolvedEvent).filter(function(e){
+    return e.status!=='Done' && e.status!=='Cancelled' && daysUntil(e.date) < 0;
   });
   if(overdue.length){
     msgs.push(overdue.length+' item'+(overdue.length===1?'':'s')+' overdue: '+overdue.slice(0,3).map(function(e){return e.entry;}).join(', ')+(overdue.length>3?'…':'')+'.');
@@ -545,21 +598,23 @@ function catChipClass(pri){
   return 'chip';
 }
 
+var HB_FREQ_LABEL = {daily:'Daily', weekly:'Weekly', monthly:'Monthly', yearly:'Yearly'};
 function eventRow(ev, opts){
   opts = opts||{};
   var done = ev.status === 'Done';
   var timeLabel = ev.startTime ? ev.startTime : (opts.showDate ? '' : 'All day');
+  var freq = recurrenceFreqOf(ev);
   return (
     '<div class="item-row" data-evid="'+ev.id+'">' +
       '<button class="check '+(done?'done':'')+'" data-action="toggle-event" data-id="'+ev.id+'">'+(done?'✓':'')+'</button>' +
       '<div class="item-body">' +
         '<div class="item-title '+(done?'done':'')+'">'+escapeHtml(ev.entry||'(untitled)')+'</div>' +
         '<div class="item-meta">' +
-          (opts.showDate ? '<span class="chip time">'+fmtDateShort(effectiveDate(ev))+'</span>' : '') +
+          (opts.showDate ? '<span class="chip time">'+fmtDateShort(ev.date)+'</span>' : '') +
           (timeLabel ? '<span class="chip time">'+escapeHtml(timeLabel)+'</span>' : '') +
           '<span class="chip">'+escapeHtml(ev.category||'Personal')+'</span>' +
           (ev.priority && ev.priority!=='Medium' ? '<span class="'+catChipClass(ev.priority)+'">'+ev.priority+'</span>' : '') +
-          (ev.recurringAnnual ? '<span class="chip">🔁 Yearly</span>' : '') +
+          (freq ? '<span class="chip">🔁 '+(HB_FREQ_LABEL[freq]||freq)+'</span>' : '') +
         '</div>' +
         (ev.prepNeeded ? '<div style="margin-top:6px;font-size:12.5px;color:var(--ink-dim);">Prep: '+escapeHtml(ev.prepNeeded)+'</div>' : '') +
         '<a class="cal-btn" href="'+googleCalUrl(ev)+'" target="_blank" rel="noopener">📅 Add to Calendar</a>' +
@@ -1003,7 +1058,7 @@ function renderWeekItinerary(){
     var date = addDays(monday, i);
     var dateStr = ymd(date);
     var r = state.routine[key] || {blocks:[]};
-    var dayEvents = state.events.filter(function(e){ return effectiveDate(e)===dateStr && e.status!=='Cancelled'; });
+    var dayEvents = state.events.map(resolvedEvent).filter(function(e){ return e.date===dateStr && e.status!=='Cancelled'; });
     var isToday = dateStr === todayStr;
     html += '<div class="section-head" style="margin-top:18px;"><h2 style="font-size:15px;">'+label+' · '+date.toLocaleDateString(undefined,{month:'short',day:'numeric'})+(isToday?' <span class="chip" style="margin-left:4px;">Today</span>':'')+'</h2>' +
       (r.mode ? '<span class="chip">'+escapeHtml(r.mode)+'</span>' : '') + '</div>';
@@ -1454,7 +1509,7 @@ document.getElementById('mainContent').addEventListener('click', function(e){
   if(toggleBtn){
     var id = toggleBtn.getAttribute('data-id');
     var ev = state.events.find(function(x){return x.id===id;});
-    markEventDone(id, !(ev && ev.status==='Done'));
+    markEventDone(id, !(ev && effectiveStatus(ev)==='Done'));
     return;
   }
   var editBtn = e.target.closest('[data-action="edit-event"]');
@@ -1463,7 +1518,15 @@ document.getElementById('mainContent').addEventListener('click', function(e){
   if(delEvtBtn){
     var delEvId = delEvtBtn.getAttribute('data-id');
     var delEv = state.events.find(function(x){return x.id===delEvId;});
-    if(window.confirm('Delete "'+(delEv?delEv.entry:'this item')+'"?')){ deleteEvent(delEvId); }
+    var delFreq = delEv ? recurrenceFreqOf(delEv) : null;
+    if(delFreq){
+      var delOccDate = effectiveDate(delEv);
+      var deleteWhole = window.confirm('"'+(delEv?delEv.entry:'This item')+'" repeats '+(HB_FREQ_LABEL[delFreq]||delFreq).toLowerCase()+'.\n\nOK = delete the whole series.\nCancel = just skip '+fmtDateShort(delOccDate)+' and keep the rest.');
+      if(deleteWhole){ deleteEvent(delEvId); }
+      else { setOccurrenceStatus(delEvId, delOccDate, 'Cancelled'); logActivity('Skipped "'+(delEv?delEv.entry:'item')+'" on '+fmtDateShort(delOccDate), 'delete'); }
+    } else {
+      if(window.confirm('Delete "'+(delEv?delEv.entry:'this item')+'"?')){ deleteEvent(delEvId); }
+    }
     return;
   }
 
@@ -1689,23 +1752,27 @@ function openGuideTimer(title, steps){
   hbGuideState.timerId = setInterval(hbGuideTick, 1000);
 }
 
+var HB_REPEAT_OPTIONS = [['', 'Never'],['daily','Daily'],['weekly','Weekly'],['monthly','Monthly'],['yearly','Yearly']];
 function openEventModal(editId){
   var editing = editId ? state.events.find(function(x){return x.id===editId;}) : null;
+  var curFreq = editing ? (recurrenceFreqOf(editing) || '') : '';
   var d = editing ? editing.date : todayStr;
+  var curStatus = editing ? effectiveStatus(editing) : 'Planned';
   modalBody.innerHTML =
     '<h3>'+(editing?'Edit item':'Add item')+'</h3>' +
     '<div class="field"><label>What</label><input id="f-entry" type="text" value="'+escapeHtml(editing?editing.entry:'')+'" placeholder="e.g. Call the physio"></div>' +
     '<div class="field-row">' +
-      '<div class="field"><label>Date</label><input id="f-date" type="date" value="'+d+'"></div>' +
+      '<div class="field"><label>'+(curFreq?'Start date':'Date')+'</label><input id="f-date" type="date" value="'+d+'"></div>' +
       '<div class="field"><label>Time (optional)</label><input id="f-time" type="text" placeholder="e.g. 3pm" value="'+escapeHtml(editing&&editing.startTime||'')+'"></div>' +
     '</div>' +
+    '<div class="field"><label>Repeats</label><select id="f-repeat">'+HB_REPEAT_OPTIONS.map(function(o){return '<option value="'+o[0]+'" '+(curFreq===o[0]?'selected':'')+'>'+o[1]+'</option>';}).join('')+'</select></div>' +
     '<div class="field-row">' +
       '<div class="field"><label>Category</label><select id="f-cat">'+CATEGORIES.map(function(c){return '<option '+(editing&&editing.category===c?'selected':'')+'>'+c+'</option>';}).join('')+'</select></div>' +
       '<div class="field"><label>Priority</label><select id="f-pri">'+PRIORITIES.map(function(c){return '<option '+((editing?editing.priority:'Medium')===c?'selected':'')+'>'+c+'</option>';}).join('')+'</select></div>' +
     '</div>' +
     '<div class="field"><label>Prep needed (optional)</label><input id="f-prep" type="text" value="'+escapeHtml(editing&&editing.prepNeeded||'')+'"></div>' +
     '<div class="field"><label>Notes (optional)</label><textarea id="f-notes" rows="2">'+escapeHtml(editing&&editing.notes||'')+'</textarea></div>' +
-    (editing ? '<div class="field"><label>Status</label><select id="f-status">'+STATUSES.map(function(c){return '<option '+(editing.status===c?'selected':'')+'>'+c+'</option>';}).join('')+'</select></div>' : '') +
+    (editing ? '<div class="field"><label>Status'+(curFreq?' (for '+fmtDateShort(d)+' only)':'')+'</label><select id="f-status">'+STATUSES.map(function(c){return '<option '+(curStatus===c?'selected':'')+'>'+c+'</option>';}).join('')+'</select></div>' : '') +
     '<div class="modal-actions">' +
       '<button class="btn-ghost" id="modalCancel">Cancel</button>' +
       '<button class="btn-primary" id="modalSave">'+(editing?'Save changes':'Add to planner')+'</button>' +
@@ -1713,6 +1780,7 @@ function openEventModal(editId){
   modalBackdrop.hidden = false;
   document.getElementById('modalCancel').onclick = closeModal;
   document.getElementById('modalSave').onclick = async function(){
+    var newFreq = document.getElementById('f-repeat').value || null;
     var payload = {
       entry: document.getElementById('f-entry').value.trim(),
       date: document.getElementById('f-date').value,
@@ -1721,17 +1789,25 @@ function openEventModal(editId){
       priority: document.getElementById('f-pri').value,
       prepNeeded: document.getElementById('f-prep').value.trim() || null,
       notes: document.getElementById('f-notes').value.trim() || null,
+      recurrence: newFreq ? {freq: newFreq} : null,
     };
     if(!payload.entry) return;
     if(editing){
-      payload.status = document.getElementById('f-status').value;
+      var newStatus = document.getElementById('f-status').value;
+      if(newFreq){
+        // Recurring: status applies only to this one occurrence, kept separate
+        // from the series fields so other occurrences aren't affected.
+        await setOccurrenceStatus(editing.id, payload.date, newStatus);
+      } else {
+        payload.status = newStatus;
+      }
       await updateEvent(editing.id, payload);
       logActivity('Updated "'+payload.entry+'"', 'edit');
     } else {
       payload.status = 'Planned';
       payload.day = parseYmd(payload.date).toLocaleDateString(undefined,{weekday:'short'});
       await addEvent(payload);
-      logActivity('Added "'+payload.entry+'" for '+fmtDateShort(payload.date), 'add');
+      logActivity('Added "'+payload.entry+'"'+(newFreq?' (repeats '+newFreq+')':' for '+fmtDateShort(payload.date)), 'add');
     }
     closeModal();
   };
@@ -1892,7 +1968,7 @@ function parseDatePhrase(text){
 
 function findMatchingOpenItem(text){
   text = text.toLowerCase();
-  var candidates = state.events.filter(function(e){ return e.status!=='Done' && e.status!=='Cancelled'; });
+  var candidates = state.events.map(resolvedEvent).filter(function(e){ return e.status!=='Done' && e.status!=='Cancelled'; });
   var best = null, bestScore = 0;
   candidates.forEach(function(e){
     var words = (e.entry||'').toLowerCase().split(/\W+/).filter(function(w){return w.length>2;});
