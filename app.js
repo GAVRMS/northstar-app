@@ -1444,6 +1444,10 @@ function renderHealthLibrary(){
   var lib = state.health && state.health.exerciseLibrary;
   if(!lib) return '<div class="empty">Loading…</div>';
   var html = '';
+  html += '<a class="card" href="spine-routine.html" style="display:block;padding:14px 16px;text-decoration:none;color:inherit;">' +
+    '<div style="font-weight:700;font-size:15px;">▶ Gentle Spine Routine — follow-along</div>' +
+    '<div style="font-size:13px;color:var(--ink-dim);margin-top:4px;line-height:1.5;">Five poses from Jindal\'s “Yoga for Spinal Disorder” sheet, with breath cues, counts, voice and a calm tone. Prishtatanasana and Katishaktiasana are shown as cautious stand-ins until their real form is confirmed.</div>' +
+    '<div style="margin-top:6px;font-size:12px;color:var(--focus);font-weight:600;">Open the routine →</div></a>';
   if(lib.spinalYoga){
     var sy = lib.spinalYoga;
     html += '<div class="section-head" style="margin-top:8px;"><h2 style="font-size:15px;">🧘 '+escapeHtml(sy.title)+'</h2></div>';

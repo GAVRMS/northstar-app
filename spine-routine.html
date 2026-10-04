@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gentle Spine Routine</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one follow-along screen. Big figure on a mat, one instruction at a time under it,
+   a breathing ring and a count beside it, transport at the bottom. */
+:root{
+  --bg:#f6f4ef; --fg:#2b2e2a; --muted:#6b6f68; --card:#ffffff; --line:#e2ddd1;
+  --accent:#5c7a63; --accent-2:#b4732f; --warn:#a24444;
+  --stage:#eef1ea; --mat:#b9c9b6; --skin:#d7a685; --top:#5c7a63; --legs:#3f4a55;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1c1f1b; --fg:#eceae3; --muted:#9a9d94; --card:#262a24; --line:#383c34;
+    --accent:#86ab8d; --accent-2:#d9a877; --warn:#d98080;
+    --stage:#20241f; --mat:#4a5a4b; --skin:#d7a685; --top:#86ab8d; --legs:#8793a0;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1c1f1b; --fg:#eceae3; --muted:#9a9d94; --card:#262a24; --line:#383c34;
+  --accent:#86ab8d; --accent-2:#d9a877; --warn:#d98080;
+  --stage:#20241f; --mat:#4a5a4b; --skin:#d7a685; --top:#86ab8d; --legs:#8793a0;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Work Sans',ui-sans-serif,system-ui,sans-serif;
+  padding-block:20px 32px;padding-inline:16px;display:flex;justify-content:center}
+.wrap{width:100%;max-width:680px;display:flex;flex-direction:column;gap:14px}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:1.6rem;margin:0;text-wrap:balance}
+.sub{color:var(--muted);font-size:.9rem;margin:4px 0 0;line-height:1.45}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.pose-name{font-family:'Fraunces',Georgia,serif;font-size:1.3rem;font-weight:600}
+.pose-en{color:var(--muted);font-size:.86rem}
+.tag{font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.tag.safe{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.tag.caution{background:color-mix(in srgb,var(--accent-2) 18%,transparent);color:var(--accent-2)}
+.tag.standin{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+
+.stage{background:var(--stage);border-radius:16px;overflow:hidden}
+canvas{display:block;width:100%;aspect-ratio:400/240}
+
+.now{display:flex;gap:14px;align-items:center}
+.ring-box{flex:none;width:86px;height:86px;position:relative;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;inset:8px;border-radius:50%;background:color-mix(in srgb,var(--accent) 22%,transparent);
+  border:2px solid var(--accent);transform:scale(.6)}
+.ring-text{position:relative;text-align:center;line-height:1.1}
+.ring-word{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
+.ring-num{font-family:'Fraunces',Georgia,serif;font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums}
+.cue-box{min-width:0;flex:1}
+.cue{font-size:1.15rem;font-weight:600;line-height:1.35;text-wrap:balance;min-height:3.1em}
+.rep{margin-top:6px;font-size:.84rem;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dots{display:flex;gap:4px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dot.done{background:var(--accent)}
+.dot.on{background:var(--accent-2)}
+
+.bar{height:6px;background:var(--line);border-radius:999px;overflow:hidden}
+.bar > div{height:100%;width:0;background:var(--accent)}
+
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+button{font-family:inherit;font-size:.9rem;border-radius:999px;padding:10px 16px;cursor:pointer;
+  border:1px solid var(--line);background:var(--card);color:var(--fg)}
+button.primary{background:var(--accent);color:var(--bg);border-color:transparent;font-weight:600;padding-inline:22px}
+button:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
+button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+
+a.vid{font-size:.9rem;font-weight:600;border-radius:999px;padding:10px 16px;text-decoration:none;
+  background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);border:1px solid var(--accent)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.chip{flex:none;font-size:.78rem;padding:8px 12px}
+.chip.current{border-color:var(--accent);color:var(--accent);font-weight:600}
+
+.note{font-size:.85rem;line-height:1.5;color:var(--muted);border-left:3px solid var(--accent-2);padding:2px 0 2px 12px}
+.note.warn{border-left-color:var(--warn)}
+.foot{font-size:.8rem;color:var(--muted);line-height:1.5}
+</style>
+
+<div class="wrap">
+  <a class="vid" href="./index.html" style="align-self:flex-start">← Back to North Star</a>
+  <div>
+    <h1>Gentle Spine Routine</h1>
+    <p class="sub">Five poses from Jindal's "Yoga for Spinal Disorder" sheet. Press Start and copy the figure. One instruction shows at a time.</p>
+  </div>
+
+  <div class="card">
+    <div class="head">
+      <div>
+        <div class="pose-name" id="poseName"></div>
+        <div class="pose-en" id="poseEn"></div>
+      </div>
+      <div class="tag" id="poseTag"></div>
+    </div>
+
+    <div class="stage"><canvas id="cv" width="800" height="480" aria-label="Animated figure showing the current pose"></canvas></div>
+
+    <div class="controls">
+      <a class="vid" id="vidLink" target="_blank" rel="noopener">▶ Watch a real person do this pose (YouTube)</a>
+      <a class="vid" href="https://youtu.be/VkN2PLERcns" target="_blank" rel="noopener">▶ Your Jindal video</a>
+    </div>
+
+    <div class="now">
+      <div class="ring-box">
+        <div class="ring" id="ring"></div>
+        <div class="ring-text"><div class="ring-word" id="ringWord">Ready</div><div class="ring-num" id="ringNum"></div></div>
+      </div>
+      <div class="cue-box">
+        <div class="cue" id="cue" aria-live="polite"></div>
+        <div class="rep"><span id="repText"></span><span class="dots" id="dots"></span></div>
+      </div>
+    </div>
+
+    <div class="bar"><div id="barFill"></div></div>
+
+    <div class="controls">
+      <button class="primary" id="playBtn" type="button">▶ Start</button>
+      <button id="prevBtn" type="button">◀ Previous</button>
+      <button id="nextBtn" type="button">Next ▶</button>
+      <button id="paceBtn" type="button" aria-pressed="false">Slower pace</button>
+      <button id="voiceBtn" type="button" aria-pressed="false">🔊 Voice</button>
+      <button id="toneBtn" type="button" aria-pressed="false">♪ Calm tone</button>
+    </div>
+
+    <div class="note" id="poseNote"></div>
+  </div>
+
+  <div class="chips" id="chips"></div>
+
+  <p class="foot">The counts and hold times are gentle defaults I chose, not numbers from Jindal's sheet. I could not open the video you linked, so Prishtatanasana and Katishaktiasana are shown as cautious stand-ins until their real form is confirmed. The voice is your device's text-to-speech and the tone is generated in the browser.</p>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- keyframes: joint positions on a 400x240 stage, floor at y=215 ---------- */
+function K(base, o){ var r={}, k; for(k in base) r[k]=base[k]; for(k in o) r[k]=o[k]; return r; }
+
+/* side view, facing right. L = near side, R = far side */
+var TT = { head:[302,126], neck:[280,136], shL:[270,142], shR:[270,142], mid:[210,140], hip:[150,142],
+  hipL:[150,142], hipR:[150,142], elL:[270,180], haL:[270,211], elR:[262,180], haR:[262,211],
+  knL:[150,211], ftL:[78,211], knR:[158,211], ftR:[86,211], look:[0.8,0.6] };
+var COW = K(TT,{ mid:[210,159], head:[309,110], neck:[283,131], hip:[150,138], hipL:[150,138], hipR:[150,138], look:[1,-0.25] });
+var CAT = K(TT,{ mid:[210,114], head:[297,163], neck:[278,147], hip:[150,147], hipL:[150,147], hipR:[150,147], look:[0.1,1] });
+var CHILD = K(TT,{ hip:[96,182], hipL:[96,182], hipR:[96,182], mid:[146,166], shL:[200,190], shR:[200,190],
+  neck:[212,196], head:[233,201], elL:[250,207], haL:[298,211], elR:[244,207], haR:[292,211], look:[0.4,1] });
+
+var PRONE = { head:[324,193], neck:[302,198], shL:[290,200], shR:[290,200], mid:[235,201], hip:[180,201],
+  hipL:[180,201], hipR:[180,201], elL:[250,207], haL:[208,209], elR:[252,207], haR:[210,209],
+  knL:[112,204], ftL:[46,207], knR:[114,204], ftR:[48,207], look:[1,0.35] };
+var LIFT_NEAR = K(PRONE,{ knL:[114,189], ftL:[52,170] });
+var LIFT_FAR  = K(PRONE,{ knR:[114,189], ftR:[52,170] });
+
+/* front view, seated cross-legged */
+var SEAT = { head:[200,72], neck:[200,96], shL:[166,110], shR:[234,110], mid:[200,150], hip:[200,190],
+  hipL:[186,190], hipR:[214,190], knL:[128,202], knR:[272,202], ftL:[218,208], ftR:[182,208],
+  elL:[152,150], haL:[136,192], elR:[248,150], haR:[264,192], look:[0,0], handsFront:1 };
+var N_FWD  = K(SEAT,{ elR:[252,98], haR:[206,60] });
+var N_BACK = K(SEAT,{ elL:[136,82], haL:[188,68], elR:[264,82], haR:[212,68], handsFront:0 });
+var N_LEFT = K(SEAT,{ elL:[138,98], haL:[181,70] });
+var N_RIGHT= K(SEAT,{ elR:[262,98], haR:[219,70] });
+
+/* front view, standing, hands on waist */
+var STAND = { head:[200,48], neck:[200,70], shL:[168,84], shR:[232,84], mid:[200,118], hip:[200,152],
+  hipL:[188,152], hipR:[212,152], knL:[184,184], knR:[216,184], ftL:[180,211], ftR:[220,211],
+  elL:[142,116], haL:[180,146], elR:[258,116], haR:[220,146], look:[0,0], handsFront:1 };
+var TURN_R = K(STAND,{ shL:[180,84], shR:[229,85], elL:[160,120], elR:[251,112], haL:[184,146], haR:[222,146], head:[203,48], look:[5,0] });
+var TURN_L = K(STAND,{ shR:[220,84], shL:[171,85], elR:[240,120], elL:[149,112], haR:[216,146], haL:[178,146], head:[197,48], look:[-5,0] });
+
+var KF = { TT:TT, COW:COW, CAT:CAT, CHILD:CHILD, PRONE:PRONE, LIFT_NEAR:LIFT_NEAR, LIFT_FAR:LIFT_FAR,
+  SEAT:SEAT, N_FWD:N_FWD, N_BACK:N_BACK, N_LEFT:N_LEFT, N_RIGHT:N_RIGHT, STAND:STAND, TURN_R:TURN_R, TURN_L:TURN_L };
+
+/* ---------- the routine. phase: to=keyframe, move=seconds to get there, dur=total seconds ---------- */
+var EX = [
+ { name:"Greeva Pratirodhan", en:"Neck resistance, seated", tag:"Safe", tagClass:"safe", view:"front", start:"SEAT",
+   unit:"Round", reps:2,
+   intro:[{to:"SEAT",move:1,dur:5,breath:"Ready",cue:"Sit tall, legs crossed, shoulders soft."}],
+   cycle:[
+    {to:"N_FWD",move:1.5,dur:7,breath:"Hold",cue:"Palm on forehead. Press your head forward into it. Nothing moves."},
+    {to:"SEAT",move:1.5,dur:3,breath:"Rest",cue:"Let go."},
+    {to:"N_BACK",move:1.5,dur:7,breath:"Hold",cue:"Hands behind your head. Press your head back into them."},
+    {to:"SEAT",move:1.5,dur:3,breath:"Rest",cue:"Let go."},
+    {to:"N_LEFT",move:1.5,dur:7,breath:"Hold",cue:"Palm on the side of your head. Press sideways into it.",arrow:[214,44,190,44]},
+    {to:"SEAT",move:1.5,dur:3,breath:"Rest",cue:"Let go."},
+    {to:"N_RIGHT",move:1.5,dur:7,breath:"Hold",cue:"Other side. Press sideways into your palm.",arrow:[186,44,210,44]},
+    {to:"SEAT",move:1.5,dur:3,breath:"Rest",cue:"Let go."}
+   ],
+   note:"This works the neck, not the lower back. Keep each press at about half effort and keep breathing while you hold." },
+
+ { name:"Marjariasana", en:"Cat-Cow", tag:"Safe · in your library", tagClass:"safe", view:"side", start:"TT",
+   unit:"Breath", reps:8,
+   intro:[{to:"TT",move:1,dur:5,breath:"Ready",cue:"Hands and knees. Wrists under shoulders, knees under hips."}],
+   cycle:[
+    {to:"COW",move:4,dur:4,breath:"In",cue:"Breathe in. Belly drops, chest lifts."},
+    {to:"CAT",move:4,dur:4,breath:"Out",cue:"Breathe out. Round your back, chin in."}
+   ],
+   outro:[{to:"TT",move:2,dur:3,breath:"Rest",cue:"Back to a flat back."}],
+   note:"Already on your safe list. Keep the movement small and slow. It should feel like a stretch, never a pinch." },
+
+ { name:"Prishtatanasana", en:"Stand-in shown: supported Child's Pose", tag:"Stand-in · confirm real form", tagClass:"standin", view:"side", start:"TT",
+   unit:"Hold", reps:1,
+   intro:[{to:"TT",move:1,dur:4,breath:"Ready",cue:"Start on hands and knees."}],
+   cycle:[
+    {to:"CHILD",move:4,dur:6,breath:"Out",cue:"Breathe out and sink your hips back toward your heels."},
+    {to:"CHILD",move:0,dur:24,breath:"Rest",cue:"Rest here. Breathe slowly. Nothing to reach for."},
+    {to:"TT",move:4,dur:5,breath:"In",cue:"Breathe in and come back up slowly."}
+   ],
+   note:"This pose is on Jindal's spinal sheet, but I don't have their demonstration of it and won't invent a back stretch for your spine. What you see is a gentle resting pose in its place. Ask the instructor to show you the real one.", warn:true },
+
+ { name:"Ardha Shalabhasana", en:"Half Locust, one leg at a time", tag:"Half only", tagClass:"caution", view:"side", start:"PRONE",
+   unit:"Round", reps:5,
+   intro:[{to:"PRONE",move:1,dur:5,breath:"Ready",cue:"Lie on your front, arms by your sides, chin resting."}],
+   cycle:[
+    {to:"LIFT_NEAR",move:2,dur:6,breath:"In",cue:"Breathe in. Lift one leg a few inches. Hold."},
+    {to:"PRONE",move:2,dur:4,breath:"Out",cue:"Breathe out. Lower it slowly."},
+    {to:"LIFT_FAR",move:2,dur:6,breath:"In",cue:"Breathe in. Lift the other leg. Hold."},
+    {to:"PRONE",move:2,dur:4,breath:"Out",cue:"Breathe out. Lower it slowly."}
+   ],
+   note:"Jindal's sheet and your own file both say half only: one leg at a time, a few inches, hips staying on the floor. Never both legs with the chest lifted." },
+
+ { name:"Katishaktiasana", en:"Stand-in shown: small standing waist turn", tag:"Small range · confirm real form", tagClass:"standin", view:"front", start:"STAND",
+   unit:"Round", reps:5,
+   intro:[{to:"STAND",move:1,dur:5,breath:"Ready",cue:"Stand with feet hip-width apart, hands on your waist."}],
+   cycle:[
+    {to:"TURN_R",move:3,dur:4,breath:"Out",cue:"Breathe out. Turn a little to one side."},
+    {to:"STAND",move:3,dur:3,breath:"In",cue:"Breathe in. Back to centre."},
+    {to:"TURN_L",move:3,dur:4,breath:"Out",cue:"Breathe out. Turn a little to the other side."},
+    {to:"STAND",move:3,dur:3,breath:"In",cue:"Breathe in. Back to centre."}
+   ],
+   note:"Also on Jindal's spinal sheet, but I don't have their exact form. Twisting needs care with a pars defect, so this is a deliberately small turn. Get the instructor to show you their version and range before doing more.", warn:true }
+];
+
+EX.forEach(function(ex){
+  var seq=[];
+  (ex.intro||[]).forEach(function(p){ seq.push(K(p,{rep:0})); });
+  for(var r=1;r<=ex.reps;r++) ex.cycle.forEach(function(p){ seq.push(K(p,{rep:r})); });
+  (ex.outro||[]).forEach(function(p){ seq.push(K(p,{rep:ex.reps})); });
+  ex.seq=seq;
+  ex.total=seq.reduce(function(s,p){return s+p.dur;},0);
+});
+var SESSION_TOTAL = EX.reduce(function(s,e){return s+e.total;},0);
+
+/* ---------- state ---------- */
+var $ = function(id){ return document.getElementById(id); };
+var cv=$("cv"), ctx=cv.getContext("2d");
+var exIdx=0, phIdx=0, t=0, playing=false, finished=false, pace=1;
+var from=null, cur=null, lastTs=0;
+var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function clone(k){ var r={},n; for(n in k){ r[n]=Array.isArray(k[n])?k[n].slice():k[n]; } return r; }
+function ease(u){ return u<.5 ? 2*u*u : 1-Math.pow(-2*u+2,2)/2; }
+function mix(a,b,u){ var r={},n; for(n in b){ if(Array.isArray(b[n])){ var s=a[n]||b[n]; r[n]=[s[0]+(b[n][0]-s[0])*u, s[1]+(b[n][1]-s[1])*u]; } else r[n]=b[n]; } return r; }
+
+/* ---------- drawing ---------- */
+var C={};
+function readColors(){
+  var cs=getComputedStyle(document.documentElement);
+  ["skin","top","legs","mat","accent-2","stage"].forEach(function(n){ C[n]=cs.getPropertyValue("--"+n).trim(); });
+}
+function fit(){
+  var dpr=Math.min(window.devicePixelRatio||1,2), w=cv.clientWidth||400;
+  cv.width=Math.round(w*dpr); cv.height=Math.round(w*0.6*dpr);
+}
+function path(pts,w,col,alpha){
+  ctx.globalAlpha=alpha==null?1:alpha; ctx.strokeStyle=col; ctx.lineWidth=w; ctx.lineCap="round"; ctx.lineJoin="round";
+  ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]);
+  for(var i=1;i<pts.length;i++) ctx.lineTo(pts[i][0],pts[i][1]);
+  ctx.stroke(); ctx.globalAlpha=1;
+}
+function dot(p,r,col,alpha){ ctx.globalAlpha=alpha==null?1:alpha; ctx.fillStyle=col; ctx.beginPath(); ctx.arc(p[0],p[1],r,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1; }
+function arm(k,s,alpha){ path([k["sh"+s],k["el"+s],k["ha"+s]],10,C.top,alpha); dot(k["ha"+s],6,C.skin,alpha); }
+function leg(k,s,alpha){ path([k["hip"+s],k["kn"+s],k["ft"+s]],14,C.legs,alpha); }
+function torso(k,w){
+  var cx=2*k.mid[0]-(k.neck[0]+k.hip[0])/2, cy=2*k.mid[1]-(k.neck[1]+k.hip[1])/2;
+  ctx.strokeStyle=C.top; ctx.lineWidth=w; ctx.lineCap="round";
+  ctx.beginPath(); ctx.moveTo(k.neck[0],k.neck[1]); ctx.quadraticCurveTo(cx,cy,k.hip[0],k.hip[1]); ctx.stroke();
+}
+function head(k,view){
+  path([k.neck,k.head],9,C.skin);
+  dot(k.head,16,C.skin);
+  ctx.fillStyle=C.legs;
+  if(view==="front"){
+    var lx=k.look[0];
+    ctx.beginPath(); ctx.arc(k.head[0]-5+lx,k.head[1]-2,1.8,0,7); ctx.arc(k.head[0]+5+lx,k.head[1]-2,1.8,0,7); ctx.fill();
+  } else {
+    var l=k.look, m=Math.hypot(l[0],l[1])||1, ux=l[0]/m, uy=l[1]/m;
+    dot([k.head[0]+ux*16,k.head[1]+uy*16],3.5,C.skin);
+    dot([k.head[0]+ux*9+uy*5,k.head[1]+uy*9-ux*5],1.8,C.legs);
+  }
+}
+function draw(k,view,arrow,pulse){
+  var s=cv.width/400;
+  ctx.setTransform(s,0,0,s,0,0);
+  ctx.clearRect(0,0,400,240);
+  ctx.fillStyle=C.mat; ctx.beginPath();
+  if(ctx.roundRect) ctx.roundRect(28,218,344,8,4); else ctx.rect(28,218,344,8);
+  ctx.fill();
+  if(view==="side"){
+    leg(k,"R",.5); arm(k,"R",.5);
+    torso(k,28); head(k,view);
+    leg(k,"L"); arm(k,"L");
+  } else {
+    leg(k,"L"); leg(k,"R");
+    path([k.shL,k.shR],14,C.top);
+    torso(k,40);
+    if(!k.handsFront){ arm(k,"L"); arm(k,"R"); head(k,view); }
+    else { head(k,view); arm(k,"L"); arm(k,"R"); }
+  }
+  if(arrow){
+    var a=arrow, ang=Math.atan2(a[3]-a[1],a[2]-a[0]);
+    ctx.globalAlpha=.5+.5*pulse; ctx.strokeStyle=C["accent-2"]; ctx.lineWidth=3; ctx.lineCap="round";
+    ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(a[2],a[3]);
+    ctx.lineTo(a[2]-8*Math.cos(ang-.5),a[3]-8*Math.sin(ang-.5));
+    ctx.moveTo(a[2],a[3]); ctx.lineTo(a[2]-8*Math.cos(ang+.5),a[3]-8*Math.sin(ang+.5));
+    ctx.stroke(); ctx.globalAlpha=1;
+  }
+}
+
+/* ---------- UI ---------- */
+function elapsedBefore(i){ var s=0; for(var j=0;j<i;j++) s+=EX[j].total; return s; }
+function elapsedInEx(){ var s=0, ex=EX[exIdx]; for(var j=0;j<phIdx;j++) s+=ex.seq[j].dur; return s+t; }
+
+function showExercise(){
+  var ex=EX[exIdx];
+  $("poseName").textContent=ex.name; $("poseEn").textContent=ex.en;
+  $("poseTag").textContent=ex.tag; $("poseTag").className="tag "+ex.tagClass;
+  $("vidLink").href="https://www.youtube.com/results?search_query="+encodeURIComponent(ex.name+" yoga Jindal Naturecure");
+  $("poseNote").textContent=ex.note; $("poseNote").className="note"+(ex.warn?" warn":"");
+  var chips=$("chips"); chips.innerHTML="";
+  EX.forEach(function(e,i){
+    var b=document.createElement("button"); b.type="button"; b.className="chip"+(i===exIdx?" current":"");
+    b.textContent=(i+1)+". "+e.name; b.addEventListener("click",function(){ goTo(i); });
+    chips.appendChild(b);
+  });
+}
+function showPhase(){
+  var ex=EX[exIdx], ph=ex.seq[phIdx];
+  $("cue").textContent=ph.cue;
+  $("ringWord").textContent=ph.breath;
+  var d=$("dots"); d.innerHTML="";
+  if(ex.reps>1){
+    for(var i=1;i<=ex.reps;i++){ var s=document.createElement("span"); s.className="dot"+(i<ph.rep?" done":i===ph.rep?" on":""); d.appendChild(s); }
+    $("repText").textContent = ph.rep ? ex.unit+" "+ph.rep+" of "+ex.reps : "Get ready";
+  } else $("repText").textContent = ph.rep ? "One long hold" : "Get ready";
+  speak(ph.cue);
+}
+function enterPhase(){
+  from=clone(cur); t=0; showPhase();
+}
+function goTo(i){
+  exIdx=Math.max(0,Math.min(EX.length-1,i)); phIdx=0; finished=false;
+  cur=clone(KF[EX[exIdx].start]); showExercise(); enterPhase();
+}
+function finish(){
+  playing=false; finished=true;
+  $("playBtn").textContent="↻ Start again";
+  $("cue").textContent="That's the session. Lie on your back and rest for a minute.";
+  $("ringWord").textContent="Done"; $("ringNum").textContent=""; $("repText").textContent=""; $("dots").innerHTML="";
+  speak("That's the session. Lie on your back and rest for a minute.");
+}
+
+function frame(ts){
+  var dt=lastTs?Math.min(.1,(ts-lastTs)/1000):0; lastTs=ts;
+  var ex=EX[exIdx], ph=ex.seq[phIdx];
+  if(playing){
+    t+=dt/pace;
+    if(t>=ph.dur){
+      cur=clone(KF[ph.to]);
+      if(phIdx<ex.seq.length-1){ phIdx++; enterPhase(); }
+      else if(exIdx<EX.length-1){ exIdx++; phIdx=0; cur=clone(KF[EX[exIdx].start]); showExercise(); enterPhase(); }
+      else finish();
+      ex=EX[exIdx]; ph=ex.seq[phIdx];
+    }
+  }
+  var u = (reduce||!ph.move) ? 1 : Math.min(1,t/ph.move);
+  cur = mix(from, KF[ph.to], ease(u));
+  if((ts|0)%60<17) readColors();
+  draw(cur, ex.view, playing&&ph.arrow, .5+.5*Math.sin(ts/250));
+
+  var frac=Math.min(1,t/ph.dur), sc=.6;
+  if(ph.breath==="In") sc=.6+.4*ease(frac);
+  else if(ph.breath==="Out") sc=1-.4*ease(frac);
+  else if(ph.breath==="Hold") sc=1;
+  $("ring").style.transform="scale("+sc.toFixed(3)+")";
+  if(!finished) $("ringNum").textContent = playing||t>0 ? Math.max(1,Math.ceil(ph.dur-t)) : "";
+  var done = finished ? 1 : (elapsedBefore(exIdx)+elapsedInEx())/SESSION_TOTAL;
+  $("barFill").style.width=(done*100).toFixed(1)+"%";
+  requestAnimationFrame(frame);
+}
+
+$("playBtn").addEventListener("click",function(){
+  if(finished){ goTo(0); playing=true; this.textContent="⏸ Pause"; return; }
+  playing=!playing;
+  this.textContent = playing ? "⏸ Pause" : "▶ Resume";
+  if(playing) speak(EX[exIdx].seq[phIdx].cue); else if(window.speechSynthesis) window.speechSynthesis.cancel();
+});
+$("prevBtn").addEventListener("click",function(){ goTo(exIdx-1); });
+$("nextBtn").addEventListener("click",function(){ goTo(exIdx+1); });
+$("paceBtn").addEventListener("click",function(){
+  pace = pace===1 ? 1.5 : 1; this.setAttribute("aria-pressed", pace!==1);
+});
+
+/* ---------- voice (device text-to-speech) ---------- */
+var voiceOn=false;
+function speak(text){
+  if(!voiceOn || !playing && !finished || !window.speechSynthesis) return;
+  try{
+    window.speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(text), vs=window.speechSynthesis.getVoices();
+    var v=vs.filter(function(x){return /^en-GB/i.test(x.lang);})[0] || vs.filter(function(x){return /^en/i.test(x.lang);})[0];
+    if(v) u.voice=v; u.rate=.9; u.pitch=1;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+$("voiceBtn").addEventListener("click",function(){
+  voiceOn=!voiceOn; this.setAttribute("aria-pressed",voiceOn);
+  if(!voiceOn && window.speechSynthesis) window.speechSynthesis.cancel();
+  else speak(EX[exIdx].seq[phIdx].cue);
+});
+
+/* ---------- calm tone (generated, not a music track) ---------- */
+var actx=null, master=null;
+$("toneBtn").addEventListener("click",function(){
+  try{
+    if(!actx){
+      actx=new (window.AudioContext||window.webkitAudioContext)();
+      master=actx.createGain(); master.gain.value=0; master.connect(actx.destination);
+      var f=actx.createBiquadFilter(); f.type="lowpass"; f.frequency.value=700; f.connect(master);
+      [98,146.83,196,246.94].forEach(function(hz,i){
+        var o=actx.createOscillator(), g=actx.createGain(), l=actx.createOscillator(), lg=actx.createGain();
+        o.type="sine"; o.frequency.value=hz; g.gain.value=.25;
+        l.frequency.value=.05+.03*i; lg.gain.value=.2; l.connect(lg); lg.connect(g.gain);
+        o.connect(g); g.connect(f); o.start(); l.start();
+      });
+    }
+    var on=this.getAttribute("aria-pressed")!=="true";
+    this.setAttribute("aria-pressed",on);
+    if(on) actx.resume();
+    master.gain.linearRampToValueAtTime(on?.07:0, actx.currentTime+1.5);
+  }catch(e){ this.textContent="Tone unavailable"; }
+});
+
+window.addEventListener("resize",fit);
+fit(); readColors(); goTo(0);
+requestAnimationFrame(frame);
+})();
+</script>
+
+</html>
